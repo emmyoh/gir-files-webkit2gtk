@@ -1,0 +1,3075 @@
+<?xml version="1.0"?>
+<!-- This file was automatically generated from C sources - DO NOT EDIT!
+To affect the contents of this file, edit the original C definitions,
+and/or use gtk-doc annotations.  -->
+<repository xmlns="http://www.gtk.org/introspection/core/1.0" xmlns:c="http://www.gtk.org/introspection/c/1.0" xmlns:glib="http://www.gtk.org/introspection/glib/1.0" version="1.2">
+  <include name="GLib" version="2.0"/>
+  <include name="GObject" version="2.0"/>
+  <include name="Gio" version="2.0"/>
+  <package name="tracker-sparql-3.0"/>
+  <c:include name="libtracker-sparql/tracker-sparql.h"/>
+  <namespace name="Tracker" version="3.0" shared-library="libtracker-sparql-3.0.so.0" c:identifier-prefixes="Tracker" c:symbol-prefixes="tracker">
+    <class name="Batch" c:symbol-prefix="batch" c:type="TrackerBatch" parent="GObject.Object" abstract="1" glib:type-name="TrackerBatch" glib:get-type="tracker_batch_get_type" glib:type-struct="BatchClass">
+      <method name="add_resource" c:identifier="tracker_batch_add_resource" version="3.1">
+        <doc xml:space="preserve">Adds the RDF represented by @resource to @batch.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="batch" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerBatch</doc>
+            <type name="Batch" c:type="TrackerBatch*"/>
+          </instance-parameter>
+          <parameter name="graph" transfer-ownership="none">
+            <doc xml:space="preserve">RDF graph to insert the resource to</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="resource" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerResource</doc>
+            <type name="Resource" c:type="TrackerResource*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="add_sparql" c:identifier="tracker_batch_add_sparql" version="3.1">
+        <doc xml:space="preserve">Adds an SPARQL update string to @batch.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="batch" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerBatch</doc>
+            <type name="Batch" c:type="TrackerBatch*"/>
+          </instance-parameter>
+          <parameter name="sparql" transfer-ownership="none">
+            <doc xml:space="preserve">a SPARQL update string</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="execute" c:identifier="tracker_batch_execute" version="3.1" throws="1">
+        <doc xml:space="preserve">Executes the batch. This operations happens synchronously.</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve">%TRUE of there were no errors, %FALSE otherwise</doc>
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="batch" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerBatch</doc>
+            <type name="Batch" c:type="TrackerBatch*"/>
+          </instance-parameter>
+          <parameter name="cancellable" transfer-ownership="none" nullable="1" allow-none="1">
+            <doc xml:space="preserve">a #GCancellable, or %NULL</doc>
+            <type name="Gio.Cancellable" c:type="GCancellable*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="execute_async" c:identifier="tracker_batch_execute_async" version="3.1">
+        <doc xml:space="preserve">Executes the batch. This operation happens asynchronously, when
+finished @callback will be executed.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="batch" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerBatch</doc>
+            <type name="Batch" c:type="TrackerBatch*"/>
+          </instance-parameter>
+          <parameter name="cancellable" transfer-ownership="none" nullable="1" allow-none="1">
+            <doc xml:space="preserve">a #GCancellable, or %NULL</doc>
+            <type name="Gio.Cancellable" c:type="GCancellable*"/>
+          </parameter>
+          <parameter name="callback" transfer-ownership="none" nullable="1" allow-none="1" scope="async" closure="2">
+            <doc xml:space="preserve">user-defined #GAsyncReadyCallback to be called when
+           asynchronous operation is finished.</doc>
+            <type name="Gio.AsyncReadyCallback" c:type="GAsyncReadyCallback"/>
+          </parameter>
+          <parameter name="user_data" transfer-ownership="none" nullable="1" allow-none="1">
+            <doc xml:space="preserve">user-defined data to be passed to @callback</doc>
+            <type name="gpointer" c:type="gpointer"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="execute_finish" c:identifier="tracker_batch_execute_finish" version="3.1" throws="1">
+        <doc xml:space="preserve">Finishes the operation started with tracker_batch_execute_async().</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve">%TRUE of there were no errors, %FALSE otherwise</doc>
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="batch" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerBatch</doc>
+            <type name="Batch" c:type="TrackerBatch*"/>
+          </instance-parameter>
+          <parameter name="res" transfer-ownership="none">
+            <doc xml:space="preserve">a #GAsyncResult with the result of the operation</doc>
+            <type name="Gio.AsyncResult" c:type="GAsyncResult*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="get_connection" c:identifier="tracker_batch_get_connection" glib:get-property="connection">
+        <doc xml:space="preserve">Returns the #TrackerSparqlConnection that this batch was created from.</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve">The SPARQL connection of this batch.</doc>
+          <type name="SparqlConnection" c:type="TrackerSparqlConnection*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="batch" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerBatch</doc>
+            <type name="Batch" c:type="TrackerBatch*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <property name="connection" writable="1" construct-only="1" transfer-ownership="none" getter="get_connection">
+        <doc xml:space="preserve">The #TrackerSparqlConnection the batch belongs to.</doc>
+        <type name="SparqlConnection"/>
+      </property>
+      <field name="parent_instance">
+        <type name="GObject.Object" c:type="GObject"/>
+      </field>
+    </class>
+    <record name="BatchClass" c:type="TrackerBatchClass" disguised="1" glib:is-gtype-struct-for="Batch"/>
+    <function-macro name="CHECK_VERSION" c:identifier="TRACKER_CHECK_VERSION" introspectable="0">
+      <doc xml:space="preserve">This macro essentially does the same thing as
+tracker_check_version() but as a pre-processor operation rather
+than a run-time operation. It will evaluate true or false based the
+version passed in and the version available.
+
+&lt;example&gt;
+&lt;title&gt;Simple version check example&lt;/title&gt;
+An example of how to make sure you have the version of Tracker
+installed to run your code.
+&lt;programlisting&gt;
+if (!TRACKER_CHECK_VERSION (0, 10, 7)) {
+        g_error ("Tracker version 0.10.7 or above is needed");
+}
+&lt;/programlisting&gt;
+&lt;/example&gt;</doc>
+      <parameters>
+        <parameter name="major">
+          <doc xml:space="preserve">the required major version.</doc>
+        </parameter>
+        <parameter name="minor">
+          <doc xml:space="preserve">the required minor version.</doc>
+        </parameter>
+        <parameter name="micro">
+          <doc xml:space="preserve">the required micro version.</doc>
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="DEPRECATED_IN_3_1_FOR" c:identifier="TRACKER_DEPRECATED_IN_3_1_FOR" introspectable="0">
+      <parameters>
+        <parameter name="f">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="DEPRECATED_IN_3_2_FOR" c:identifier="TRACKER_DEPRECATED_IN_3_2_FOR" introspectable="0">
+      <parameters>
+        <parameter name="f">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="DEPRECATED_IN_3_3_FOR" c:identifier="TRACKER_DEPRECATED_IN_3_3_FOR" introspectable="0">
+      <parameters>
+        <parameter name="f">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="ENDPOINT_DBUS" c:identifier="TRACKER_ENDPOINT_DBUS" introspectable="0">
+      <parameters>
+        <parameter name="o">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="ENDPOINT_DBUS_CLASS" c:identifier="TRACKER_ENDPOINT_DBUS_CLASS" introspectable="0">
+      <parameters>
+        <parameter name="c">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="ENDPOINT_DBUS_GET_CLASS" c:identifier="TRACKER_ENDPOINT_DBUS_GET_CLASS" introspectable="0">
+      <parameters>
+        <parameter name="o">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="ENDPOINT_HTTP" c:identifier="TRACKER_ENDPOINT_HTTP" introspectable="0">
+      <parameters>
+        <parameter name="o">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="ENDPOINT_HTTP_CLASS" c:identifier="TRACKER_ENDPOINT_HTTP_CLASS" introspectable="0">
+      <parameters>
+        <parameter name="c">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="ENDPOINT_HTTP_GET_CLASS" c:identifier="TRACKER_ENDPOINT_HTTP_GET_CLASS" introspectable="0">
+      <parameters>
+        <parameter name="o">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <class name="Endpoint" c:symbol-prefix="endpoint" c:type="TrackerEndpoint" parent="GObject.Object" abstract="1" glib:type-name="TrackerEndpoint" glib:get-type="tracker_endpoint_get_type" glib:type-struct="EndpointClass">
+      <doc xml:space="preserve">The &lt;structname&gt;TrackerEndpoint&lt;/structname&gt; object represents a public
+connection to a #TrackerSparqlConnection.</doc>
+      <method name="get_sparql_connection" c:identifier="tracker_endpoint_get_sparql_connection" glib:get-property="sparql-connection">
+        <doc xml:space="preserve">Returns the #TrackerSparqlConnection that this endpoint proxies.</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve">The proxied SPARQL connection</doc>
+          <type name="SparqlConnection" c:type="TrackerSparqlConnection*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="endpoint" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerEndpoint</doc>
+            <type name="Endpoint" c:type="TrackerEndpoint*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <property name="sparql-connection" writable="1" construct-only="1" transfer-ownership="none" getter="get_sparql_connection">
+        <type name="SparqlConnection"/>
+      </property>
+      <field name="parent_instance">
+        <type name="GObject.Object" c:type="GObject"/>
+      </field>
+    </class>
+    <record name="EndpointClass" c:type="TrackerEndpointClass" disguised="1" glib:is-gtype-struct-for="Endpoint"/>
+    <class name="EndpointDBus" c:symbol-prefix="endpoint_dbus" c:type="TrackerEndpointDBus" parent="Endpoint" glib:type-name="TrackerEndpointDBus" glib:get-type="tracker_endpoint_dbus_get_type">
+      <doc xml:space="preserve">The &lt;structname&gt;TrackerEndpointDBus&lt;/structname&gt; object represents a public
+connection to a #TrackerSparqlConnection on a DBus object path.</doc>
+      <implements name="Gio.Initable"/>
+      <constructor name="new" c:identifier="tracker_endpoint_dbus_new" throws="1">
+        <doc xml:space="preserve">Registers a Tracker endpoint object at @object_path on @dbus_connection.
+The default object path is "/org/freedesktop/Tracker3/Endpoint".</doc>
+        <return-value transfer-ownership="full">
+          <doc xml:space="preserve">a #TrackerEndpointDBus object.</doc>
+          <type name="EndpointDBus" c:type="TrackerEndpointDBus*"/>
+        </return-value>
+        <parameters>
+          <parameter name="sparql_connection" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerSparqlConnection</doc>
+            <type name="SparqlConnection" c:type="TrackerSparqlConnection*"/>
+          </parameter>
+          <parameter name="dbus_connection" transfer-ownership="none">
+            <doc xml:space="preserve">a #GDBusConnection</doc>
+            <type name="Gio.DBusConnection" c:type="GDBusConnection*"/>
+          </parameter>
+          <parameter name="object_path" transfer-ownership="none" nullable="1" allow-none="1">
+            <doc xml:space="preserve">the object path to use, or %NULL for the default</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="cancellable" transfer-ownership="none" nullable="1" allow-none="1">
+            <doc xml:space="preserve">a #GCancellable, or %NULL</doc>
+            <type name="Gio.Cancellable" c:type="GCancellable*"/>
+          </parameter>
+        </parameters>
+      </constructor>
+      <property name="dbus-connection" writable="1" construct-only="1" transfer-ownership="none">
+        <type name="Gio.DBusConnection"/>
+      </property>
+      <property name="object-path" writable="1" construct-only="1" transfer-ownership="none">
+        <type name="utf8" c:type="gchar*"/>
+      </property>
+    </class>
+    <class name="EndpointHttp" c:symbol-prefix="endpoint_http" c:type="TrackerEndpointHttp" parent="Endpoint" glib:type-name="TrackerEndpointHttp" glib:get-type="tracker_endpoint_http_get_type">
+      <doc xml:space="preserve">The &lt;structname&gt;TrackerEndpointHttp&lt;/structname&gt; object represents a public
+connection to a #TrackerSparqlConnection on a HTTP port.</doc>
+      <implements name="Gio.Initable"/>
+      <constructor name="new" c:identifier="tracker_endpoint_http_new" throws="1">
+        <return-value transfer-ownership="full">
+          <type name="EndpointHttp" c:type="TrackerEndpointHttp*"/>
+        </return-value>
+        <parameters>
+          <parameter name="sparql_connection" transfer-ownership="none">
+            <type name="SparqlConnection" c:type="TrackerSparqlConnection*"/>
+          </parameter>
+          <parameter name="port" transfer-ownership="none">
+            <type name="guint" c:type="guint"/>
+          </parameter>
+          <parameter name="certificate" transfer-ownership="none">
+            <type name="Gio.TlsCertificate" c:type="GTlsCertificate*"/>
+          </parameter>
+          <parameter name="cancellable" transfer-ownership="none" nullable="1" allow-none="1">
+            <type name="Gio.Cancellable" c:type="GCancellable*"/>
+          </parameter>
+        </parameters>
+      </constructor>
+      <property name="http-certificate" writable="1" construct-only="1" transfer-ownership="none">
+        <type name="Gio.TlsCertificate"/>
+      </property>
+      <property name="http-port" writable="1" construct-only="1" transfer-ownership="none">
+        <type name="guint" c:type="guint"/>
+      </property>
+      <glib:signal name="block-remote-address">
+        <return-value transfer-ownership="none">
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <parameter name="object" transfer-ownership="none">
+            <type name="Gio.SocketAddress"/>
+          </parameter>
+        </parameters>
+      </glib:signal>
+    </class>
+    <function-macro name="IS_ENDPOINT_DBUS" c:identifier="TRACKER_IS_ENDPOINT_DBUS" introspectable="0">
+      <parameters>
+        <parameter name="o">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="IS_ENDPOINT_DBUS_CLASS" c:identifier="TRACKER_IS_ENDPOINT_DBUS_CLASS" introspectable="0">
+      <parameters>
+        <parameter name="c">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="IS_ENDPOINT_HTTP" c:identifier="TRACKER_IS_ENDPOINT_HTTP" introspectable="0">
+      <parameters>
+        <parameter name="o">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="IS_ENDPOINT_HTTP_CLASS" c:identifier="TRACKER_IS_ENDPOINT_HTTP_CLASS" introspectable="0">
+      <parameters>
+        <parameter name="c">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <class name="NamespaceManager" c:symbol-prefix="namespace_manager" c:type="TrackerNamespaceManager" parent="GObject.Object" glib:type-name="TrackerNamespaceManager" glib:get-type="tracker_namespace_manager_get_type" glib:type-struct="NamespaceManagerClass">
+      <doc xml:space="preserve">The &lt;structname&gt;TrackerNamespaceManager&lt;/structname&gt; object represents a
+mapping of prefixes and namespaces.</doc>
+      <constructor name="new" c:identifier="tracker_namespace_manager_new">
+        <doc xml:space="preserve">Creates a new #TrackerNamespaceManager instance.</doc>
+        <return-value transfer-ownership="full">
+          <doc xml:space="preserve">a new #TrackerNamespaceManager instance</doc>
+          <type name="NamespaceManager" c:type="TrackerNamespaceManager*"/>
+        </return-value>
+      </constructor>
+      <function name="get_default" c:identifier="tracker_namespace_manager_get_default" deprecated="1" deprecated-version="3.3">
+        <doc xml:space="preserve">Returns the global #TrackerNamespaceManager that contains a set of well-known
+namespaces and prefixes, such as rdf:, rdfs:, nie:, tracker:, etc.
+
+Note that the list of prefixes and namespaces is hardcoded in
+libtracker-sparql. It may not correspond with the installed set of
+ontologies, if they have been modified since they were installed.</doc>
+        <doc-deprecated xml:space="preserve">Use tracker_sparql_connection_get_namespace_manager() instead.</doc-deprecated>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve">a global, shared #TrackerNamespaceManager instance</doc>
+          <type name="NamespaceManager" c:type="TrackerNamespaceManager*"/>
+        </return-value>
+      </function>
+      <method name="add_prefix" c:identifier="tracker_namespace_manager_add_prefix">
+        <doc xml:space="preserve">Adds @prefix as the recognised abbreviaton of @namespace.
+
+Only one prefix is allowed for a given namespace, and all prefixes must
+be unique.
+
+Since 3.3, This function may not be used on #TrackerNamespaceManager
+instances that were obtained through
+tracker_sparql_connection_get_namespace_manager().</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerNamespaceManager</doc>
+            <type name="NamespaceManager" c:type="TrackerNamespaceManager*"/>
+          </instance-parameter>
+          <parameter name="prefix" transfer-ownership="none">
+            <doc xml:space="preserve">a short, unique prefix to identify @namespace</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+          <parameter name="ns" transfer-ownership="none">
+            <doc xml:space="preserve">the URL of the given namespace</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="compress_uri" c:identifier="tracker_namespace_manager_compress_uri" version="3.3">
+        <doc xml:space="preserve">If @uri begins with one of the namespaces known to this
+#TrackerNamespaceManager, then the return value will be the
+compressed URI. Otherwise, %NULL will be returned.</doc>
+        <return-value transfer-ownership="full">
+          <doc xml:space="preserve">(nullable): the compressed URI</doc>
+          <type name="utf8" c:type="char*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerNamespaceManager</doc>
+            <type name="NamespaceManager" c:type="TrackerNamespaceManager*"/>
+          </instance-parameter>
+          <parameter name="uri" transfer-ownership="none">
+            <doc xml:space="preserve">a URI or compact URI</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="expand_uri" c:identifier="tracker_namespace_manager_expand_uri">
+        <doc xml:space="preserve">If @compact_uri begins with one of the prefixes known to this
+#TrackerNamespaceManager, then the return value will be the
+expanded URI. Otherwise, a copy of @compact_uri will be returned.</doc>
+        <return-value transfer-ownership="full">
+          <doc xml:space="preserve">a newly-allocated string</doc>
+          <type name="utf8" c:type="char*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerNamespaceManager</doc>
+            <type name="NamespaceManager" c:type="TrackerNamespaceManager*"/>
+          </instance-parameter>
+          <parameter name="compact_uri" transfer-ownership="none">
+            <doc xml:space="preserve">a URI or compact URI</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="foreach" c:identifier="tracker_namespace_manager_foreach">
+        <doc xml:space="preserve">Calls @func for each known prefix / URI pair.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerNamespaceManager</doc>
+            <type name="NamespaceManager" c:type="TrackerNamespaceManager*"/>
+          </instance-parameter>
+          <parameter name="func" transfer-ownership="none" scope="call" closure="1">
+            <doc xml:space="preserve">the function to call for each prefix / URI pair</doc>
+            <type name="GLib.HFunc" c:type="GHFunc"/>
+          </parameter>
+          <parameter name="user_data" transfer-ownership="none" nullable="1" allow-none="1">
+            <doc xml:space="preserve">user data to pass to the function</doc>
+            <type name="gpointer" c:type="gpointer"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="has_prefix" c:identifier="tracker_namespace_manager_has_prefix">
+        <doc xml:space="preserve">Returns whether @prefix is known.</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve">%TRUE if the #TrackerNamespaceManager knows about @prefix, %FALSE otherwise</doc>
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerNamespaceManager</doc>
+            <type name="NamespaceManager" c:type="TrackerNamespaceManager*"/>
+          </instance-parameter>
+          <parameter name="prefix" transfer-ownership="none">
+            <doc xml:space="preserve">a string</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="lookup_prefix" c:identifier="tracker_namespace_manager_lookup_prefix">
+        <doc xml:space="preserve">Looks up the namespace URI corresponding to @prefix, or %NULL if the prefix
+is not known.</doc>
+        <return-value transfer-ownership="none" nullable="1">
+          <doc xml:space="preserve">a string owned by the #TrackerNamespaceManager, or %NULL</doc>
+          <type name="utf8" c:type="const char*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerNamespaceManager</doc>
+            <type name="NamespaceManager" c:type="TrackerNamespaceManager*"/>
+          </instance-parameter>
+          <parameter name="prefix" transfer-ownership="none">
+            <doc xml:space="preserve">a string</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="print_turtle" c:identifier="tracker_namespace_manager_print_turtle">
+        <doc xml:space="preserve">Writes out all namespaces as Turtle @prefix statements.</doc>
+        <return-value transfer-ownership="full">
+          <doc xml:space="preserve">a newly-allocated string</doc>
+          <type name="utf8" c:type="char*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerNamespaceManager</doc>
+            <type name="NamespaceManager" c:type="TrackerNamespaceManager*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+    </class>
+    <record name="NamespaceManagerClass" c:type="TrackerNamespaceManagerClass" glib:is-gtype-struct-for="NamespaceManager">
+      <field name="parent_class">
+        <type name="GObject.ObjectClass" c:type="GObjectClass"/>
+      </field>
+    </record>
+    <class name="Notifier" c:symbol-prefix="notifier" c:type="TrackerNotifier" parent="GObject.Object" glib:type-name="TrackerNotifier" glib:get-type="tracker_notifier_get_type" glib:type-struct="NotifierClass">
+      <doc xml:space="preserve">The &lt;structname&gt;TrackerNotifier&lt;/structname&gt; object allows subscribing
+to changes in the stored data.</doc>
+      <method name="signal_subscribe" c:identifier="tracker_notifier_signal_subscribe" version="3.0">
+        <doc xml:space="preserve">Listens to notification events from a remote SPARQL endpoint as a DBus
+service (see #TrackerEndpointDBus). If the @object_path argument is
+%NULL, the default "/org/freedesktop/Tracker3/Endpoint" path will be
+used. If @graph is %NULL, all graphs will be listened for.
+
+The signal subscription can be removed with
+tracker_notifier_signal_unsubscribe().</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve">An ID for this subscription</doc>
+          <type name="guint" c:type="guint"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="notifier" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerNotifier</doc>
+            <type name="Notifier" c:type="TrackerNotifier*"/>
+          </instance-parameter>
+          <parameter name="connection" transfer-ownership="none">
+            <doc xml:space="preserve">a #GDBusConnection</doc>
+            <type name="Gio.DBusConnection" c:type="GDBusConnection*"/>
+          </parameter>
+          <parameter name="service" transfer-ownership="none">
+            <doc xml:space="preserve">DBus service name to subscribe to events for</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="object_path" transfer-ownership="none" nullable="1" allow-none="1">
+            <doc xml:space="preserve">DBus object path to subscribe to events for, or %NULL</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="graph" transfer-ownership="none" nullable="1" allow-none="1">
+            <doc xml:space="preserve">graph to listen events for, or %NULL</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="signal_unsubscribe" c:identifier="tracker_notifier_signal_unsubscribe" version="3.0">
+        <doc xml:space="preserve">Undoes a DBus signal subscription, the @handler_id argument was previously
+obtained with a tracker_notifier_signal_subscribe() call.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="notifier" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerNotifier</doc>
+            <type name="Notifier" c:type="TrackerNotifier*"/>
+          </instance-parameter>
+          <parameter name="handler_id" transfer-ownership="none">
+            <doc xml:space="preserve">a handler ID obtained with tracker_notifier_signal_subscribe()</doc>
+            <type name="guint" c:type="guint"/>
+          </parameter>
+        </parameters>
+      </method>
+      <property name="connection" writable="1" construct-only="1" transfer-ownership="none">
+        <doc xml:space="preserve">SPARQL connection to listen to.</doc>
+        <type name="SparqlConnection"/>
+      </property>
+      <field name="parent_instance">
+        <type name="GObject.Object" c:type="GObject"/>
+      </field>
+      <glib:signal name="events">
+        <doc xml:space="preserve">Notifies of changes in the Tracker database.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="service" transfer-ownership="none">
+            <doc xml:space="preserve">The SPARQL service that originated the events, %NULL for the local store</doc>
+            <type name="utf8" c:type="gchar*"/>
+          </parameter>
+          <parameter name="graph" transfer-ownership="none">
+            <doc xml:space="preserve">The graph where the events happened on, %NULL for the default anonymous graph</doc>
+            <type name="utf8" c:type="gchar*"/>
+          </parameter>
+          <parameter name="events" transfer-ownership="none">
+            <doc xml:space="preserve">A #GPtrArray of #TrackerNotifierEvent</doc>
+            <array name="GLib.PtrArray">
+              <type name="NotifierEvent"/>
+            </array>
+          </parameter>
+        </parameters>
+      </glib:signal>
+    </class>
+    <record name="NotifierClass" c:type="TrackerNotifierClass" disguised="1" glib:is-gtype-struct-for="Notifier"/>
+    <record name="NotifierEvent" c:type="TrackerNotifierEvent" glib:type-name="TrackerNotifierEvent" glib:get-type="tracker_notifier_event_get_type" c:symbol-prefix="notifier_event">
+      <doc xml:space="preserve">The &lt;structname&gt;TrackerNotifierEvent&lt;/structname&gt; struct represents a
+change event in the stored data.</doc>
+      <method name="get_event_type" c:identifier="tracker_notifier_event_get_event_type">
+        <doc xml:space="preserve">Returns the event type.</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve">The event type</doc>
+          <type name="NotifierEventType" c:type="TrackerNotifierEventType"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="event" transfer-ownership="none">
+            <doc xml:space="preserve">A #TrackerNotifierEvent</doc>
+            <type name="NotifierEvent" c:type="TrackerNotifierEvent*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_id" c:identifier="tracker_notifier_event_get_id">
+        <doc xml:space="preserve">Returns the tracker:id of the element being notified upon. This is a #gint64
+which is used as efficient internal identifier for the resource.</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve">the resource ID</doc>
+          <type name="gint64" c:type="gint64"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="event" transfer-ownership="none">
+            <doc xml:space="preserve">A #TrackerNotifierEvent</doc>
+            <type name="NotifierEvent" c:type="TrackerNotifierEvent*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_urn" c:identifier="tracker_notifier_event_get_urn">
+        <doc xml:space="preserve">Returns the Uniform Resource Name of the element. This is Tracker's
+public identifier for the resource.
+
+This URN is an unique string identifier for the resource being
+notified upon, typically of the form "urn:uuid:...".</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve">The element URN</doc>
+          <type name="utf8" c:type="const gchar*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="event" transfer-ownership="none">
+            <doc xml:space="preserve">A #TrackerNotifierEvent</doc>
+            <type name="NotifierEvent" c:type="TrackerNotifierEvent*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+    </record>
+    <enumeration name="NotifierEventType" c:type="TrackerNotifierEventType">
+      <doc xml:space="preserve">Notifier event types.</doc>
+      <member name="create" value="0" c:identifier="TRACKER_NOTIFIER_EVENT_CREATE">
+        <doc xml:space="preserve">An element was created.</doc>
+      </member>
+      <member name="delete" value="1" c:identifier="TRACKER_NOTIFIER_EVENT_DELETE">
+        <doc xml:space="preserve">An element was deleted.</doc>
+      </member>
+      <member name="update" value="2" c:identifier="TRACKER_NOTIFIER_EVENT_UPDATE">
+        <doc xml:space="preserve">An element was updated.</doc>
+      </member>
+    </enumeration>
+    <constant name="PREFIX_DC" value="http://purl.org/dc/elements/1.1/" c:type="TRACKER_PREFIX_DC">
+      <doc xml:space="preserve">The Prefix of the DC (Dublin Core) namespace</doc>
+      <type name="utf8" c:type="gchar*"/>
+    </constant>
+    <constant name="PREFIX_MFO" value="http://tracker.api.gnome.org/ontology/v3/mfo#" c:type="TRACKER_PREFIX_MFO">
+      <doc xml:space="preserve">The Prefix of the MFO namespace</doc>
+      <type name="utf8" c:type="gchar*"/>
+    </constant>
+    <constant name="PREFIX_NAO" value="http://tracker.api.gnome.org/ontology/v3/nao#" c:type="TRACKER_PREFIX_NAO">
+      <doc xml:space="preserve">The Prefix of the NAO namespace</doc>
+      <type name="utf8" c:type="gchar*"/>
+    </constant>
+    <constant name="PREFIX_NCO" value="http://tracker.api.gnome.org/ontology/v3/nco#" c:type="TRACKER_PREFIX_NCO">
+      <doc xml:space="preserve">The Prefix of the NCO namespace</doc>
+      <type name="utf8" c:type="gchar*"/>
+    </constant>
+    <constant name="PREFIX_NFO" value="http://tracker.api.gnome.org/ontology/v3/nfo#" c:type="TRACKER_PREFIX_NFO">
+      <doc xml:space="preserve">The Prefix of the NFO namespace</doc>
+      <type name="utf8" c:type="gchar*"/>
+    </constant>
+    <constant name="PREFIX_NIE" value="http://tracker.api.gnome.org/ontology/v3/nie#" c:type="TRACKER_PREFIX_NIE">
+      <doc xml:space="preserve">The Prefix of the NIE namespace</doc>
+      <type name="utf8" c:type="gchar*"/>
+    </constant>
+    <constant name="PREFIX_NMM" value="http://tracker.api.gnome.org/ontology/v3/nmm#" c:type="TRACKER_PREFIX_NMM">
+      <doc xml:space="preserve">The Prefix of the RDF namespace</doc>
+      <type name="utf8" c:type="gchar*"/>
+    </constant>
+    <constant name="PREFIX_NRL" value="http://tracker.api.gnome.org/ontology/v3/nrl#" c:type="TRACKER_PREFIX_NRL">
+      <doc xml:space="preserve">The Prefix of the NRL namespace</doc>
+      <type name="utf8" c:type="gchar*"/>
+    </constant>
+    <constant name="PREFIX_OSINFO" value="http://tracker.api.gnome.org/ontology/v3/osinfo#" c:type="TRACKER_PREFIX_OSINFO">
+      <doc xml:space="preserve">The Prefix of the Osinfo namespace</doc>
+      <type name="utf8" c:type="gchar*"/>
+    </constant>
+    <constant name="PREFIX_RDF" value="http://www.w3.org/1999/02/22-rdf-syntax-ns#" c:type="TRACKER_PREFIX_RDF">
+      <doc xml:space="preserve">The Prefix of the RDF namespace</doc>
+      <type name="utf8" c:type="gchar*"/>
+    </constant>
+    <constant name="PREFIX_RDFS" value="http://www.w3.org/2000/01/rdf-schema#" c:type="TRACKER_PREFIX_RDFS">
+      <doc xml:space="preserve">The Prefix of the RDFS namespace</doc>
+      <type name="utf8" c:type="gchar*"/>
+    </constant>
+    <constant name="PREFIX_SLO" value="http://tracker.api.gnome.org/ontology/v3/slo#" c:type="TRACKER_PREFIX_SLO">
+      <doc xml:space="preserve">The Prefix of the SLO namespace</doc>
+      <type name="utf8" c:type="gchar*"/>
+    </constant>
+    <constant name="PREFIX_TRACKER" value="http://tracker.api.gnome.org/ontology/v3/tracker#" c:type="TRACKER_PREFIX_TRACKER">
+      <doc xml:space="preserve">The Prefix of the Tracker namespace</doc>
+      <type name="utf8" c:type="gchar*"/>
+    </constant>
+    <constant name="PREFIX_XSD" value="http://www.w3.org/2001/XMLSchema#" c:type="TRACKER_PREFIX_XSD">
+      <doc xml:space="preserve">The Prefix of the XSD namespace</doc>
+      <type name="utf8" c:type="gchar*"/>
+    </constant>
+    <class name="Resource" c:symbol-prefix="resource" c:type="TrackerResource" parent="GObject.Object" glib:type-name="TrackerResource" glib:get-type="tracker_resource_get_type" glib:type-struct="ResourceClass">
+      <doc xml:space="preserve">The &lt;structname&gt;TrackerResource&lt;/structname&gt; object represents information
+about a given resource.</doc>
+      <constructor name="new" c:identifier="tracker_resource_new">
+        <doc xml:space="preserve">Creates a TrackerResource instance.</doc>
+        <return-value transfer-ownership="full">
+          <doc xml:space="preserve">a newly created #TrackerResource. Free with g_object_unref() when done</doc>
+          <type name="Resource" c:type="TrackerResource*"/>
+        </return-value>
+        <parameters>
+          <parameter name="identifier" transfer-ownership="none" nullable="1" allow-none="1">
+            <doc xml:space="preserve">A string containing a URI, or %NULL.</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+        </parameters>
+      </constructor>
+      <function name="deserialize" c:identifier="tracker_resource_deserialize">
+        <doc xml:space="preserve">Deserializes a #TrackerResource previously serialized with
+tracker_resource_serialize(). It is implied that both ends
+use a common #TrackerNamespaceManager.</doc>
+        <return-value transfer-ownership="full">
+          <doc xml:space="preserve">A TrackerResource, or %NULL if
+         deserialization fails.</doc>
+          <type name="Resource" c:type="TrackerResource*"/>
+        </return-value>
+        <parameters>
+          <parameter name="variant" transfer-ownership="none">
+            <doc xml:space="preserve">a #GVariant</doc>
+            <type name="GLib.Variant" c:type="GVariant*"/>
+          </parameter>
+        </parameters>
+      </function>
+      <method name="add_boolean" c:identifier="tracker_resource_add_boolean">
+        <doc xml:space="preserve">Adds a boolean object to a multi-valued property.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve">the #TrackerResource</doc>
+            <type name="Resource" c:type="TrackerResource*"/>
+          </instance-parameter>
+          <parameter name="property_uri" transfer-ownership="none">
+            <doc xml:space="preserve">a string identifying the property to modify</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+          <parameter name="value" transfer-ownership="none">
+            <doc xml:space="preserve">the property object</doc>
+            <type name="gboolean" c:type="gboolean"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="add_datetime" c:identifier="tracker_resource_add_datetime" version="3.2">
+        <doc xml:space="preserve">Adds GDateTime object to the multi-valued property.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve">the #TrackerResource</doc>
+            <type name="Resource" c:type="TrackerResource*"/>
+          </instance-parameter>
+          <parameter name="property_uri" transfer-ownership="none">
+            <doc xml:space="preserve">a string identifying the property to modify</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+          <parameter name="value" transfer-ownership="none">
+            <doc xml:space="preserve">the property object</doc>
+            <type name="GLib.DateTime" c:type="GDateTime*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="add_double" c:identifier="tracker_resource_add_double">
+        <doc xml:space="preserve">Adds a double object to a multi-valued property.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve">the #TrackerResource</doc>
+            <type name="Resource" c:type="TrackerResource*"/>
+          </instance-parameter>
+          <parameter name="property_uri" transfer-ownership="none">
+            <doc xml:space="preserve">a string identifying the property to modify</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+          <parameter name="value" transfer-ownership="none">
+            <doc xml:space="preserve">the property object</doc>
+            <type name="gdouble" c:type="double"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="add_gvalue" c:identifier="tracker_resource_add_gvalue">
+        <doc xml:space="preserve">Add 'value' to the list of values for given property.
+
+You can pass any kind of GValue for @value, but serialization functions will
+normally only be able to serialize URIs/relationships and fundamental value
+types (string, int, etc.).</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve">the #TrackerResource</doc>
+            <type name="Resource" c:type="TrackerResource*"/>
+          </instance-parameter>
+          <parameter name="property_uri" transfer-ownership="none">
+            <doc xml:space="preserve">a string identifying the property to set</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+          <parameter name="value" transfer-ownership="none">
+            <doc xml:space="preserve">an initialised #GValue</doc>
+            <type name="GObject.Value" c:type="const GValue*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="add_int" c:identifier="tracker_resource_add_int">
+        <doc xml:space="preserve">Adds an integer object to a multi-valued property.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve">the #TrackerResource</doc>
+            <type name="Resource" c:type="TrackerResource*"/>
+          </instance-parameter>
+          <parameter name="property_uri" transfer-ownership="none">
+            <doc xml:space="preserve">a string identifying the property to modify</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+          <parameter name="value" transfer-ownership="none">
+            <doc xml:space="preserve">the property object</doc>
+            <type name="gint" c:type="int"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="add_int64" c:identifier="tracker_resource_add_int64">
+        <doc xml:space="preserve">Adds an integer object to a multi-valued property.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve">the #TrackerResource</doc>
+            <type name="Resource" c:type="TrackerResource*"/>
+          </instance-parameter>
+          <parameter name="property_uri" transfer-ownership="none">
+            <doc xml:space="preserve">a string identifying the property to modify</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+          <parameter name="value" transfer-ownership="none">
+            <doc xml:space="preserve">the property object</doc>
+            <type name="gint64" c:type="gint64"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="add_relation" c:identifier="tracker_resource_add_relation">
+        <doc xml:space="preserve">Adds a resource object to a multi-valued property. This
+function produces similar RDF to tracker_resource_add_uri(),
+although in this function the URI will depend on the identifier
+set on @resource.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve">the #TrackerResource</doc>
+            <type name="Resource" c:type="TrackerResource*"/>
+          </instance-parameter>
+          <parameter name="property_uri" transfer-ownership="none">
+            <doc xml:space="preserve">a string identifying the property to modify</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+          <parameter name="resource" transfer-ownership="none">
+            <doc xml:space="preserve">the property object</doc>
+            <type name="Resource" c:type="TrackerResource*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="add_string" c:identifier="tracker_resource_add_string">
+        <doc xml:space="preserve">Adds a string object to a multi-valued property.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve">the #TrackerResource</doc>
+            <type name="Resource" c:type="TrackerResource*"/>
+          </instance-parameter>
+          <parameter name="property_uri" transfer-ownership="none">
+            <doc xml:space="preserve">a string identifying the property to modify</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+          <parameter name="value" transfer-ownership="none">
+            <doc xml:space="preserve">the property object</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="add_take_relation" c:identifier="tracker_resource_add_take_relation" introspectable="0">
+        <doc xml:space="preserve">Adds a resource object to a multi-valued property. This
+function produces similar RDF to tracker_resource_add_uri(),
+although in this function the URI will depend on the identifier
+set on @resource. This function takes ownership of @resource.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve">the #TrackerResource</doc>
+            <type name="Resource" c:type="TrackerResource*"/>
+          </instance-parameter>
+          <parameter name="property_uri" transfer-ownership="none">
+            <doc xml:space="preserve">a string identifying the property to modify</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+          <parameter name="resource" transfer-ownership="none">
+            <doc xml:space="preserve">the property object</doc>
+            <type name="Resource" c:type="TrackerResource*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="add_uri" c:identifier="tracker_resource_add_uri">
+        <doc xml:space="preserve">Adds a resource object to a multi-valued property. This function
+produces similar RDF to tracker_resource_add_relation(), although
+it requires that the URI is previously known.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve">the #TrackerResource</doc>
+            <type name="Resource" c:type="TrackerResource*"/>
+          </instance-parameter>
+          <parameter name="property_uri" transfer-ownership="none">
+            <doc xml:space="preserve">a string identifying the property to modify</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+          <parameter name="value" transfer-ownership="none">
+            <doc xml:space="preserve">the property object</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="get_first_boolean" c:identifier="tracker_resource_get_first_boolean">
+        <doc xml:space="preserve">Returns the first boolean object previously assigned to a property.</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve">the first boolean object</doc>
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve">A #TrackerResource</doc>
+            <type name="Resource" c:type="TrackerResource*"/>
+          </instance-parameter>
+          <parameter name="property_uri" transfer-ownership="none">
+            <doc xml:space="preserve">a string identifying the property to look up</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="get_first_datetime" c:identifier="tracker_resource_get_first_datetime" version="3.2">
+        <doc xml:space="preserve">Returns the first resource object previously assigned to a property.</doc>
+        <return-value transfer-ownership="full">
+          <doc xml:space="preserve">the first GDateTime object</doc>
+          <type name="GLib.DateTime" c:type="GDateTime*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve">A #TrackerResource</doc>
+            <type name="Resource" c:type="TrackerResource*"/>
+          </instance-parameter>
+          <parameter name="property_uri" transfer-ownership="none">
+            <doc xml:space="preserve">a string identifying the property to look up</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="get_first_double" c:identifier="tracker_resource_get_first_double">
+        <doc xml:space="preserve">Returns the first double object previously assigned to a property.</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve">the first double object</doc>
+          <type name="gdouble" c:type="double"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve">A #TrackerResource</doc>
+            <type name="Resource" c:type="TrackerResource*"/>
+          </instance-parameter>
+          <parameter name="property_uri" transfer-ownership="none">
+            <doc xml:space="preserve">a string identifying the property to look up</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="get_first_int" c:identifier="tracker_resource_get_first_int">
+        <doc xml:space="preserve">Returns the first integer object previously assigned to a property.</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve">the first integer object</doc>
+          <type name="gint" c:type="int"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve">A #TrackerResource</doc>
+            <type name="Resource" c:type="TrackerResource*"/>
+          </instance-parameter>
+          <parameter name="property_uri" transfer-ownership="none">
+            <doc xml:space="preserve">a string identifying the property to look up</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="get_first_int64" c:identifier="tracker_resource_get_first_int64">
+        <doc xml:space="preserve">Returns the first integer object previously assigned to a property.</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve">the first integer object</doc>
+          <type name="gint64" c:type="gint64"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve">A #TrackerResource</doc>
+            <type name="Resource" c:type="TrackerResource*"/>
+          </instance-parameter>
+          <parameter name="property_uri" transfer-ownership="none">
+            <doc xml:space="preserve">a string identifying the property to look up</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="get_first_relation" c:identifier="tracker_resource_get_first_relation">
+        <doc xml:space="preserve">Returns the first resource object previously assigned to a property.</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve">the first resource object</doc>
+          <type name="Resource" c:type="TrackerResource*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve">A #TrackerResource</doc>
+            <type name="Resource" c:type="TrackerResource*"/>
+          </instance-parameter>
+          <parameter name="property_uri" transfer-ownership="none">
+            <doc xml:space="preserve">a string identifying the property to look up</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="get_first_string" c:identifier="tracker_resource_get_first_string">
+        <doc xml:space="preserve">Returns the first string object previously assigned to a property.</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve">the first string object</doc>
+          <type name="utf8" c:type="const char*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve">A #TrackerResource</doc>
+            <type name="Resource" c:type="TrackerResource*"/>
+          </instance-parameter>
+          <parameter name="property_uri" transfer-ownership="none">
+            <doc xml:space="preserve">a string identifying the property to look up</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="get_first_uri" c:identifier="tracker_resource_get_first_uri">
+        <doc xml:space="preserve">Returns the first resource object previously assigned to a property.</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve">the first resource object as an URI.</doc>
+          <type name="utf8" c:type="const char*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve">A #TrackerResource</doc>
+            <type name="Resource" c:type="TrackerResource*"/>
+          </instance-parameter>
+          <parameter name="property_uri" transfer-ownership="none">
+            <doc xml:space="preserve">a string identifying the property to look up</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="get_identifier" c:identifier="tracker_resource_get_identifier" glib:get-property="identifier">
+        <doc xml:space="preserve">Returns the identifier of a resource.
+
+If the identifier was set to NULL, the identifier returned will be a unique
+SPARQL blank node identifier, such as "_:123".</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve">a string owned by the resource</doc>
+          <type name="utf8" c:type="const char*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve">A #TrackerResource</doc>
+            <type name="Resource" c:type="TrackerResource*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_properties" c:identifier="tracker_resource_get_properties" version="3.0">
+        <doc xml:space="preserve">Gets the list of properties defined in @resource</doc>
+        <return-value transfer-ownership="container">
+          <doc xml:space="preserve">The list of properties.
+         The list should be freed with g_list_free().</doc>
+          <type name="GLib.List" c:type="GList*">
+            <type name="utf8"/>
+          </type>
+        </return-value>
+        <parameters>
+          <instance-parameter name="resource" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerResource</doc>
+            <type name="Resource" c:type="TrackerResource*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_property_overwrite" c:identifier="tracker_resource_get_property_overwrite" version="3.1">
+        <doc xml:space="preserve">Returns whether the prior values for this property would be deleted
+in the SPARQL issued by @resource.</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve">#TRUE if the property would be overwritten</doc>
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="resource" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerResource</doc>
+            <type name="Resource" c:type="TrackerResource*"/>
+          </instance-parameter>
+          <parameter name="property_uri" transfer-ownership="none">
+            <doc xml:space="preserve">a string identifying the property to query</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="get_values" c:identifier="tracker_resource_get_values">
+        <doc xml:space="preserve">Returns the list of all known values of the given property.</doc>
+        <return-value transfer-ownership="container">
+          <doc xml:space="preserve">a #GList of #GValue
+instances. The list should be freed with g_list_free()</doc>
+          <type name="GLib.List" c:type="GList*">
+            <type name="GObject.Value"/>
+          </type>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve">the #TrackerResource</doc>
+            <type name="Resource" c:type="TrackerResource*"/>
+          </instance-parameter>
+          <parameter name="property_uri" transfer-ownership="none">
+            <doc xml:space="preserve">a string identifying the property to look up</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="identifier_compare_func" c:identifier="tracker_resource_identifier_compare_func">
+        <doc xml:space="preserve">A helper function that compares a #TrackerResource by its identifier
+string.</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve">an integer less than, equal to, or greater than zero, if the
+         resource identifier is &lt;, == or &gt; than @identifier</doc>
+          <type name="gint" c:type="gint"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="resource" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerResource</doc>
+            <type name="Resource" c:type="TrackerResource*"/>
+          </instance-parameter>
+          <parameter name="identifier" transfer-ownership="none">
+            <doc xml:space="preserve">a string identifying the resource</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="print_jsonld" c:identifier="tracker_resource_print_jsonld">
+        <doc xml:space="preserve">Serialize all the information in @resource as a JSON-LD document.
+
+See &lt;http://www.jsonld.org/&gt; for more information on the JSON-LD
+serialization format.
+
+The @namespaces object is used to expand any compact URI values. In most
+cases you should pass the one returned by tracker_sparql_connection_get_namespace_manager()
+from the connection that is the intended recipient of this data.</doc>
+        <return-value transfer-ownership="full">
+          <doc xml:space="preserve">a newly-allocated string containing JSON-LD data.</doc>
+          <type name="utf8" c:type="char*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerResource</doc>
+            <type name="Resource" c:type="TrackerResource*"/>
+          </instance-parameter>
+          <parameter name="namespaces" transfer-ownership="none" nullable="1" allow-none="1">
+            <doc xml:space="preserve">a set of prefixed URLs, or %NULL to use the
+    Nepomuk set</doc>
+            <type name="NamespaceManager" c:type="TrackerNamespaceManager*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="print_sparql_update" c:identifier="tracker_resource_print_sparql_update">
+        <doc xml:space="preserve">Generates a SPARQL command to update a database with the information
+stored in @resource.
+
+The @namespaces object is used to expand any compact URI values. In most
+cases you should pass the one returned by tracker_sparql_connection_get_namespace_manager()
+from the connection that is the intended recipient of this data.</doc>
+        <return-value transfer-ownership="full">
+          <doc xml:space="preserve">a newly-allocated string containing a SPARQL update command.</doc>
+          <type name="utf8" c:type="char*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerResource</doc>
+            <type name="Resource" c:type="TrackerResource*"/>
+          </instance-parameter>
+          <parameter name="namespaces" transfer-ownership="none" nullable="1" allow-none="1">
+            <doc xml:space="preserve">a set of prefixed URLs, or %NULL to use the
+    Nepomuk set</doc>
+            <type name="NamespaceManager" c:type="TrackerNamespaceManager*"/>
+          </parameter>
+          <parameter name="graph_id" transfer-ownership="none" nullable="1" allow-none="1">
+            <doc xml:space="preserve">the URN of the graph the data should be added to,
+    or %NULL</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="print_turtle" c:identifier="tracker_resource_print_turtle">
+        <doc xml:space="preserve">Serialize all the information in @resource as a Turtle document.
+
+The generated Turtle should correspond to this standard:
+&lt;https://www.w3.org/TR/2014/REC-turtle-20140225/&gt;
+
+The @namespaces object is used to expand any compact URI values. In most
+cases you should pass the one returned by tracker_sparql_connection_get_namespace_manager()
+from the connection that is the intended recipient of this data.</doc>
+        <return-value transfer-ownership="full">
+          <doc xml:space="preserve">a newly-allocated string</doc>
+          <type name="utf8" c:type="char*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerResource</doc>
+            <type name="Resource" c:type="TrackerResource*"/>
+          </instance-parameter>
+          <parameter name="namespaces" transfer-ownership="none" nullable="1" allow-none="1">
+            <doc xml:space="preserve">a set of prefixed URLs, or %NULL to use the
+    Nepomuk set</doc>
+            <type name="NamespaceManager" c:type="TrackerNamespaceManager*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="serialize" c:identifier="tracker_resource_serialize">
+        <doc xml:space="preserve">Serializes a #TrackerResource to a #GVariant in a lossless way.
+All child resources are subsequently serialized. It is implied
+that both ends use a common #TrackerNamespaceManager.</doc>
+        <return-value transfer-ownership="full">
+          <doc xml:space="preserve">A variant describing the resource,
+         the reference is floating.</doc>
+          <type name="GLib.Variant" c:type="GVariant*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="resource" transfer-ownership="none">
+            <doc xml:space="preserve">A #TrackerResource</doc>
+            <type name="Resource" c:type="TrackerResource*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="set_boolean" c:identifier="tracker_resource_set_boolean">
+        <doc xml:space="preserve">Sets a single-valued boolean object.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve">the #TrackerResource</doc>
+            <type name="Resource" c:type="TrackerResource*"/>
+          </instance-parameter>
+          <parameter name="property_uri" transfer-ownership="none">
+            <doc xml:space="preserve">a string identifying the property to modify</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+          <parameter name="value" transfer-ownership="none">
+            <doc xml:space="preserve">the property object</doc>
+            <type name="gboolean" c:type="gboolean"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="set_datetime" c:identifier="tracker_resource_set_datetime" version="3.2">
+        <doc xml:space="preserve">Sets a single-valued GDateTime as a #TrackerResource</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve">the #TrackerResource</doc>
+            <type name="Resource" c:type="TrackerResource*"/>
+          </instance-parameter>
+          <parameter name="property_uri" transfer-ownership="none">
+            <doc xml:space="preserve">a string identifying the property to modify</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+          <parameter name="value" transfer-ownership="none">
+            <doc xml:space="preserve">the property object</doc>
+            <type name="GLib.DateTime" c:type="GDateTime*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="set_double" c:identifier="tracker_resource_set_double">
+        <doc xml:space="preserve">Sets a single-valued double object.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve">the #TrackerResource</doc>
+            <type name="Resource" c:type="TrackerResource*"/>
+          </instance-parameter>
+          <parameter name="property_uri" transfer-ownership="none">
+            <doc xml:space="preserve">a string identifying the property to modify</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+          <parameter name="value" transfer-ownership="none">
+            <doc xml:space="preserve">the property object</doc>
+            <type name="gdouble" c:type="double"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="set_gvalue" c:identifier="tracker_resource_set_gvalue">
+        <doc xml:space="preserve">State that the only value for the given property is 'value'. Any existing
+values for 'property' will be removed.
+
+When serialising to SPARQL, any properties that were set with this function
+will get a corresponding DELETE statement to remove any existing values in
+the database.
+
+You can pass any kind of GValue for @value, but serialization functions will
+normally only be able to serialize URIs/relationships and fundamental value
+types (string, int, etc.).</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve">the #TrackerResource</doc>
+            <type name="Resource" c:type="TrackerResource*"/>
+          </instance-parameter>
+          <parameter name="property_uri" transfer-ownership="none">
+            <doc xml:space="preserve">a string identifying the property to set</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+          <parameter name="value" transfer-ownership="none">
+            <doc xml:space="preserve">an initialised #GValue</doc>
+            <type name="GObject.Value" c:type="const GValue*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="set_identifier" c:identifier="tracker_resource_set_identifier" glib:set-property="identifier">
+        <doc xml:space="preserve">Changes the identifier of a #TrackerResource. The identifier should be a
+URI or compact URI, but this is not necessarily enforced. Invalid
+identifiers may cause errors when serializing the resource or trying to
+insert the results in a database.
+
+If the identifier is set to NULL, a SPARQL blank node identifier such as
+"_:123" is assigned to the resource.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerResource</doc>
+            <type name="Resource" c:type="TrackerResource*"/>
+          </instance-parameter>
+          <parameter name="identifier" transfer-ownership="none" nullable="1" allow-none="1">
+            <doc xml:space="preserve">a string identifying the resource</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="set_int" c:identifier="tracker_resource_set_int">
+        <doc xml:space="preserve">Sets a single-valued integer object.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve">the #TrackerResource</doc>
+            <type name="Resource" c:type="TrackerResource*"/>
+          </instance-parameter>
+          <parameter name="property_uri" transfer-ownership="none">
+            <doc xml:space="preserve">a string identifying the property to modify</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+          <parameter name="value" transfer-ownership="none">
+            <doc xml:space="preserve">the property object</doc>
+            <type name="gint" c:type="int"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="set_int64" c:identifier="tracker_resource_set_int64">
+        <doc xml:space="preserve">Sets a single-valued integer object.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve">the #TrackerResource</doc>
+            <type name="Resource" c:type="TrackerResource*"/>
+          </instance-parameter>
+          <parameter name="property_uri" transfer-ownership="none">
+            <doc xml:space="preserve">a string identifying the property to modify</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+          <parameter name="value" transfer-ownership="none">
+            <doc xml:space="preserve">the property object</doc>
+            <type name="gint64" c:type="gint64"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="set_relation" c:identifier="tracker_resource_set_relation">
+        <doc xml:space="preserve">Sets a single-valued resource object as a #TrackerResource. This
+function produces similar RDF to tracker_resource_set_uri(),
+although in this function the URI will depend on the identifier
+set on @resource.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve">the #TrackerResource</doc>
+            <type name="Resource" c:type="TrackerResource*"/>
+          </instance-parameter>
+          <parameter name="property_uri" transfer-ownership="none">
+            <doc xml:space="preserve">a string identifying the property to modify</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+          <parameter name="resource" transfer-ownership="none">
+            <doc xml:space="preserve">the property object</doc>
+            <type name="Resource" c:type="TrackerResource*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="set_string" c:identifier="tracker_resource_set_string">
+        <doc xml:space="preserve">Sets a single-valued string object.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve">the #TrackerResource</doc>
+            <type name="Resource" c:type="TrackerResource*"/>
+          </instance-parameter>
+          <parameter name="property_uri" transfer-ownership="none">
+            <doc xml:space="preserve">a string identifying the property to modify</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+          <parameter name="value" transfer-ownership="none">
+            <doc xml:space="preserve">the property object</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="set_take_relation" c:identifier="tracker_resource_set_take_relation" introspectable="0">
+        <doc xml:space="preserve">Sets a single-valued resource object as a #TrackerResource. This
+function produces similar RDF to tracker_resource_set_uri(),
+although in this function the URI will depend on the identifier
+set on @resource. This function takes ownership of @resource.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve">the #TrackerResource</doc>
+            <type name="Resource" c:type="TrackerResource*"/>
+          </instance-parameter>
+          <parameter name="property_uri" transfer-ownership="none">
+            <doc xml:space="preserve">a string identifying the property to modify</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+          <parameter name="resource" transfer-ownership="none">
+            <doc xml:space="preserve">the property object</doc>
+            <type name="Resource" c:type="TrackerResource*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="set_uri" c:identifier="tracker_resource_set_uri">
+        <doc xml:space="preserve">Sets a single-valued resource object as a string URI. This function
+produces similar RDF to tracker_resource_set_relation(), although
+it requires that the URI is previously known.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve">the #TrackerResource</doc>
+            <type name="Resource" c:type="TrackerResource*"/>
+          </instance-parameter>
+          <parameter name="property_uri" transfer-ownership="none">
+            <doc xml:space="preserve">a string identifying the property to modify</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+          <parameter name="value" transfer-ownership="none">
+            <doc xml:space="preserve">the property object</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <property name="identifier" writable="1" transfer-ownership="none" setter="set_identifier" getter="get_identifier">
+        <doc xml:space="preserve">The URI identifier for this class, or %NULL for a
+blank node.</doc>
+        <type name="utf8" c:type="gchar*"/>
+      </property>
+      <field name="parent_instance">
+        <type name="GObject.Object" c:type="GObject"/>
+      </field>
+    </class>
+    <record name="ResourceClass" c:type="TrackerResourceClass" disguised="1" glib:is-gtype-struct-for="Resource"/>
+    <class name="SparqlConnection" c:symbol-prefix="sparql_connection" c:type="TrackerSparqlConnection" parent="GObject.Object" abstract="1" glib:type-name="TrackerSparqlConnection" glib:get-type="tracker_sparql_connection_get_type" glib:type-struct="SparqlConnectionClass">
+      <doc xml:space="preserve">The &lt;structname&gt;TrackerSparqlConnection&lt;/structname&gt; object represents a
+SPARQL connection.</doc>
+      <constructor name="bus_new" c:identifier="tracker_sparql_connection_bus_new" version="3.0" throws="1">
+        <doc xml:space="preserve">Connects to a database owned by another process on the
+local machine.</doc>
+        <return-value transfer-ownership="full">
+          <doc xml:space="preserve">a new #TrackerSparqlConnection. Call g_object_unref() on the
+object when no longer used.</doc>
+          <type name="SparqlConnection" c:type="TrackerSparqlConnection*"/>
+        </return-value>
+        <parameters>
+          <parameter name="service_name" transfer-ownership="none">
+            <doc xml:space="preserve">The name of the D-Bus service to connect to.</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="object_path" transfer-ownership="none" nullable="1" allow-none="1">
+            <doc xml:space="preserve">The path to the object, or %NULL to use the default.</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="dbus_connection" transfer-ownership="none" nullable="1" allow-none="1">
+            <doc xml:space="preserve">The #GDBusConnection to use, or %NULL to use the session bus</doc>
+            <type name="Gio.DBusConnection" c:type="GDBusConnection*"/>
+          </parameter>
+        </parameters>
+      </constructor>
+      <constructor name="bus_new_finish" c:identifier="tracker_sparql_connection_bus_new_finish" version="3.1" throws="1">
+        <doc xml:space="preserve">Completion function for tracker_sparql_connection_bus_new_async().</doc>
+        <return-value transfer-ownership="full">
+          <doc xml:space="preserve">a new #TrackerSparqlConnection. Call g_object_unref() on the
+object when no longer used.</doc>
+          <type name="SparqlConnection" c:type="TrackerSparqlConnection*"/>
+        </return-value>
+        <parameters>
+          <parameter name="result" transfer-ownership="none">
+            <doc xml:space="preserve">the #GAsyncResult</doc>
+            <type name="Gio.AsyncResult" c:type="GAsyncResult*"/>
+          </parameter>
+        </parameters>
+      </constructor>
+      <constructor name="new" c:identifier="tracker_sparql_connection_new" version="3.0" throws="1">
+        <doc xml:space="preserve">Creates or opens a database.
+
+This method should only be used for databases owned by the current process.
+To connect to databases managed by other processes, use
+tracker_sparql_connection_bus_new().
+
+If @store is %NULL, the database will be created in memory.
+
+The @ontologies parameter must point to a location containing suitable
+`.ontology` files in Turtle format. These control the database schema that
+is used. You can use the default Nepomuk ontologies by calling
+tracker_sparql_get_ontology_nepomuk ().
+
+If you open an existing database using a different @ontology to the one it
+was created with, Tracker will attempt to migrate the existing data to the
+new schema. This may raise an error. In particular, not all migrations are
+possible without causing data loss and Tracker will refuse to delete data
+during a migration.
+
+You can also pass %NULL for @ontologies to mean "use the ontologies that the
+database was created with". This will fail if the database doesn't already
+exist.</doc>
+        <return-value transfer-ownership="full">
+          <doc xml:space="preserve">a new #TrackerSparqlConnection. Call
+g_object_unref() on the object when no longer used.</doc>
+          <type name="SparqlConnection" c:type="TrackerSparqlConnection*"/>
+        </return-value>
+        <parameters>
+          <parameter name="flags" transfer-ownership="none">
+            <doc xml:space="preserve">values from #TrackerSparqlConnectionFlags</doc>
+            <type name="SparqlConnectionFlags" c:type="TrackerSparqlConnectionFlags"/>
+          </parameter>
+          <parameter name="store" transfer-ownership="none" nullable="1" allow-none="1">
+            <doc xml:space="preserve">the directory that contains the database as a #GFile, or %NULL</doc>
+            <type name="Gio.File" c:type="GFile*"/>
+          </parameter>
+          <parameter name="ontology" transfer-ownership="none" nullable="1" allow-none="1">
+            <doc xml:space="preserve">the directory that contains the database schemas as a #GFile, or %NULL</doc>
+            <type name="Gio.File" c:type="GFile*"/>
+          </parameter>
+          <parameter name="cancellable" transfer-ownership="none" nullable="1" allow-none="1">
+            <doc xml:space="preserve">a #GCancellable, or %NULL</doc>
+            <type name="Gio.Cancellable" c:type="GCancellable*"/>
+          </parameter>
+        </parameters>
+      </constructor>
+      <constructor name="new_finish" c:identifier="tracker_sparql_connection_new_finish" version="3.0" throws="1">
+        <doc xml:space="preserve">Completion function for tracker_sparql_connection_new_async().</doc>
+        <return-value transfer-ownership="full">
+          <type name="SparqlConnection" c:type="TrackerSparqlConnection*"/>
+        </return-value>
+        <parameters>
+          <parameter name="result" transfer-ownership="none">
+            <doc xml:space="preserve">the #GAsyncResult</doc>
+            <type name="Gio.AsyncResult" c:type="GAsyncResult*"/>
+          </parameter>
+        </parameters>
+      </constructor>
+      <constructor name="remote_new" c:identifier="tracker_sparql_connection_remote_new">
+        <doc xml:space="preserve">Connects to a remote SPARQL endpoint. The connection is made using the libsoup
+HTTP library. The connection will normally use the http:// or https:// protocol.</doc>
+        <return-value transfer-ownership="full">
+          <doc xml:space="preserve">a new remote #TrackerSparqlConnection. Call
+g_object_unref() on the object when no longer used.</doc>
+          <type name="SparqlConnection" c:type="TrackerSparqlConnection*"/>
+        </return-value>
+        <parameters>
+          <parameter name="uri_base" transfer-ownership="none">
+            <doc xml:space="preserve">Base URI of the remote connection</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+        </parameters>
+      </constructor>
+      <function name="bus_new_async" c:identifier="tracker_sparql_connection_bus_new_async" version="3.1">
+        <doc xml:space="preserve">Connects to a database owned by another process on the
+local machine. This is an asynchronous operation.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="service_name" transfer-ownership="none">
+            <doc xml:space="preserve">The name of the D-Bus service to connect to.</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="object_path" transfer-ownership="none" nullable="1" allow-none="1">
+            <doc xml:space="preserve">The path to the object, or %NULL to use the default.</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="dbus_connection" transfer-ownership="none" nullable="1" allow-none="1">
+            <doc xml:space="preserve">The #GDBusConnection to use, or %NULL to use the session bus</doc>
+            <type name="Gio.DBusConnection" c:type="GDBusConnection*"/>
+          </parameter>
+          <parameter name="cancellable" transfer-ownership="none" nullable="1" allow-none="1">
+            <doc xml:space="preserve">a #GCancellable, or %NULL</doc>
+            <type name="Gio.Cancellable" c:type="GCancellable*"/>
+          </parameter>
+          <parameter name="callback" transfer-ownership="none" nullable="1" allow-none="1" scope="async" closure="5">
+            <doc xml:space="preserve">the #GAsyncReadyCallback called when the operation completes</doc>
+            <type name="Gio.AsyncReadyCallback" c:type="GAsyncReadyCallback"/>
+          </parameter>
+          <parameter name="user_data" transfer-ownership="none" nullable="1" allow-none="1">
+            <doc xml:space="preserve">data passed to @callback</doc>
+            <type name="gpointer" c:type="gpointer"/>
+          </parameter>
+        </parameters>
+      </function>
+      <function name="new_async" c:identifier="tracker_sparql_connection_new_async" version="3.0">
+        <doc xml:space="preserve">Asynchronous version of tracker_sparql_connection_new().</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="flags" transfer-ownership="none">
+            <doc xml:space="preserve">values from #TrackerSparqlConnectionFlags</doc>
+            <type name="SparqlConnectionFlags" c:type="TrackerSparqlConnectionFlags"/>
+          </parameter>
+          <parameter name="store" transfer-ownership="none" nullable="1" allow-none="1">
+            <doc xml:space="preserve">the directory that contains the database as a #GFile, or %NULL</doc>
+            <type name="Gio.File" c:type="GFile*"/>
+          </parameter>
+          <parameter name="ontology" transfer-ownership="none" nullable="1" allow-none="1">
+            <doc xml:space="preserve">the directory that contains the database schemas as a #GFile, or %NULL</doc>
+            <type name="Gio.File" c:type="GFile*"/>
+          </parameter>
+          <parameter name="cancellable" transfer-ownership="none" nullable="1" allow-none="1">
+            <doc xml:space="preserve">a #GCancellable, or %NULL</doc>
+            <type name="Gio.Cancellable" c:type="GCancellable*"/>
+          </parameter>
+          <parameter name="callback" transfer-ownership="none" nullable="1" allow-none="1" scope="async" closure="5">
+            <doc xml:space="preserve">the #GAsyncReadyCallback called when the operation completes</doc>
+            <type name="Gio.AsyncReadyCallback" c:type="GAsyncReadyCallback"/>
+          </parameter>
+          <parameter name="user_data" transfer-ownership="none" nullable="1" allow-none="1">
+            <doc xml:space="preserve">data passed to @callback</doc>
+            <type name="gpointer" c:type="gpointer"/>
+          </parameter>
+        </parameters>
+      </function>
+      <method name="close" c:identifier="tracker_sparql_connection_close" version="3.0">
+        <doc xml:space="preserve">Closes a SPARQL connection. No other API calls than g_object_unref()
+should happen after this call.
+
+This call is blocking. All pending updates will be flushed, and the
+store databases will be closed orderly. All ongoing SELECT queries
+will be cancelled. Notifiers will no longer emit events.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="connection" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerSparqlConnection</doc>
+            <type name="SparqlConnection" c:type="TrackerSparqlConnection*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="close_async" c:identifier="tracker_sparql_connection_close_async" version="3.0">
+        <doc xml:space="preserve">Closes a connection asynchronously. No other API calls than g_object_unref()
+should happen after this call. See tracker_sparql_connection_close() for more
+information.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="connection" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerSparqlConnection</doc>
+            <type name="SparqlConnection" c:type="TrackerSparqlConnection*"/>
+          </instance-parameter>
+          <parameter name="cancellable" transfer-ownership="none" nullable="1" allow-none="1">
+            <doc xml:space="preserve">a #GCancellable, or %NULL</doc>
+            <type name="Gio.Cancellable" c:type="GCancellable*"/>
+          </parameter>
+          <parameter name="callback" transfer-ownership="none" nullable="1" allow-none="1" scope="async" closure="2">
+            <doc xml:space="preserve">user-defined #GAsyncReadyCallback to be called when
+           asynchronous operation is finished.</doc>
+            <type name="Gio.AsyncReadyCallback" c:type="GAsyncReadyCallback"/>
+          </parameter>
+          <parameter name="user_data" transfer-ownership="none" nullable="1" allow-none="1">
+            <doc xml:space="preserve">user-defined data to be passed to @callback</doc>
+            <type name="gpointer" c:type="gpointer"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="close_finish" c:identifier="tracker_sparql_connection_close_finish" version="3.0" throws="1">
+        <doc xml:space="preserve">Finishes the asynchronous connection close.</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve">%FALSE if some error occurred, %TRUE otherwise</doc>
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="connection" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerSparqlConnection</doc>
+            <type name="SparqlConnection" c:type="TrackerSparqlConnection*"/>
+          </instance-parameter>
+          <parameter name="res" transfer-ownership="none">
+            <doc xml:space="preserve">the #GAsyncResult</doc>
+            <type name="Gio.AsyncResult" c:type="GAsyncResult*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="create_batch" c:identifier="tracker_sparql_connection_create_batch">
+        <doc xml:space="preserve">Creates a new batch to store and execute update commands. If the connection
+is readonly or cannot issue SPARQL updates, %NULL will be returned.</doc>
+        <return-value transfer-ownership="full">
+          <doc xml:space="preserve">(nullable): A new #TrackerBatch</doc>
+          <type name="Batch" c:type="TrackerBatch*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="connection" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerSparqlConnection</doc>
+            <type name="SparqlConnection" c:type="TrackerSparqlConnection*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="create_notifier" c:identifier="tracker_sparql_connection_create_notifier">
+        <doc xml:space="preserve">Creates a new #TrackerNotifier to notify about changes in @connection.
+See #TrackerNotifier documentation for information about how to use this
+object.</doc>
+        <return-value transfer-ownership="full">
+          <doc xml:space="preserve">a newly created notifier. Free with g_object_unref()
+         when no longer needed.</doc>
+          <type name="Notifier" c:type="TrackerNotifier*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="connection" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerSparqlConnection</doc>
+            <type name="SparqlConnection" c:type="TrackerSparqlConnection*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_namespace_manager" c:identifier="tracker_sparql_connection_get_namespace_manager">
+        <doc xml:space="preserve">Retrieves a #TrackerNamespaceManager that contains all
+prefixes in the ontology of @connection.</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve">a #TrackerNamespaceManager for this
+connection. This object is owned by @connection and must not be freed.</doc>
+          <type name="NamespaceManager" c:type="TrackerNamespaceManager*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="connection" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerSparqlConnection</doc>
+            <type name="SparqlConnection" c:type="TrackerSparqlConnection*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="load_statement_from_gresource" c:identifier="tracker_sparql_connection_load_statement_from_gresource" introspectable="0" throws="1">
+        <return-value>
+          <type name="SparqlStatement" c:type="TrackerSparqlStatement*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="connection" transfer-ownership="none">
+            <type name="SparqlConnection" c:type="TrackerSparqlConnection*"/>
+          </instance-parameter>
+          <parameter name="resource_path" transfer-ownership="none">
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="cancellable" transfer-ownership="none" nullable="1" allow-none="1">
+            <type name="Gio.Cancellable" c:type="GCancellable*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="query" c:identifier="tracker_sparql_connection_query" throws="1">
+        <doc xml:space="preserve">Executes a SPARQL query on. The API call is completely synchronous, so
+it may block.
+
+The @sparql query should be built with #TrackerResource, or
+its parts correctly escaped using tracker_sparql_escape_string(),
+otherwise SPARQL injection is possible.</doc>
+        <return-value transfer-ownership="full">
+          <doc xml:space="preserve">a #TrackerSparqlCursor if results were found.
+On error, #NULL is returned and the @error is set accordingly.
+Call g_object_unref() on the returned cursor when no longer needed.</doc>
+          <type name="SparqlCursor" c:type="TrackerSparqlCursor*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="connection" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerSparqlConnection</doc>
+            <type name="SparqlConnection" c:type="TrackerSparqlConnection*"/>
+          </instance-parameter>
+          <parameter name="sparql" transfer-ownership="none">
+            <doc xml:space="preserve">string containing the SPARQL query</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="cancellable" transfer-ownership="none" nullable="1" allow-none="1">
+            <doc xml:space="preserve">a #GCancellable used to cancel the operation</doc>
+            <type name="Gio.Cancellable" c:type="GCancellable*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="query_async" c:identifier="tracker_sparql_connection_query_async">
+        <doc xml:space="preserve">Executes asynchronously a SPARQL query.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="connection" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerSparqlConnection</doc>
+            <type name="SparqlConnection" c:type="TrackerSparqlConnection*"/>
+          </instance-parameter>
+          <parameter name="sparql" transfer-ownership="none">
+            <doc xml:space="preserve">string containing the SPARQL query</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="cancellable" transfer-ownership="none" nullable="1" allow-none="1">
+            <doc xml:space="preserve">a #GCancellable used to cancel the operation</doc>
+            <type name="Gio.Cancellable" c:type="GCancellable*"/>
+          </parameter>
+          <parameter name="callback" transfer-ownership="none" nullable="1" allow-none="1" scope="async" closure="3">
+            <doc xml:space="preserve">user-defined #GAsyncReadyCallback to be called when
+           asynchronous operation is finished.</doc>
+            <type name="Gio.AsyncReadyCallback" c:type="GAsyncReadyCallback"/>
+          </parameter>
+          <parameter name="user_data" transfer-ownership="none" nullable="1" allow-none="1">
+            <doc xml:space="preserve">user-defined data to be passed to @callback</doc>
+            <type name="gpointer" c:type="gpointer"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="query_finish" c:identifier="tracker_sparql_connection_query_finish" throws="1">
+        <doc xml:space="preserve">Finishes the asynchronous SPARQL query operation.</doc>
+        <return-value transfer-ownership="full">
+          <doc xml:space="preserve">a #TrackerSparqlCursor if results were found.
+On error, #NULL is returned and the @error is set accordingly.
+Call g_object_unref() on the returned cursor when no longer needed.</doc>
+          <type name="SparqlCursor" c:type="TrackerSparqlCursor*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="connection" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerSparqlConnection</doc>
+            <type name="SparqlConnection" c:type="TrackerSparqlConnection*"/>
+          </instance-parameter>
+          <parameter name="res" transfer-ownership="none">
+            <doc xml:space="preserve">a #GAsyncResult with the result of the operation</doc>
+            <type name="Gio.AsyncResult" c:type="GAsyncResult*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="query_statement" c:identifier="tracker_sparql_connection_query_statement" throws="1">
+        <doc xml:space="preserve">Prepares the given @sparql as a #TrackerSparqlStatement.</doc>
+        <return-value transfer-ownership="full" nullable="1">
+          <doc xml:space="preserve">a prepared statement</doc>
+          <type name="SparqlStatement" c:type="TrackerSparqlStatement*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="connection" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerSparqlConnection</doc>
+            <type name="SparqlConnection" c:type="TrackerSparqlConnection*"/>
+          </instance-parameter>
+          <parameter name="sparql" transfer-ownership="none">
+            <doc xml:space="preserve">the SPARQL query</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="cancellable" transfer-ownership="none" nullable="1" allow-none="1">
+            <doc xml:space="preserve">a #GCancellable used to cancel the operation, or %NULL</doc>
+            <type name="Gio.Cancellable" c:type="GCancellable*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="update" c:identifier="tracker_sparql_connection_update" throws="1">
+        <doc xml:space="preserve">Executes a SPARQL update. The API call is completely
+synchronous, so it may block.
+
+The @sparql query should be built with #TrackerResource, or
+its parts correctly escaped using tracker_sparql_escape_string(),
+otherwise SPARQL injection is possible.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="connection" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerSparqlConnection</doc>
+            <type name="SparqlConnection" c:type="TrackerSparqlConnection*"/>
+          </instance-parameter>
+          <parameter name="sparql" transfer-ownership="none">
+            <doc xml:space="preserve">string containing the SPARQL update query</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="cancellable" transfer-ownership="none" nullable="1" allow-none="1">
+            <doc xml:space="preserve">a #GCancellable used to cancel the operation</doc>
+            <type name="Gio.Cancellable" c:type="GCancellable*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="update_array_async" c:identifier="tracker_sparql_connection_update_array_async">
+        <doc xml:space="preserve">Executes asynchronously an array of SPARQL updates. All updates in the
+array are handled within a single transaction.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="connection" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerSparqlConnection</doc>
+            <type name="SparqlConnection" c:type="TrackerSparqlConnection*"/>
+          </instance-parameter>
+          <parameter name="sparql" transfer-ownership="none">
+            <doc xml:space="preserve">an array of strings containing the SPARQL update queries</doc>
+            <type name="utf8" c:type="gchar**"/>
+          </parameter>
+          <parameter name="sparql_length" transfer-ownership="none">
+            <doc xml:space="preserve">the amount of strings you pass as @sparql</doc>
+            <type name="gint" c:type="gint"/>
+          </parameter>
+          <parameter name="cancellable" transfer-ownership="none" nullable="1" allow-none="1">
+            <doc xml:space="preserve">a #GCancellable used to cancel the operation</doc>
+            <type name="Gio.Cancellable" c:type="GCancellable*"/>
+          </parameter>
+          <parameter name="callback" transfer-ownership="none" nullable="1" allow-none="1" scope="async" closure="4">
+            <doc xml:space="preserve">user-defined #GAsyncReadyCallback to be called when
+           asynchronous operation is finished.</doc>
+            <type name="Gio.AsyncReadyCallback" c:type="GAsyncReadyCallback"/>
+          </parameter>
+          <parameter name="user_data" transfer-ownership="none" nullable="1" allow-none="1">
+            <doc xml:space="preserve">user-defined data to be passed to @callback</doc>
+            <type name="gpointer" c:type="gpointer"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="update_array_finish" c:identifier="tracker_sparql_connection_update_array_finish" throws="1">
+        <doc xml:space="preserve">Finishes the asynchronous SPARQL update_array operation.</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve">#TRUE if there were no errors.</doc>
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="connection" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerSparqlConnection</doc>
+            <type name="SparqlConnection" c:type="TrackerSparqlConnection*"/>
+          </instance-parameter>
+          <parameter name="res" transfer-ownership="none">
+            <doc xml:space="preserve">a #GAsyncResult with the result of the operation</doc>
+            <type name="Gio.AsyncResult" c:type="GAsyncResult*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="update_async" c:identifier="tracker_sparql_connection_update_async">
+        <doc xml:space="preserve">Executes asynchronously a SPARQL update.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="connection" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerSparqlConnection</doc>
+            <type name="SparqlConnection" c:type="TrackerSparqlConnection*"/>
+          </instance-parameter>
+          <parameter name="sparql" transfer-ownership="none">
+            <doc xml:space="preserve">string containing the SPARQL update query</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="cancellable" transfer-ownership="none" nullable="1" allow-none="1">
+            <doc xml:space="preserve">a #GCancellable used to cancel the operation</doc>
+            <type name="Gio.Cancellable" c:type="GCancellable*"/>
+          </parameter>
+          <parameter name="callback" transfer-ownership="none" nullable="1" allow-none="1" scope="async" closure="3">
+            <doc xml:space="preserve">user-defined #GAsyncReadyCallback to be called when
+           asynchronous operation is finished.</doc>
+            <type name="Gio.AsyncReadyCallback" c:type="GAsyncReadyCallback"/>
+          </parameter>
+          <parameter name="user_data" transfer-ownership="none" nullable="1" allow-none="1">
+            <doc xml:space="preserve">user-defined data to be passed to @callback</doc>
+            <type name="gpointer" c:type="gpointer"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="update_blank" c:identifier="tracker_sparql_connection_update_blank" throws="1">
+        <doc xml:space="preserve">Executes a SPARQL update and returns the URNs of the generated nodes,
+if any. The API call is completely synchronous, so it may block.
+
+The @sparql query should be built with #TrackerResource, or
+its parts correctly escaped using tracker_sparql_escape_string(),
+otherwise SPARQL injection is possible.
+
+The format string of the `GVariant` is `aaa{ss}` (an array of an array
+of dictionaries). The first array represents each INSERT that may exist in
+the SPARQL string. The second array represents each new node for a given
+WHERE clause. The last array holds a string pair with the blank node name
+(e.g. `foo` for the blank node `_:foo`) and the URN that was generated for
+it. For most updates the first two outer arrays will only contain one item.</doc>
+        <return-value transfer-ownership="full">
+          <doc xml:space="preserve">a #GVariant with the generated URNs, which should be freed with
+g_variant_unref() when no longer used.</doc>
+          <type name="GLib.Variant" c:type="GVariant*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="connection" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerSparqlConnection</doc>
+            <type name="SparqlConnection" c:type="TrackerSparqlConnection*"/>
+          </instance-parameter>
+          <parameter name="sparql" transfer-ownership="none">
+            <doc xml:space="preserve">string containing the SPARQL update query</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="cancellable" transfer-ownership="none" nullable="1" allow-none="1">
+            <doc xml:space="preserve">a #GCancellable used to cancel the operation</doc>
+            <type name="Gio.Cancellable" c:type="GCancellable*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="update_blank_async" c:identifier="tracker_sparql_connection_update_blank_async">
+        <doc xml:space="preserve">Executes asynchronously a SPARQL update with blank nodes. See
+the tracker_sparql_connection_update_blank() documentation to
+see the differences with tracker_sparql_connection_update().</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="connection" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerSparqlConnection</doc>
+            <type name="SparqlConnection" c:type="TrackerSparqlConnection*"/>
+          </instance-parameter>
+          <parameter name="sparql" transfer-ownership="none">
+            <doc xml:space="preserve">string containing the SPARQL update query</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="cancellable" transfer-ownership="none" nullable="1" allow-none="1">
+            <doc xml:space="preserve">a #GCancellable used to cancel the operation</doc>
+            <type name="Gio.Cancellable" c:type="GCancellable*"/>
+          </parameter>
+          <parameter name="callback" transfer-ownership="none" nullable="1" allow-none="1" scope="async" closure="3">
+            <doc xml:space="preserve">user-defined #GAsyncReadyCallback to be called when
+           asynchronous operation is finished.</doc>
+            <type name="Gio.AsyncReadyCallback" c:type="GAsyncReadyCallback"/>
+          </parameter>
+          <parameter name="user_data" transfer-ownership="none" nullable="1" allow-none="1">
+            <doc xml:space="preserve">user-defined data to be passed to @callback</doc>
+            <type name="gpointer" c:type="gpointer"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="update_blank_finish" c:identifier="tracker_sparql_connection_update_blank_finish" throws="1">
+        <doc xml:space="preserve">Finishes the asynchronous SPARQL update operation, and returns
+the URNs of the generated nodes, if any. See the
+tracker_sparql_connection_update_blank() documentation for the interpretation
+of the returned #GVariant.</doc>
+        <return-value transfer-ownership="full">
+          <doc xml:space="preserve">a #GVariant with the generated URNs, which should be freed with
+g_variant_unref() when no longer used.</doc>
+          <type name="GLib.Variant" c:type="GVariant*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="connection" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerSparqlConnection</doc>
+            <type name="SparqlConnection" c:type="TrackerSparqlConnection*"/>
+          </instance-parameter>
+          <parameter name="res" transfer-ownership="none">
+            <doc xml:space="preserve">a #GAsyncResult with the result of the operation</doc>
+            <type name="Gio.AsyncResult" c:type="GAsyncResult*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="update_finish" c:identifier="tracker_sparql_connection_update_finish" throws="1">
+        <doc xml:space="preserve">Finishes the asynchronous SPARQL update operation.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="connection" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerSparqlConnection</doc>
+            <type name="SparqlConnection" c:type="TrackerSparqlConnection*"/>
+          </instance-parameter>
+          <parameter name="res" transfer-ownership="none">
+            <doc xml:space="preserve">a #GAsyncResult with the result of the operation</doc>
+            <type name="Gio.AsyncResult" c:type="GAsyncResult*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="update_resource" c:identifier="tracker_sparql_connection_update_resource" version="3.1" throws="1">
+        <doc xml:space="preserve">Inserts a resource as described by @resource, on the graph described by @graph.
+This operation blocks until done.</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve">#TRUE if there were no errors.</doc>
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="connection" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerSparqlConnection</doc>
+            <type name="SparqlConnection" c:type="TrackerSparqlConnection*"/>
+          </instance-parameter>
+          <parameter name="graph" transfer-ownership="none" nullable="1" allow-none="1">
+            <doc xml:space="preserve">RDF graph where the resource should be inserted/updated, or %NULL for the default graph</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="resource" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerResource</doc>
+            <type name="Resource" c:type="TrackerResource*"/>
+          </parameter>
+          <parameter name="cancellable" transfer-ownership="none" nullable="1" allow-none="1">
+            <doc xml:space="preserve">a #GCancellable, or %NULL</doc>
+            <type name="Gio.Cancellable" c:type="GCancellable*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="update_resource_async" c:identifier="tracker_sparql_connection_update_resource_async" version="3.1">
+        <doc xml:space="preserve">Inserts a resource as described by @resource, on the graph described by @graph.
+This operation is executed asynchronously, when finished @callback will be
+executed.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="connection" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerSparqlConnection</doc>
+            <type name="SparqlConnection" c:type="TrackerSparqlConnection*"/>
+          </instance-parameter>
+          <parameter name="graph" transfer-ownership="none" nullable="1" allow-none="1">
+            <doc xml:space="preserve">RDF graph where the resource should be inserted/updated, or %NULL for the default graph</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="resource" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerResource</doc>
+            <type name="Resource" c:type="TrackerResource*"/>
+          </parameter>
+          <parameter name="cancellable" transfer-ownership="none" nullable="1" allow-none="1">
+            <doc xml:space="preserve">a #GCancellable, or %NULL</doc>
+            <type name="Gio.Cancellable" c:type="GCancellable*"/>
+          </parameter>
+          <parameter name="callback" transfer-ownership="none" nullable="1" allow-none="1" scope="async" closure="4">
+            <doc xml:space="preserve">the #GAsyncReadyCallback called when the operation completes</doc>
+            <type name="Gio.AsyncReadyCallback" c:type="GAsyncReadyCallback"/>
+          </parameter>
+          <parameter name="user_data" transfer-ownership="none" nullable="1" allow-none="1">
+            <doc xml:space="preserve">data passed to @callback</doc>
+            <type name="gpointer" c:type="gpointer"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="update_resource_finish" c:identifier="tracker_sparql_connection_update_resource_finish" version="3.1" throws="1">
+        <doc xml:space="preserve">Finishes a tracker_sparql_connection_update_resource_async() operation.</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve">#TRUE if there were no errors.</doc>
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="connection" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerSparqlConnection</doc>
+            <type name="SparqlConnection" c:type="TrackerSparqlConnection*"/>
+          </instance-parameter>
+          <parameter name="res" transfer-ownership="none">
+            <doc xml:space="preserve">a #GAsyncResult with the result of the operation</doc>
+            <type name="Gio.AsyncResult" c:type="GAsyncResult*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <field name="parent_instance">
+        <type name="GObject.Object" c:type="GObject"/>
+      </field>
+    </class>
+    <record name="SparqlConnectionClass" c:type="TrackerSparqlConnectionClass" disguised="1" glib:is-gtype-struct-for="SparqlConnection"/>
+    <bitfield name="SparqlConnectionFlags" c:type="TrackerSparqlConnectionFlags">
+      <doc xml:space="preserve">Connection flags to modify #TrackerSparqlConnection behavior.</doc>
+      <member name="none" value="0" c:identifier="TRACKER_SPARQL_CONNECTION_FLAGS_NONE">
+        <doc xml:space="preserve">No flags.</doc>
+      </member>
+      <member name="readonly" value="1" c:identifier="TRACKER_SPARQL_CONNECTION_FLAGS_READONLY">
+        <doc xml:space="preserve">Connection is readonly.</doc>
+      </member>
+      <member name="fts_enable_stemmer" value="2" c:identifier="TRACKER_SPARQL_CONNECTION_FLAGS_FTS_ENABLE_STEMMER">
+        <doc xml:space="preserve">Word stemming is applied to FTS search terms.</doc>
+      </member>
+      <member name="fts_enable_unaccent" value="4" c:identifier="TRACKER_SPARQL_CONNECTION_FLAGS_FTS_ENABLE_UNACCENT">
+        <doc xml:space="preserve">Unaccenting is applied to FTS search terms.</doc>
+      </member>
+      <member name="fts_enable_stop_words" value="8" c:identifier="TRACKER_SPARQL_CONNECTION_FLAGS_FTS_ENABLE_STOP_WORDS">
+        <doc xml:space="preserve">FTS Search terms are filtered through a stop word list.</doc>
+      </member>
+      <member name="fts_ignore_numbers" value="16" c:identifier="TRACKER_SPARQL_CONNECTION_FLAGS_FTS_IGNORE_NUMBERS">
+        <doc xml:space="preserve">Ignore numbers in FTS search terms.</doc>
+      </member>
+      <member name="anonymous_bnodes" value="32" c:identifier="TRACKER_SPARQL_CONNECTION_FLAGS_ANONYMOUS_BNODES">
+        <doc xml:space="preserve">Treat blank nodes as specified in
+  SPARQL 1.1 syntax. Namely, they cannot be used as URIs. This flag is available since Tracker 3.3.</doc>
+      </member>
+    </bitfield>
+    <class name="SparqlCursor" c:symbol-prefix="sparql_cursor" c:type="TrackerSparqlCursor" parent="GObject.Object" abstract="1" glib:type-name="TrackerSparqlCursor" glib:get-type="tracker_sparql_cursor_get_type" glib:type-struct="SparqlCursorClass">
+      <doc xml:space="preserve">The &lt;structname&gt;TrackerSparqlCursor&lt;/structname&gt; object represents an
+iterator of results.</doc>
+      <method name="close" c:identifier="tracker_sparql_cursor_close">
+        <doc xml:space="preserve">Closes the iterator, making it invalid.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="cursor" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerSparqlCursor</doc>
+            <type name="SparqlCursor" c:type="TrackerSparqlCursor*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_boolean" c:identifier="tracker_sparql_cursor_get_boolean">
+        <doc xml:space="preserve">Retrieve a boolean for the current row in @column.</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve">a #gboolean.</doc>
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="cursor" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerSparqlCursor</doc>
+            <type name="SparqlCursor" c:type="TrackerSparqlCursor*"/>
+          </instance-parameter>
+          <parameter name="column" transfer-ownership="none">
+            <doc xml:space="preserve">column number to retrieve (first one is 0)</doc>
+            <type name="gint" c:type="gint"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="get_connection" c:identifier="tracker_sparql_cursor_get_connection" glib:get-property="connection">
+        <doc xml:space="preserve">Returns the #TrackerSparqlConnection associated with this
+#TrackerSparqlCursor.</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve">the cursor #TrackerSparqlConnection. The
+returned object must not be unreferenced by the caller.</doc>
+          <type name="SparqlConnection" c:type="TrackerSparqlConnection*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="cursor" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerSparqlCursor</doc>
+            <type name="SparqlCursor" c:type="TrackerSparqlCursor*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_datetime" c:identifier="tracker_sparql_cursor_get_datetime" version="3.2">
+        <doc xml:space="preserve">Retrieve an GDateTime pointer for the current row in @column.</doc>
+        <return-value transfer-ownership="full" nullable="1">
+          <doc xml:space="preserve">#GDateTime object, or %NULL if the given column does not contain a xsd:date or xsd:dateTime</doc>
+          <type name="GLib.DateTime" c:type="GDateTime*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="cursor" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerSparqlCursor</doc>
+            <type name="SparqlCursor" c:type="TrackerSparqlCursor*"/>
+          </instance-parameter>
+          <parameter name="column" transfer-ownership="none">
+            <doc xml:space="preserve">column number to retrieve (first one is 0)</doc>
+            <type name="gint" c:type="gint"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="get_double" c:identifier="tracker_sparql_cursor_get_double">
+        <doc xml:space="preserve">Retrieve a double for the current row in @column.</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve">a double.</doc>
+          <type name="gdouble" c:type="gdouble"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="cursor" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerSparqlCursor</doc>
+            <type name="SparqlCursor" c:type="TrackerSparqlCursor*"/>
+          </instance-parameter>
+          <parameter name="column" transfer-ownership="none">
+            <doc xml:space="preserve">column number to retrieve (first one is 0)</doc>
+            <type name="gint" c:type="gint"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="get_integer" c:identifier="tracker_sparql_cursor_get_integer">
+        <doc xml:space="preserve">Retrieve an integer for the current row in @column.</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve">a #gint64.</doc>
+          <type name="gint64" c:type="gint64"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="cursor" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerSparqlCursor</doc>
+            <type name="SparqlCursor" c:type="TrackerSparqlCursor*"/>
+          </instance-parameter>
+          <parameter name="column" transfer-ownership="none">
+            <doc xml:space="preserve">column number to retrieve (first one is 0)</doc>
+            <type name="gint" c:type="gint"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="get_n_columns" c:identifier="tracker_sparql_cursor_get_n_columns" glib:get-property="n-columns">
+        <doc xml:space="preserve">This method should only be called after a successful
+tracker_sparql_cursor_next(); otherwise its return value
+will be undefined.</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve">a #gint representing the number of columns available in the
+results to iterate.</doc>
+          <type name="gint" c:type="gint"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="cursor" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerSparqlCursor</doc>
+            <type name="SparqlCursor" c:type="TrackerSparqlCursor*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_string" c:identifier="tracker_sparql_cursor_get_string">
+        <doc xml:space="preserve">Retrieves a string representation of the data in the current
+row in @column.</doc>
+        <return-value transfer-ownership="none" nullable="1">
+          <doc xml:space="preserve">a string which must not be freed. %NULL is returned if
+the column is not in the [0,#n_columns] range.</doc>
+          <type name="utf8" c:type="const gchar*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="cursor" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerSparqlCursor</doc>
+            <type name="SparqlCursor" c:type="TrackerSparqlCursor*"/>
+          </instance-parameter>
+          <parameter name="column" transfer-ownership="none">
+            <doc xml:space="preserve">column number to retrieve (first one is 0)</doc>
+            <type name="gint" c:type="gint"/>
+          </parameter>
+          <parameter name="length" direction="out" caller-allocates="0" transfer-ownership="full" nullable="1">
+            <doc xml:space="preserve">length of the returned string, or %NULL</doc>
+            <type name="glong" c:type="glong*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="get_value_type" c:identifier="tracker_sparql_cursor_get_value_type">
+        <doc xml:space="preserve">The data type bound to the current row in @column is returned.</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve">a #TrackerSparqlValueType.</doc>
+          <type name="SparqlValueType" c:type="TrackerSparqlValueType"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="cursor" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerSparqlCursor</doc>
+            <type name="SparqlCursor" c:type="TrackerSparqlCursor*"/>
+          </instance-parameter>
+          <parameter name="column" transfer-ownership="none">
+            <doc xml:space="preserve">column number to retrieve (first one is 0)</doc>
+            <type name="gint" c:type="gint"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="get_variable_name" c:identifier="tracker_sparql_cursor_get_variable_name">
+        <doc xml:space="preserve">Retrieves the variable name for the current row in @column.</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve">a string which must not be freed.</doc>
+          <type name="utf8" c:type="const gchar*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="cursor" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerSparqlCursor</doc>
+            <type name="SparqlCursor" c:type="TrackerSparqlCursor*"/>
+          </instance-parameter>
+          <parameter name="column" transfer-ownership="none">
+            <doc xml:space="preserve">column number to retrieve (first one is 0)</doc>
+            <type name="gint" c:type="gint"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="is_bound" c:identifier="tracker_sparql_cursor_is_bound">
+        <doc xml:space="preserve">If the current row and @column are bound to a value, %TRUE is returned.</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve">a %TRUE or %FALSE.</doc>
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="cursor" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerSparqlCursor</doc>
+            <type name="SparqlCursor" c:type="TrackerSparqlCursor*"/>
+          </instance-parameter>
+          <parameter name="column" transfer-ownership="none">
+            <doc xml:space="preserve">column number to retrieve (first one is 0)</doc>
+            <type name="gint" c:type="gint"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="next" c:identifier="tracker_sparql_cursor_next" throws="1">
+        <doc xml:space="preserve">Iterates to the next result. This is completely synchronous and
+it may block.</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve">%FALSE if no more results found, otherwise %TRUE.</doc>
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="cursor" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerSparqlCursor</doc>
+            <type name="SparqlCursor" c:type="TrackerSparqlCursor*"/>
+          </instance-parameter>
+          <parameter name="cancellable" transfer-ownership="none" nullable="1" allow-none="1">
+            <doc xml:space="preserve">a #GCancellable used to cancel the operation</doc>
+            <type name="Gio.Cancellable" c:type="GCancellable*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="next_async" c:identifier="tracker_sparql_cursor_next_async">
+        <doc xml:space="preserve">Iterates, asynchronously, to the next result.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="cursor" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerSparqlCursor</doc>
+            <type name="SparqlCursor" c:type="TrackerSparqlCursor*"/>
+          </instance-parameter>
+          <parameter name="cancellable" transfer-ownership="none" nullable="1" allow-none="1">
+            <doc xml:space="preserve">a #GCancellable used to cancel the operation</doc>
+            <type name="Gio.Cancellable" c:type="GCancellable*"/>
+          </parameter>
+          <parameter name="callback" transfer-ownership="none" nullable="1" allow-none="1" scope="async" closure="2">
+            <doc xml:space="preserve">user-defined #GAsyncReadyCallback to be called when
+           asynchronous operation is finished.</doc>
+            <type name="Gio.AsyncReadyCallback" c:type="GAsyncReadyCallback"/>
+          </parameter>
+          <parameter name="user_data" transfer-ownership="none" nullable="1" allow-none="1">
+            <doc xml:space="preserve">user-defined data to be passed to @callback</doc>
+            <type name="gpointer" c:type="gpointer"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="next_finish" c:identifier="tracker_sparql_cursor_next_finish" throws="1">
+        <doc xml:space="preserve">Finishes the asynchronous iteration to the next result.</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve">%FALSE if no more results found, otherwise %TRUE.</doc>
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="cursor" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerSparqlCursor</doc>
+            <type name="SparqlCursor" c:type="TrackerSparqlCursor*"/>
+          </instance-parameter>
+          <parameter name="res" transfer-ownership="none">
+            <doc xml:space="preserve">a #GAsyncResult with the result of the operation</doc>
+            <type name="Gio.AsyncResult" c:type="GAsyncResult*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="rewind" c:identifier="tracker_sparql_cursor_rewind">
+        <doc xml:space="preserve">Resets the iterator to point back to the first result.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="cursor" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerSparqlCursor</doc>
+            <type name="SparqlCursor" c:type="TrackerSparqlCursor*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <property name="connection" writable="1" construct-only="1" transfer-ownership="none" getter="get_connection">
+        <doc xml:space="preserve">The #TrackerSparqlConnection used to retrieve the results.</doc>
+        <type name="SparqlConnection"/>
+      </property>
+      <property name="n-columns" transfer-ownership="none" getter="get_n_columns">
+        <type name="gint" c:type="gint"/>
+      </property>
+      <field name="parent_instance">
+        <type name="GObject.Object" c:type="GObject"/>
+      </field>
+    </class>
+    <record name="SparqlCursorClass" c:type="TrackerSparqlCursorClass" disguised="1" glib:is-gtype-struct-for="SparqlCursor"/>
+    <enumeration name="SparqlError" c:type="TrackerSparqlError" glib:error-domain="tracker-sparql-error-quark">
+      <doc xml:space="preserve">Error domain for Tracker Sparql. Errors in this domain will be from the
+#TrackerSparqlError enumeration. See #GError for more information on error
+domains.</doc>
+      <member name="error_constraint" value="0" c:identifier="TRACKER_SPARQL_ERROR_CONSTRAINT">
+        <doc xml:space="preserve">Subject is not in the domain of a property or
+                            trying to set multiple values for a single valued
+                            property.</doc>
+      </member>
+      <member name="error_internal" value="1" c:identifier="TRACKER_SPARQL_ERROR_INTERNAL">
+        <doc xml:space="preserve">Internal error.</doc>
+      </member>
+      <member name="error_no_space" value="2" c:identifier="TRACKER_SPARQL_ERROR_NO_SPACE">
+        <doc xml:space="preserve">There was no disk space available to perform the request.</doc>
+      </member>
+      <member name="error_ontology_not_found" value="3" c:identifier="TRACKER_SPARQL_ERROR_ONTOLOGY_NOT_FOUND">
+        <doc xml:space="preserve">The specified ontology wasn't found.</doc>
+      </member>
+      <member name="error_open_error" value="4" c:identifier="TRACKER_SPARQL_ERROR_OPEN_ERROR">
+        <doc xml:space="preserve">Problem encounted while opening the database.</doc>
+      </member>
+      <member name="error_parse" value="5" c:identifier="TRACKER_SPARQL_ERROR_PARSE">
+        <doc xml:space="preserve">Error parsing the SPARQL string.</doc>
+      </member>
+      <member name="error_query_failed" value="6" c:identifier="TRACKER_SPARQL_ERROR_QUERY_FAILED">
+        <doc xml:space="preserve">Problem while executing the query.</doc>
+      </member>
+      <member name="error_type" value="7" c:identifier="TRACKER_SPARQL_ERROR_TYPE">
+        <doc xml:space="preserve">Type constraint failed when trying to insert data.</doc>
+      </member>
+      <member name="error_unknown_class" value="8" c:identifier="TRACKER_SPARQL_ERROR_UNKNOWN_CLASS">
+        <doc xml:space="preserve">Unknown class.</doc>
+      </member>
+      <member name="error_unknown_graph" value="9" c:identifier="TRACKER_SPARQL_ERROR_UNKNOWN_GRAPH">
+        <doc xml:space="preserve">Unknown graph.</doc>
+      </member>
+      <member name="error_unknown_property" value="10" c:identifier="TRACKER_SPARQL_ERROR_UNKNOWN_PROPERTY">
+        <doc xml:space="preserve">Unknown property.</doc>
+      </member>
+      <member name="error_unsupported" value="11" c:identifier="TRACKER_SPARQL_ERROR_UNSUPPORTED">
+        <doc xml:space="preserve">Unsupported feature or method.</doc>
+      </member>
+      <member name="error_missing_last_modified_header" value="12" c:identifier="TRACKER_SPARQL_ERROR_MISSING_LAST_MODIFIED_HEADER">
+        <doc xml:space="preserve">The ontology doesn't contain nrl:lastModified header</doc>
+      </member>
+      <member name="error_incomplete_property_definition" value="13" c:identifier="TRACKER_SPARQL_ERROR_INCOMPLETE_PROPERTY_DEFINITION">
+        <doc xml:space="preserve">The property is not completely defined.</doc>
+      </member>
+      <member name="n_errors" value="14" c:identifier="TRACKER_SPARQL_N_ERRORS">
+        <doc xml:space="preserve">The total number of error codes.</doc>
+      </member>
+    </enumeration>
+    <class name="SparqlStatement" c:symbol-prefix="sparql_statement" c:type="TrackerSparqlStatement" parent="GObject.Object" abstract="1" glib:type-name="TrackerSparqlStatement" glib:get-type="tracker_sparql_statement_get_type" glib:type-struct="SparqlStatementClass">
+      <doc xml:space="preserve">The &lt;structname&gt;TrackerSparqlStatement&lt;/structname&gt; object represents
+a prepared query statement.</doc>
+      <method name="bind_boolean" c:identifier="tracker_sparql_statement_bind_boolean">
+        <doc xml:space="preserve">Binds the boolean @value to variable @name.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="stmt" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerSparqlStatement</doc>
+            <type name="SparqlStatement" c:type="TrackerSparqlStatement*"/>
+          </instance-parameter>
+          <parameter name="name" transfer-ownership="none">
+            <doc xml:space="preserve">variable name</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="value" transfer-ownership="none">
+            <doc xml:space="preserve">value</doc>
+            <type name="gboolean" c:type="gboolean"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="bind_datetime" c:identifier="tracker_sparql_statement_bind_datetime" version="3.2">
+        <doc xml:space="preserve">Binds the GDateTime @value to variable @name.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="stmt" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerSparqlStatement</doc>
+            <type name="SparqlStatement" c:type="TrackerSparqlStatement*"/>
+          </instance-parameter>
+          <parameter name="name" transfer-ownership="none">
+            <doc xml:space="preserve">variable name</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="value" transfer-ownership="none">
+            <doc xml:space="preserve">value</doc>
+            <type name="GLib.DateTime" c:type="GDateTime*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="bind_double" c:identifier="tracker_sparql_statement_bind_double">
+        <doc xml:space="preserve">Binds the double @value to variable @name.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="stmt" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerSparqlStatement</doc>
+            <type name="SparqlStatement" c:type="TrackerSparqlStatement*"/>
+          </instance-parameter>
+          <parameter name="name" transfer-ownership="none">
+            <doc xml:space="preserve">variable name</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="value" transfer-ownership="none">
+            <doc xml:space="preserve">value</doc>
+            <type name="gdouble" c:type="gdouble"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="bind_int" c:identifier="tracker_sparql_statement_bind_int">
+        <doc xml:space="preserve">Binds the integer @value to variable @name.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="stmt" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerSparqlStatement</doc>
+            <type name="SparqlStatement" c:type="TrackerSparqlStatement*"/>
+          </instance-parameter>
+          <parameter name="name" transfer-ownership="none">
+            <doc xml:space="preserve">variable name</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="value" transfer-ownership="none">
+            <doc xml:space="preserve">value</doc>
+            <type name="gint64" c:type="gint64"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="bind_string" c:identifier="tracker_sparql_statement_bind_string">
+        <doc xml:space="preserve">Binds the string @value to variable @name.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="stmt" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerSparqlStatement</doc>
+            <type name="SparqlStatement" c:type="TrackerSparqlStatement*"/>
+          </instance-parameter>
+          <parameter name="name" transfer-ownership="none">
+            <doc xml:space="preserve">variable name</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="value" transfer-ownership="none">
+            <doc xml:space="preserve">value</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="clear_bindings" c:identifier="tracker_sparql_statement_clear_bindings" version="3.0">
+        <doc xml:space="preserve">Clears all boolean/string/integer/double bindings.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="stmt" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerSparqlStatement</doc>
+            <type name="SparqlStatement" c:type="TrackerSparqlStatement*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="execute" c:identifier="tracker_sparql_statement_execute" throws="1">
+        <doc xml:space="preserve">Executes the SPARQL query with the currently bound values.</doc>
+        <return-value transfer-ownership="full">
+          <doc xml:space="preserve">A #TrackerSparqlCursor</doc>
+          <type name="SparqlCursor" c:type="TrackerSparqlCursor*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="stmt" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerSparqlStatement</doc>
+            <type name="SparqlStatement" c:type="TrackerSparqlStatement*"/>
+          </instance-parameter>
+          <parameter name="cancellable" transfer-ownership="none" nullable="1" allow-none="1">
+            <doc xml:space="preserve">a #GCancellable used to cancel the operation</doc>
+            <type name="Gio.Cancellable" c:type="GCancellable*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="execute_async" c:identifier="tracker_sparql_statement_execute_async">
+        <doc xml:space="preserve">Asynchronously executes the SPARQL query with the currently bound values.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="stmt" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerSparqlStatement</doc>
+            <type name="SparqlStatement" c:type="TrackerSparqlStatement*"/>
+          </instance-parameter>
+          <parameter name="cancellable" transfer-ownership="none" nullable="1" allow-none="1">
+            <doc xml:space="preserve">a #GCancellable used to cancel the operation</doc>
+            <type name="Gio.Cancellable" c:type="GCancellable*"/>
+          </parameter>
+          <parameter name="callback" transfer-ownership="none" nullable="1" allow-none="1" scope="async" closure="2">
+            <doc xml:space="preserve">user-defined #GAsyncReadyCallback to be called when
+           asynchronous operation is finished.</doc>
+            <type name="Gio.AsyncReadyCallback" c:type="GAsyncReadyCallback"/>
+          </parameter>
+          <parameter name="user_data" transfer-ownership="none" nullable="1" allow-none="1">
+            <doc xml:space="preserve">user-defined data to be passed to @callback</doc>
+            <type name="gpointer" c:type="gpointer"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="execute_finish" c:identifier="tracker_sparql_statement_execute_finish" throws="1">
+        <doc xml:space="preserve">Finishes the asynchronous operation started through
+tracker_sparql_statement_execute_async().</doc>
+        <return-value transfer-ownership="full">
+          <doc xml:space="preserve">A #TrackerSparqlCursor</doc>
+          <type name="SparqlCursor" c:type="TrackerSparqlCursor*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="stmt" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerSparqlStatement</doc>
+            <type name="SparqlStatement" c:type="TrackerSparqlStatement*"/>
+          </instance-parameter>
+          <parameter name="res" transfer-ownership="none">
+            <doc xml:space="preserve">The #GAsyncResult from the callback used to return the #TrackerSparqlCursor</doc>
+            <type name="Gio.AsyncResult" c:type="GAsyncResult*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="get_connection" c:identifier="tracker_sparql_statement_get_connection" glib:get-property="connection">
+        <doc xml:space="preserve">Returns the #TrackerSparqlConnection that this statement was created from.</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve">The SPARQL connection of this statement.</doc>
+          <type name="SparqlConnection" c:type="TrackerSparqlConnection*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="stmt" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerSparqlStatement</doc>
+            <type name="SparqlStatement" c:type="TrackerSparqlStatement*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_sparql" c:identifier="tracker_sparql_statement_get_sparql" glib:get-property="sparql">
+        <doc xml:space="preserve">Returns the SPARQL string that this prepared statement holds.</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve">The contained SPARQL query</doc>
+          <type name="utf8" c:type="const gchar*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="stmt" transfer-ownership="none">
+            <doc xml:space="preserve">a #TrackerSparqlStatement</doc>
+            <type name="SparqlStatement" c:type="TrackerSparqlStatement*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <property name="connection" writable="1" construct-only="1" transfer-ownership="none" getter="get_connection">
+        <doc xml:space="preserve">The #TrackerSparqlConnection used to perform the query.</doc>
+        <type name="SparqlConnection"/>
+      </property>
+      <property name="sparql" writable="1" construct-only="1" transfer-ownership="none" getter="get_sparql">
+        <doc xml:space="preserve">SPARQL query stored in this statement.</doc>
+        <type name="utf8" c:type="gchar*"/>
+      </property>
+      <field name="parent_instance">
+        <type name="GObject.Object" c:type="GObject"/>
+      </field>
+    </class>
+    <record name="SparqlStatementClass" c:type="TrackerSparqlStatementClass" disguised="1" glib:is-gtype-struct-for="SparqlStatement"/>
+    <enumeration name="SparqlValueType" c:type="TrackerSparqlValueType">
+      <doc xml:space="preserve">Enumeration with the possible types of the cursor's cells</doc>
+      <member name="unbound" value="0" c:identifier="TRACKER_SPARQL_VALUE_TYPE_UNBOUND">
+        <doc xml:space="preserve">Unbound value type</doc>
+      </member>
+      <member name="uri" value="1" c:identifier="TRACKER_SPARQL_VALUE_TYPE_URI">
+        <doc xml:space="preserve">Uri value type, rdfs:Resource</doc>
+      </member>
+      <member name="string" value="2" c:identifier="TRACKER_SPARQL_VALUE_TYPE_STRING">
+        <doc xml:space="preserve">String value type, xsd:string</doc>
+      </member>
+      <member name="integer" value="3" c:identifier="TRACKER_SPARQL_VALUE_TYPE_INTEGER">
+        <doc xml:space="preserve">Integer value type, xsd:integer</doc>
+      </member>
+      <member name="double" value="4" c:identifier="TRACKER_SPARQL_VALUE_TYPE_DOUBLE">
+        <doc xml:space="preserve">Double value type, xsd:double</doc>
+      </member>
+      <member name="datetime" value="5" c:identifier="TRACKER_SPARQL_VALUE_TYPE_DATETIME">
+        <doc xml:space="preserve">Datetime value type, xsd:dateTime</doc>
+      </member>
+      <member name="blank_node" value="6" c:identifier="TRACKER_SPARQL_VALUE_TYPE_BLANK_NODE">
+        <doc xml:space="preserve">Blank node value type</doc>
+      </member>
+      <member name="boolean" value="7" c:identifier="TRACKER_SPARQL_VALUE_TYPE_BOOLEAN">
+        <doc xml:space="preserve">Boolean value type, xsd:boolean</doc>
+      </member>
+    </enumeration>
+    <function name="check_version" c:identifier="tracker_check_version">
+      <doc xml:space="preserve">Checks that the Tracker library in use is compatible with the
+given version. Generally you would pass in the constants
+#TRACKER_MAJOR_VERSION, #TRACKER_MINOR_VERSION, #TRACKER_MICRO_VERSION
+as the three arguments to this function; that produces
+a check that the library in use is compatible with
+the version of Tracker the application or module was compiled
+against.
+
+Compatibility is defined by two things: first the version
+of the running library is newer than the version
+@required_major.required_minor.@required_micro. Second
+the running library must be binary compatible with the
+version @required_major.required_minor.@required_micro
+(same major version.)</doc>
+      <return-value transfer-ownership="none">
+        <doc xml:space="preserve">%NULL if the Tracker library is compatible with the
+  given version, or a string describing the version mismatch.
+  The returned string is owned by Tracker and must not be modified
+  or freed.</doc>
+        <type name="utf8" c:type="const gchar*"/>
+      </return-value>
+      <parameters>
+        <parameter name="required_major" transfer-ownership="none">
+          <doc xml:space="preserve">the required major version.</doc>
+          <type name="guint" c:type="guint"/>
+        </parameter>
+        <parameter name="required_minor" transfer-ownership="none">
+          <doc xml:space="preserve">the required minor version.</doc>
+          <type name="guint" c:type="guint"/>
+        </parameter>
+        <parameter name="required_micro" transfer-ownership="none">
+          <doc xml:space="preserve">the required micro version.</doc>
+          <type name="guint" c:type="guint"/>
+        </parameter>
+      </parameters>
+    </function>
+    <function name="sparql_error_quark" c:identifier="tracker_sparql_error_quark">
+      <return-value transfer-ownership="none">
+        <doc xml:space="preserve">The error domain quark used for Tracker errors.</doc>
+        <type name="GLib.Quark" c:type="GQuark"/>
+      </return-value>
+    </function>
+    <function name="sparql_escape_string" c:identifier="tracker_sparql_escape_string">
+      <doc xml:space="preserve">Escapes @literal so it is suitable for insertion in
+SPARQL queries as string literals. Manual construction
+of query strings based user input is best avoided at
+all cost, use of #TrackerSparqlStatement is recommended
+instead.</doc>
+      <return-value transfer-ownership="full">
+        <doc xml:space="preserve">the escaped string</doc>
+        <type name="utf8" c:type="gchar*"/>
+      </return-value>
+      <parameters>
+        <parameter name="literal" transfer-ownership="none">
+          <doc xml:space="preserve">a string to escape</doc>
+          <type name="utf8" c:type="const gchar*"/>
+        </parameter>
+      </parameters>
+    </function>
+    <function name="sparql_escape_uri" c:identifier="tracker_sparql_escape_uri">
+      <doc xml:space="preserve">Calls tracker_sparql_escape_uri_printf().</doc>
+      <return-value transfer-ownership="full">
+        <doc xml:space="preserve">a newly-allocated string holding the result. The returned string
+should be freed with g_free() when no longer needed.</doc>
+        <type name="utf8" c:type="gchar*"/>
+      </return-value>
+      <parameters>
+        <parameter name="uri" transfer-ownership="none">
+          <doc xml:space="preserve">a string to be escaped, following the tracker sparql rules</doc>
+          <type name="utf8" c:type="const gchar*"/>
+        </parameter>
+      </parameters>
+    </function>
+    <function name="sparql_escape_uri_printf" c:identifier="tracker_sparql_escape_uri_printf" introspectable="0">
+      <doc xml:space="preserve">Calls tracker_sparql_escape_uri_vprintf() with the @... supplied.</doc>
+      <return-value transfer-ownership="full">
+        <doc xml:space="preserve">a newly-allocated string holding the result.The returned string
+should be freed with g_free() when no longer needed.</doc>
+        <type name="utf8" c:type="gchar*"/>
+      </return-value>
+      <parameters>
+        <parameter name="format" transfer-ownership="none">
+          <doc xml:space="preserve">a standard printf() format string, but notice
+    &lt;link linkend="string-precision"&gt;string precision pitfalls&lt;/link&gt; documented in g_strdup_printf()</doc>
+          <type name="utf8" c:type="const gchar*"/>
+        </parameter>
+        <parameter name="..." transfer-ownership="none">
+          <doc xml:space="preserve">the parameters to insert into the format string</doc>
+          <varargs/>
+        </parameter>
+      </parameters>
+    </function>
+    <function name="sparql_escape_uri_vprintf" c:identifier="tracker_sparql_escape_uri_vprintf" introspectable="0">
+      <doc xml:space="preserve">Similar to the standard C vsprintf() function but safer, since it
+calculates the maximum space required and allocates memory to hold
+the result.
+
+The result is escaped using g_uri_escape_string().</doc>
+      <return-value transfer-ownership="full">
+        <doc xml:space="preserve">a newly-allocated string holding the result. The returned string
+should be freed with g_free() when no longer needed.</doc>
+        <type name="utf8" c:type="gchar*"/>
+      </return-value>
+      <parameters>
+        <parameter name="format" transfer-ownership="none">
+          <doc xml:space="preserve">a standard printf() format string, but notice
+    &lt;link linkend="string-precision"&gt;string precision pitfalls&lt;/link&gt; documented in g_strdup_printf()</doc>
+          <type name="utf8" c:type="const gchar*"/>
+        </parameter>
+        <parameter name="args" transfer-ownership="none">
+          <doc xml:space="preserve">the list of parameters to insert into the format string</doc>
+          <type name="va_list" c:type="va_list"/>
+        </parameter>
+      </parameters>
+    </function>
+    <function name="sparql_get_ontology_nepomuk" c:identifier="tracker_sparql_get_ontology_nepomuk">
+      <doc xml:space="preserve">Returns a path to the built-in Nepomuk ontologies.</doc>
+      <return-value transfer-ownership="full">
+        <doc xml:space="preserve">a #GFile instance.</doc>
+        <type name="Gio.File" c:type="GFile*"/>
+      </return-value>
+    </function>
+    <function name="sparql_get_uuid_urn" c:identifier="tracker_sparql_get_uuid_urn">
+      <doc xml:space="preserve">Creates a fresh UUID-based URN.</doc>
+      <return-value transfer-ownership="full">
+        <doc xml:space="preserve">A newly generated UUID URN.</doc>
+        <type name="utf8" c:type="gchar*"/>
+      </return-value>
+    </function>
+    <docsection name="tracker-batch">
+      <doc xml:space="preserve">#TrackerBatch is an object containing a series of SPARQL updates,
+in either SPARQL string or #TrackerResource form. This object has
+a single use, after the batch is executed, it can only be finished
+and freed.
+
+A batch is created with tracker_sparql_connection_create_batch().
+To add resources use tracker_batch_add_resource() or
+tracker_batch_add_sparql().
+
+When a batch is ready for execution, use tracker_batch_execute()
+or tracker_batch_execute_async(). The batch is executed as a single
+transaction, it will succeed or fail entirely.
+
+The mapping of blank node labels is global in a #TrackerBatch,
+referencing the same blank node label in different operations in
+a batch will resolve to the same resource.
+
+This object was added in Tracker 3.1.</doc>
+    </docsection>
+    <docsection name="tracker-endpoint">
+      <doc xml:space="preserve">#TrackerEndpoint allows sharing data, either with other processes on the
+system via a Tracker-specific D-Bus API, or remote peers via the HTTP
+SPARQL protocol.
+
+When it is shared in this way, other peers can connect to your database using
+tracker_sparql_connection_bus_new() or tracker_sparql_connection_remote_new(),
+and can also fetch data directly from SPARQL queries using the
+&lt;userinput&gt;SELECT { SERVICE ... }&lt;/userinput&gt; syntax.</doc>
+    </docsection>
+    <docsection name="tracker-endpoint-dbus">
+      <doc xml:space="preserve">#TrackerEndpointDBus is an endpoint implementation that exports
+a local #TrackerSparqlConnection so it is accessible in the given
+bus connection.
+
+Access to these endpoints may be transparently managed through
+the Tracker portal service for applications sandboxed via Flatpak, and
+access to data constrained to the graphs defined in the applications
+manifest.
+
+A #TrackerEndpointDBus may be created on a different thread/main
+context than the one creating the #TrackerSparqlConnection.</doc>
+    </docsection>
+    <docsection name="tracker-misc">
+      <doc xml:space="preserve">Collection of Tracker utility functions.</doc>
+    </docsection>
+    <docsection name="tracker-namespace-manager">
+      <doc xml:space="preserve">#TrackerNamespaceManager keeps track of namespaces. It allows you to assign
+short prefixes for them to avoid typing full URLs all the time.
+
+The syntax used is that of Compact URIs (CURIEs) as defined here:
+(https://www.w3.org/TR/2010/NOTE-curie-20101216)
+
+Usually you will want to use the default namespace manager, as returned by
+tracker_namespace_manager_get_default(). This has a set of well-known
+prefixes predefined.</doc>
+    </docsection>
+    <docsection name="tracker-notifier">
+      <doc xml:space="preserve">#TrackerNotifier is an object that receives notifications about
+changes to the Tracker database. A #TrackerNotifier is created
+through tracker_sparql_connection_create_notifier(), after the notifier
+is created, events can be listened for by connecting to the
+#TrackerNotifier::events signal.
+
+# Known caveats
+
+* The %TRACKER_NOTIFIER_EVENT_DELETE events will be received after the
+  resource has been deleted. At that time queries on those elements will
+  not bring any metadata. Only the ID/URN obtained through the event
+  remain meaningful.
+* Notifications of files being moved across indexed folders will
+  appear as %TRACKER_NOTIFIER_EVENT_UPDATE events, containing
+  the new location (if requested). The older location is no longer
+  known to Tracker, this may make tracking of elements in specific
+  folders hard using solely the #TrackerNotifier/Tracker data
+  available at event notification time.</doc>
+    </docsection>
+    <docsection name="tracker-ontologies">
+      <doc xml:space="preserve">Utility defines for the common namespace prefixes.</doc>
+    </docsection>
+    <docsection name="tracker-resource">
+      <doc xml:space="preserve">#TrackerResource keeps track of a set of properties for a given resource.
+The resulting data can be serialized in several ways.</doc>
+    </docsection>
+    <docsection name="tracker-sparql-connection">
+      <doc xml:space="preserve">#TrackerSparqlConnection is an object that represents a connection to a
+SPARQL triple store. This store may be local and private (see
+tracker_sparql_connection_new()), or it may be a remote connection to a
+public endpoint (See tracker_sparql_connection_bus_new() and
+tracker_sparql_connection_remote_new()).
+
+A #TrackerSparqlConnection is private to the calling process, it can be
+exposed publicly via a #TrackerEndpoint, see tracker_endpoint_dbus_new().
+
+Updates on a connection are performed via the tracker_sparql_connection_update()
+family of calls. tracker_sparql_connection_update_array() may be used for batched
+updates. All functions have asynchronous variants.
+
+Queries on a connection are performed via tracker_sparql_connection_query()
+and tracker_sparql_connection_query_statement(). The first call receives a
+query string and returns a #TrackerSparqlCursor to iterate the results. The
+second call returns a #TrackerSparqlStatement object that may be reused for
+repeatable queries with variable parameters. tracker_sparql_statement_execute()
+will returns a #TrackerSparqlCursor.
+
+Depending on the ontology definition, #TrackerSparqlConnection may emit
+notifications whenever changes happen in the stored data. These notifications
+can be processed via a #TrackerNotifier obtained with
+tracker_sparql_connection_create_notifier().
+
+After use, a #TrackerSparqlConnection should be closed. See
+tracker_sparql_connection_close() and tracker_sparql_connection_close_async().
+
+A #TrackerSparqlConnection may be used from multiple threads, asynchronous
+database updates are executed sequentially on arrival order, asynchronous
+queries are executed in a thread pool.</doc>
+    </docsection>
+    <docsection name="tracker-sparql-cursor">
+      <doc xml:space="preserve">#TrackerSparqlCursor is an object which provides methods to iterate the
+results of a query to the Tracker Store.
+
+It is possible to use a given #TrackerSparqlCursor in other threads than
+the one it was created from. It must be however used from just one thread
+at any given time.</doc>
+    </docsection>
+    <docsection name="tracker-sparql-statement">
+      <doc xml:space="preserve">The &lt;structname&gt;TrackerSparqlStatement&lt;/structname&gt; object represents
+a SPARQL query. This query may contain parameterized variables
+(expressed as ~var in the syntax), which may be mapped to arbitrary
+values prior to execution. This statement may be reused for future
+queries with different values.
+
+The argument bindings may be changed through tracker_sparql_statement_bind_int(),
+tracker_sparql_statement_bind_boolean(), tracker_sparql_statement_bind_double()
+and tracker_sparql_statement_bind_string(). Those functions receive
+a @name argument corresponding for the variable name in the SPARQL query
+(eg. "var" for ~var) and a @value to map the variable to.
+
+Once all arguments have a value, the query may be executed through
+tracker_sparql_statement_execute() or tracker_sparql_statement_execute_async().
+
+It is possible to use a given #TrackerSparqlStatement in other threads than
+the one it was created from. It must be however used from just one thread
+at any given time.</doc>
+    </docsection>
+    <docsection name="tracker-uri">
+      <doc xml:space="preserve">Tracker defines some utility functions to deal with URI strings.</doc>
+    </docsection>
+    <docsection name="tracker-version">
+      <doc xml:space="preserve">Tracker provides version information, primarily useful in configure checks
+for builds that have a configure script. Applications will not typically use
+the features described here.</doc>
+    </docsection>
+  </namespace>
+</repository>
