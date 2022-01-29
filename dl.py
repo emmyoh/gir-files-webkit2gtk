@@ -4,7 +4,7 @@ import shutil
 
 GIR_FILES=[
 "JavaScriptCore-5.0", "Soup-3.0", "WebKit2-5.0",
-"WebKit2WebExtension-5.0", "freetype2-2.0",
+"WebKit2WebExtension-5.0", "freetype2-2.0", "GLib-2.0",
 ]
 
 dest_dir = os.path.abspath("./")
