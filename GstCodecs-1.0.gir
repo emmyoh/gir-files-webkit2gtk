@@ -1,0 +1,2312 @@
+<?xml version="1.0"?>
+<!-- This file was automatically generated from C sources - DO NOT EDIT!
+To affect the contents of this file, edit the original C definitions,
+and/or use gtk-doc annotations.  -->
+<repository xmlns="http://www.gtk.org/introspection/core/1.0" xmlns:c="http://www.gtk.org/introspection/c/1.0" xmlns:glib="http://www.gtk.org/introspection/glib/1.0" version="1.2">
+  <include name="Gst" version="1.0"/>
+  <include name="GstVideo" version="1.0"/>
+  <package name="gstreamer-codecs-1.0"/>
+  <c:include name="gst/codecs/gsth264decoder.h"/>
+  <c:include name="gst/codecs/gsth265decoder.h"/>
+  <c:include name="gst/codecs/gstvp8decoder.h"/>
+  <c:include name="gst/codecs/gstvp9decoder.h"/>
+  <namespace name="GstCodecs" version="1.0" shared-library="libgstcodecs-1.0.so.0" c:identifier-prefixes="Gst" c:symbol-prefixes="gst">
+    <class name="H264Decoder" c:symbol-prefix="h264_decoder" c:type="GstH264Decoder" parent="GstVideo.VideoDecoder" abstract="1" glib:type-name="GstH264Decoder" glib:get-type="gst_h264_decoder_get_type" glib:type-struct="H264DecoderClass">
+      <doc xml:space="preserve">The opaque #GstH264Decoder data structure.</doc>
+      <virtual-method name="decode_slice" introspectable="0">
+        <return-value transfer-ownership="none">
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="decoder" transfer-ownership="none">
+            <type name="H264Decoder" c:type="GstH264Decoder*"/>
+          </instance-parameter>
+          <parameter name="picture" transfer-ownership="none">
+            <type name="H264Picture" c:type="GstH264Picture*"/>
+          </parameter>
+          <parameter name="slice" transfer-ownership="none">
+            <type name="H264Slice" c:type="GstH264Slice*"/>
+          </parameter>
+          <parameter name="ref_pic_list0" transfer-ownership="none">
+            <array name="GLib.Array" c:type="GArray*">
+              <type name="gpointer" c:type="gpointer"/>
+            </array>
+          </parameter>
+          <parameter name="ref_pic_list1" transfer-ownership="none">
+            <array name="GLib.Array" c:type="GArray*">
+              <type name="gpointer" c:type="gpointer"/>
+            </array>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="end_picture">
+        <return-value transfer-ownership="none">
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="decoder" transfer-ownership="none">
+            <type name="H264Decoder" c:type="GstH264Decoder*"/>
+          </instance-parameter>
+          <parameter name="picture" transfer-ownership="none">
+            <type name="H264Picture" c:type="GstH264Picture*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="new_picture">
+        <return-value transfer-ownership="none">
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="decoder" transfer-ownership="none">
+            <type name="H264Decoder" c:type="GstH264Decoder*"/>
+          </instance-parameter>
+          <parameter name="frame" transfer-ownership="none">
+            <type name="GstVideo.VideoCodecFrame" c:type="GstVideoCodecFrame*"/>
+          </parameter>
+          <parameter name="picture" transfer-ownership="none">
+            <type name="H264Picture" c:type="GstH264Picture*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="new_sequence" introspectable="0">
+        <return-value transfer-ownership="none">
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="decoder" transfer-ownership="none">
+            <type name="H264Decoder" c:type="GstH264Decoder*"/>
+          </instance-parameter>
+          <parameter name="sps" transfer-ownership="none">
+            <type c:type="const GstH264SPS*"/>
+          </parameter>
+          <parameter name="max_dpb_size" transfer-ownership="none">
+            <type name="gint" c:type="gint"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="output_picture">
+        <return-value transfer-ownership="none">
+          <type name="Gst.FlowReturn" c:type="GstFlowReturn"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="decoder" transfer-ownership="none">
+            <type name="H264Decoder" c:type="GstH264Decoder*"/>
+          </instance-parameter>
+          <parameter name="frame" transfer-ownership="none">
+            <type name="GstVideo.VideoCodecFrame" c:type="GstVideoCodecFrame*"/>
+          </parameter>
+          <parameter name="picture" transfer-ownership="none">
+            <type name="H264Picture" c:type="GstH264Picture*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="start_picture">
+        <return-value transfer-ownership="none">
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="decoder" transfer-ownership="none">
+            <type name="H264Decoder" c:type="GstH264Decoder*"/>
+          </instance-parameter>
+          <parameter name="picture" transfer-ownership="none">
+            <type name="H264Picture" c:type="GstH264Picture*"/>
+          </parameter>
+          <parameter name="slice" transfer-ownership="none">
+            <type name="H264Slice" c:type="GstH264Slice*"/>
+          </parameter>
+          <parameter name="dpb" transfer-ownership="none">
+            <type name="H264Dpb" c:type="GstH264Dpb*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <method name="get_picture" c:identifier="gst_h264_decoder_get_picture" version="1.18">
+        <doc xml:space="preserve">Retrive DPB and return a #GstH264Picture corresponding to
+the @system_frame_number</doc>
+        <return-value transfer-ownership="full">
+          <doc xml:space="preserve">a #GstH264Picture if successful, or %NULL otherwise</doc>
+          <type name="H264Picture" c:type="GstH264Picture*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="decoder" transfer-ownership="none">
+            <doc xml:space="preserve">a #GstH264Decoder</doc>
+            <type name="H264Decoder" c:type="GstH264Decoder*"/>
+          </instance-parameter>
+          <parameter name="system_frame_number" transfer-ownership="none">
+            <doc xml:space="preserve">a target system frame number of #GstH264Picture</doc>
+            <type name="guint32" c:type="guint32"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="set_process_ref_pic_lists" c:identifier="gst_h264_decoder_set_process_ref_pic_lists" version="1.18">
+        <doc xml:space="preserve">Called to en/disable reference picture modification process.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="decoder" transfer-ownership="none">
+            <doc xml:space="preserve">a #GstH264Decoder</doc>
+            <type name="H264Decoder" c:type="GstH264Decoder*"/>
+          </instance-parameter>
+          <parameter name="process" transfer-ownership="none">
+            <doc xml:space="preserve">whether subclass is requiring reference picture modification process</doc>
+            <type name="gboolean" c:type="gboolean"/>
+          </parameter>
+        </parameters>
+      </method>
+      <field name="parent" readable="0" private="1">
+        <type name="GstVideo.VideoDecoder" c:type="GstVideoDecoder"/>
+      </field>
+      <field name="input_state" readable="0" private="1">
+        <type name="GstVideo.VideoCodecState" c:type="GstVideoCodecState*"/>
+      </field>
+      <field name="priv" readable="0" private="1">
+        <type name="H264DecoderPrivate" c:type="GstH264DecoderPrivate*"/>
+      </field>
+      <field name="padding" readable="0" private="1">
+        <array zero-terminated="0" fixed-size="20">
+          <type name="gpointer" c:type="gpointer"/>
+        </array>
+      </field>
+    </class>
+    <record name="H264DecoderClass" c:type="GstH264DecoderClass" glib:is-gtype-struct-for="H264Decoder">
+      <field name="parent_class">
+        <type name="GstVideo.VideoDecoderClass" c:type="GstVideoDecoderClass"/>
+      </field>
+      <field name="new_sequence" introspectable="0">
+        <callback name="new_sequence" introspectable="0">
+          <return-value transfer-ownership="none">
+            <type name="gboolean" c:type="gboolean"/>
+          </return-value>
+          <parameters>
+            <parameter name="decoder" transfer-ownership="none">
+              <type name="H264Decoder" c:type="GstH264Decoder*"/>
+            </parameter>
+            <parameter name="sps" transfer-ownership="none">
+              <type c:type="const GstH264SPS*"/>
+            </parameter>
+            <parameter name="max_dpb_size" transfer-ownership="none">
+              <type name="gint" c:type="gint"/>
+            </parameter>
+          </parameters>
+        </callback>
+      </field>
+      <field name="new_picture">
+        <callback name="new_picture">
+          <return-value transfer-ownership="none">
+            <type name="gboolean" c:type="gboolean"/>
+          </return-value>
+          <parameters>
+            <parameter name="decoder" transfer-ownership="none">
+              <type name="H264Decoder" c:type="GstH264Decoder*"/>
+            </parameter>
+            <parameter name="frame" transfer-ownership="none">
+              <type name="GstVideo.VideoCodecFrame" c:type="GstVideoCodecFrame*"/>
+            </parameter>
+            <parameter name="picture" transfer-ownership="none">
+              <type name="H264Picture" c:type="GstH264Picture*"/>
+            </parameter>
+          </parameters>
+        </callback>
+      </field>
+      <field name="start_picture">
+        <callback name="start_picture">
+          <return-value transfer-ownership="none">
+            <type name="gboolean" c:type="gboolean"/>
+          </return-value>
+          <parameters>
+            <parameter name="decoder" transfer-ownership="none">
+              <type name="H264Decoder" c:type="GstH264Decoder*"/>
+            </parameter>
+            <parameter name="picture" transfer-ownership="none">
+              <type name="H264Picture" c:type="GstH264Picture*"/>
+            </parameter>
+            <parameter name="slice" transfer-ownership="none">
+              <type name="H264Slice" c:type="GstH264Slice*"/>
+            </parameter>
+            <parameter name="dpb" transfer-ownership="none">
+              <type name="H264Dpb" c:type="GstH264Dpb*"/>
+            </parameter>
+          </parameters>
+        </callback>
+      </field>
+      <field name="decode_slice" introspectable="0">
+        <callback name="decode_slice" introspectable="0">
+          <return-value transfer-ownership="none">
+            <type name="gboolean" c:type="gboolean"/>
+          </return-value>
+          <parameters>
+            <parameter name="decoder" transfer-ownership="none">
+              <type name="H264Decoder" c:type="GstH264Decoder*"/>
+            </parameter>
+            <parameter name="picture" transfer-ownership="none">
+              <type name="H264Picture" c:type="GstH264Picture*"/>
+            </parameter>
+            <parameter name="slice" transfer-ownership="none">
+              <type name="H264Slice" c:type="GstH264Slice*"/>
+            </parameter>
+            <parameter name="ref_pic_list0" transfer-ownership="none">
+              <array name="GLib.Array" c:type="GArray*">
+                <type name="gpointer" c:type="gpointer"/>
+              </array>
+            </parameter>
+            <parameter name="ref_pic_list1" transfer-ownership="none">
+              <array name="GLib.Array" c:type="GArray*">
+                <type name="gpointer" c:type="gpointer"/>
+              </array>
+            </parameter>
+          </parameters>
+        </callback>
+      </field>
+      <field name="end_picture">
+        <callback name="end_picture">
+          <return-value transfer-ownership="none">
+            <type name="gboolean" c:type="gboolean"/>
+          </return-value>
+          <parameters>
+            <parameter name="decoder" transfer-ownership="none">
+              <type name="H264Decoder" c:type="GstH264Decoder*"/>
+            </parameter>
+            <parameter name="picture" transfer-ownership="none">
+              <type name="H264Picture" c:type="GstH264Picture*"/>
+            </parameter>
+          </parameters>
+        </callback>
+      </field>
+      <field name="output_picture">
+        <callback name="output_picture">
+          <return-value transfer-ownership="none">
+            <type name="Gst.FlowReturn" c:type="GstFlowReturn"/>
+          </return-value>
+          <parameters>
+            <parameter name="decoder" transfer-ownership="none">
+              <type name="H264Decoder" c:type="GstH264Decoder*"/>
+            </parameter>
+            <parameter name="frame" transfer-ownership="none">
+              <type name="GstVideo.VideoCodecFrame" c:type="GstVideoCodecFrame*"/>
+            </parameter>
+            <parameter name="picture" transfer-ownership="none">
+              <type name="H264Picture" c:type="GstH264Picture*"/>
+            </parameter>
+          </parameters>
+        </callback>
+      </field>
+      <field name="padding" readable="0" private="1">
+        <array zero-terminated="0" fixed-size="20">
+          <type name="gpointer" c:type="gpointer"/>
+        </array>
+      </field>
+    </record>
+    <record name="H264DecoderPrivate" c:type="GstH264DecoderPrivate" disguised="1"/>
+    <record name="H264Dpb" c:type="GstH264Dpb" disguised="1">
+      <method name="add" c:identifier="gst_h264_dpb_add">
+        <doc xml:space="preserve">Store the @picture</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="dpb" transfer-ownership="none">
+            <doc xml:space="preserve">a #GstH264Dpb</doc>
+            <type name="H264Dpb" c:type="GstH264Dpb*"/>
+          </instance-parameter>
+          <parameter name="picture" transfer-ownership="full">
+            <doc xml:space="preserve">a #GstH264Picture</doc>
+            <type name="H264Picture" c:type="GstH264Picture*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="clear" c:identifier="gst_h264_dpb_clear">
+        <doc xml:space="preserve">Clear all stored #GstH264Picture</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="dpb" transfer-ownership="none">
+            <doc xml:space="preserve">a #GstH264Dpb</doc>
+            <type name="H264Dpb" c:type="GstH264Dpb*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="delete_by_poc" c:identifier="gst_h264_dpb_delete_by_poc">
+        <doc xml:space="preserve">Delete a #GstH264Dpb by @poc</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="dpb" transfer-ownership="none">
+            <doc xml:space="preserve">a #GstH264Dpb</doc>
+            <type name="H264Dpb" c:type="GstH264Dpb*"/>
+          </instance-parameter>
+          <parameter name="poc" transfer-ownership="none">
+            <doc xml:space="preserve">a poc of #GstH264Picture to remove</doc>
+            <type name="gint" c:type="gint"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="delete_outputed" c:identifier="gst_h264_dpb_delete_outputed" version="1.18">
+        <doc xml:space="preserve">Delete already outputted picture, even if they are referenced.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="dpb" transfer-ownership="none">
+            <doc xml:space="preserve">a #GstH264Dpb</doc>
+            <type name="H264Dpb" c:type="GstH264Dpb*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="delete_unused" c:identifier="gst_h264_dpb_delete_unused">
+        <doc xml:space="preserve">Delete already outputted and not referenced all pictures from dpb</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="dpb" transfer-ownership="none">
+            <doc xml:space="preserve">a #GstH264Dpb</doc>
+            <type name="H264Dpb" c:type="GstH264Dpb*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="free" c:identifier="gst_h264_dpb_free">
+        <doc xml:space="preserve">Free the @dpb</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="dpb" transfer-ownership="none">
+            <doc xml:space="preserve">a #GstH264Dpb to free</doc>
+            <type name="H264Dpb" c:type="GstH264Dpb*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_long_ref_by_pic_num" c:identifier="gst_h264_dpb_get_long_ref_by_pic_num">
+        <doc xml:space="preserve">Find a long term reference picture which has matching picture number</doc>
+        <return-value transfer-ownership="none" nullable="1">
+          <doc xml:space="preserve">a #GstH264Picture</doc>
+          <type name="H264Picture" c:type="GstH264Picture*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="dpb" transfer-ownership="none">
+            <doc xml:space="preserve">a #GstH264Dpb</doc>
+            <type name="H264Dpb" c:type="GstH264Dpb*"/>
+          </instance-parameter>
+          <parameter name="pic_num" transfer-ownership="none">
+            <doc xml:space="preserve">a picture number</doc>
+            <type name="gint" c:type="gint"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="get_lowest_frame_num_short_ref" c:identifier="gst_h264_dpb_get_lowest_frame_num_short_ref">
+        <doc xml:space="preserve">Find a short term reference picture which has the lowest frame_num_wrap</doc>
+        <return-value transfer-ownership="full">
+          <doc xml:space="preserve">a #GstH264Picture</doc>
+          <type name="H264Picture" c:type="GstH264Picture*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="dpb" transfer-ownership="none">
+            <doc xml:space="preserve">a #GstH264Dpb</doc>
+            <type name="H264Dpb" c:type="GstH264Dpb*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_max_num_pics" c:identifier="gst_h264_dpb_get_max_num_pics">
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve">the number of maximum pictures</doc>
+          <type name="gint" c:type="gint"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="dpb" transfer-ownership="none">
+            <doc xml:space="preserve">a #GstH264Dpb</doc>
+            <type name="H264Dpb" c:type="GstH264Dpb*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_picture" c:identifier="gst_h264_dpb_get_picture" version="1.18">
+        <return-value transfer-ownership="full">
+          <doc xml:space="preserve">the picture identified with the specified
+@system_frame_number, or %NULL if DPB does not contain a #GstH264Picture
+corresponding to the @system_frame_number</doc>
+          <type name="H264Picture" c:type="GstH264Picture*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="dpb" transfer-ownership="none">
+            <doc xml:space="preserve">a #GstH264Dpb
+@system_frame_number The system frame number</doc>
+            <type name="H264Dpb" c:type="GstH264Dpb*"/>
+          </instance-parameter>
+          <parameter name="system_frame_number" transfer-ownership="none">
+            <type name="guint32" c:type="guint32"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="get_pictures_all" c:identifier="gst_h264_dpb_get_pictures_all">
+        <return-value transfer-ownership="full">
+          <doc xml:space="preserve">a #GArray of
+  #GstH264Picture stored in @dpb</doc>
+          <array name="GLib.Array" c:type="GArray*">
+            <type name="H264Picture"/>
+          </array>
+        </return-value>
+        <parameters>
+          <instance-parameter name="dpb" transfer-ownership="none">
+            <doc xml:space="preserve">a #GstH264Dpb</doc>
+            <type name="H264Dpb" c:type="GstH264Dpb*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_pictures_long_term_ref" c:identifier="gst_h264_dpb_get_pictures_long_term_ref">
+        <doc xml:space="preserve">Retrieve all long-term reference pictures from @dpb. The picture will be
+appended to the array.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="dpb" transfer-ownership="none">
+            <doc xml:space="preserve">a #GstH264Dpb</doc>
+            <type name="H264Dpb" c:type="GstH264Dpb*"/>
+          </instance-parameter>
+          <parameter name="out" direction="out" caller-allocates="0" transfer-ownership="full">
+            <doc xml:space="preserve">an arrat
+  of #GstH264Picture pointer</doc>
+            <array name="GLib.Array" c:type="GArray*">
+              <type name="H264Picture"/>
+            </array>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="get_pictures_not_outputted" c:identifier="gst_h264_dpb_get_pictures_not_outputted">
+        <doc xml:space="preserve">Retrieve all not-outputted pictures from @dpb</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="dpb" transfer-ownership="none">
+            <doc xml:space="preserve">a #GstH264Dpb</doc>
+            <type name="H264Dpb" c:type="GstH264Dpb*"/>
+          </instance-parameter>
+          <parameter name="out" direction="out" caller-allocates="0" transfer-ownership="full">
+            <doc xml:space="preserve">an array
+  of #GstH264Picture pointer</doc>
+            <array name="GLib.Array" c:type="GArray*">
+              <type name="H264Picture"/>
+            </array>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="get_pictures_short_term_ref" c:identifier="gst_h264_dpb_get_pictures_short_term_ref">
+        <doc xml:space="preserve">Retrieve all short-term reference pictures from @dpb. The picture will be
+appended to the array.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="dpb" transfer-ownership="none">
+            <doc xml:space="preserve">a #GstH264Dpb</doc>
+            <type name="H264Dpb" c:type="GstH264Dpb*"/>
+          </instance-parameter>
+          <parameter name="out" direction="out" caller-allocates="0" transfer-ownership="full">
+            <doc xml:space="preserve">an array
+  of #GstH264Picture pointers</doc>
+            <array name="GLib.Array" c:type="GArray*">
+              <type name="H264Picture"/>
+            </array>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="get_short_ref_by_pic_num" c:identifier="gst_h264_dpb_get_short_ref_by_pic_num">
+        <doc xml:space="preserve">Find a short term reference picture which has matching picture number</doc>
+        <return-value transfer-ownership="none" nullable="1">
+          <doc xml:space="preserve">a #GstH264Picture</doc>
+          <type name="H264Picture" c:type="GstH264Picture*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="dpb" transfer-ownership="none">
+            <doc xml:space="preserve">a #GstH264Dpb</doc>
+            <type name="H264Dpb" c:type="GstH264Dpb*"/>
+          </instance-parameter>
+          <parameter name="pic_num" transfer-ownership="none">
+            <doc xml:space="preserve">a picture number</doc>
+            <type name="gint" c:type="gint"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="get_size" c:identifier="gst_h264_dpb_get_size">
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve">the length of stored dpb array</doc>
+          <type name="gint" c:type="gint"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="dpb" transfer-ownership="none">
+            <doc xml:space="preserve">a #GstH264Dpb</doc>
+            <type name="H264Dpb" c:type="GstH264Dpb*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="is_full" c:identifier="gst_h264_dpb_is_full">
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve">%TRUE if @dpb is full</doc>
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="dpb" transfer-ownership="none">
+            <doc xml:space="preserve">a #GstH264Dpb</doc>
+            <type name="H264Dpb" c:type="GstH264Dpb*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="mark_all_non_ref" c:identifier="gst_h264_dpb_mark_all_non_ref">
+        <doc xml:space="preserve">Mark all pictures are not referenced</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="dpb" transfer-ownership="none">
+            <doc xml:space="preserve">a #GstH264Dpb</doc>
+            <type name="H264Dpb" c:type="GstH264Dpb*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="num_ref_pictures" c:identifier="gst_h264_dpb_num_ref_pictures">
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve">The number of referenced pictures</doc>
+          <type name="gint" c:type="gint"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="dpb" transfer-ownership="none">
+            <doc xml:space="preserve">a #GstH264Dpb</doc>
+            <type name="H264Dpb" c:type="GstH264Dpb*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="set_max_num_pics" c:identifier="gst_h264_dpb_set_max_num_pics">
+        <doc xml:space="preserve">Set the number of maximum allowed pictures to store</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="dpb" transfer-ownership="none">
+            <doc xml:space="preserve">a #GstH264Dpb</doc>
+            <type name="H264Dpb" c:type="GstH264Dpb*"/>
+          </instance-parameter>
+          <parameter name="max_num_pics" transfer-ownership="none">
+            <doc xml:space="preserve">the maximum number of picture</doc>
+            <type name="gint" c:type="gint"/>
+          </parameter>
+        </parameters>
+      </method>
+      <function name="new" c:identifier="gst_h264_dpb_new" introspectable="0">
+        <doc xml:space="preserve">Create new #GstH264Dpb</doc>
+        <return-value>
+          <doc xml:space="preserve">a new #GstH264Dpb</doc>
+          <type name="H264Dpb" c:type="GstH264Dpb*"/>
+        </return-value>
+      </function>
+    </record>
+    <record name="H264Picture" c:type="GstH264Picture" glib:type-name="GstH264Picture" glib:get-type="gst_h264_picture_get_type" c:symbol-prefix="h264_picture">
+      <field name="parent" writable="1">
+        <type name="Gst.MiniObject" c:type="GstMiniObject"/>
+      </field>
+      <field name="type" introspectable="0" writable="1">
+        <type c:type="GstH264SliceType"/>
+      </field>
+      <field name="pts" writable="1">
+        <type name="Gst.ClockTime" c:type="GstClockTime"/>
+      </field>
+      <field name="system_frame_number" writable="1">
+        <type name="guint32" c:type="guint32"/>
+      </field>
+      <field name="pic_order_cnt_type" writable="1">
+        <type name="guint8" c:type="guint8"/>
+      </field>
+      <field name="top_field_order_cnt" writable="1">
+        <type name="gint32" c:type="gint32"/>
+      </field>
+      <field name="bottom_field_order_cnt" writable="1">
+        <type name="gint32" c:type="gint32"/>
+      </field>
+      <field name="pic_order_cnt" writable="1">
+        <type name="gint" c:type="gint"/>
+      </field>
+      <field name="pic_order_cnt_msb" writable="1">
+        <type name="gint" c:type="gint"/>
+      </field>
+      <field name="pic_order_cnt_lsb" writable="1">
+        <type name="gint" c:type="gint"/>
+      </field>
+      <field name="delta_pic_order_cnt_bottom" writable="1">
+        <type name="gint" c:type="gint"/>
+      </field>
+      <field name="delta_pic_order_cnt0" writable="1">
+        <type name="gint" c:type="gint"/>
+      </field>
+      <field name="delta_pic_order_cnt1" writable="1">
+        <type name="gint" c:type="gint"/>
+      </field>
+      <field name="pic_num" writable="1">
+        <type name="gint" c:type="gint"/>
+      </field>
+      <field name="long_term_pic_num" writable="1">
+        <type name="gint" c:type="gint"/>
+      </field>
+      <field name="frame_num" writable="1">
+        <type name="gint" c:type="gint"/>
+      </field>
+      <field name="frame_num_offset" writable="1">
+        <type name="gint" c:type="gint"/>
+      </field>
+      <field name="frame_num_wrap" writable="1">
+        <type name="gint" c:type="gint"/>
+      </field>
+      <field name="long_term_frame_idx" writable="1">
+        <type name="gint" c:type="gint"/>
+      </field>
+      <field name="nal_ref_idc" writable="1">
+        <type name="gint" c:type="gint"/>
+      </field>
+      <field name="idr" writable="1">
+        <type name="gboolean" c:type="gboolean"/>
+      </field>
+      <field name="idr_pic_id" writable="1">
+        <type name="gint" c:type="gint"/>
+      </field>
+      <field name="ref" writable="1">
+        <type name="gboolean" c:type="gboolean"/>
+      </field>
+      <field name="long_term" writable="1">
+        <type name="gboolean" c:type="gboolean"/>
+      </field>
+      <field name="outputted" writable="1">
+        <type name="gboolean" c:type="gboolean"/>
+      </field>
+      <field name="mem_mgmt_5" writable="1">
+        <type name="gboolean" c:type="gboolean"/>
+      </field>
+      <field name="nonexisting" writable="1">
+        <type name="gboolean" c:type="gboolean"/>
+      </field>
+      <field name="field" writable="1">
+        <type name="H264PictureField" c:type="GstH264PictureField"/>
+      </field>
+      <field name="dec_ref_pic_marking" introspectable="0" writable="1">
+        <type c:type="GstH264DecRefPicMarking"/>
+      </field>
+      <field name="user_data" writable="1">
+        <type name="gpointer" c:type="gpointer"/>
+      </field>
+      <field name="notify" writable="1">
+        <type name="GLib.DestroyNotify" c:type="GDestroyNotify"/>
+      </field>
+      <constructor name="new" c:identifier="gst_h264_picture_new">
+        <doc xml:space="preserve">Create new #GstH264Picture</doc>
+        <return-value transfer-ownership="full">
+          <doc xml:space="preserve">a new #GstH264Picture</doc>
+          <type name="H264Picture" c:type="GstH264Picture*"/>
+        </return-value>
+      </constructor>
+      <method name="get_user_data" c:identifier="gst_h264_picture_get_user_data">
+        <doc xml:space="preserve">Gets private data set on the picture via
+gst_h264_picture_set_user_data() previously.</doc>
+        <return-value transfer-ownership="none" nullable="1">
+          <doc xml:space="preserve">The previously set user_data</doc>
+          <type name="gpointer" c:type="gpointer"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="picture" transfer-ownership="none">
+            <doc xml:space="preserve">a #GstH264Picture</doc>
+            <type name="H264Picture" c:type="GstH264Picture*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="set_user_data" c:identifier="gst_h264_picture_set_user_data">
+        <doc xml:space="preserve">Sets @user_data on the picture and the #GDestroyNotify that will be called when
+the picture is freed.
+
+If a @user_data was previously set, then the previous set @notify will be called
+before the @user_data is replaced.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="picture" transfer-ownership="none">
+            <doc xml:space="preserve">a #GstH264Picture</doc>
+            <type name="H264Picture" c:type="GstH264Picture*"/>
+          </instance-parameter>
+          <parameter name="user_data" transfer-ownership="none" nullable="1" allow-none="1">
+            <doc xml:space="preserve">private data</doc>
+            <type name="gpointer" c:type="gpointer"/>
+          </parameter>
+          <parameter name="notify" transfer-ownership="none" scope="async" closure="0">
+            <doc xml:space="preserve">a #GDestroyNotify</doc>
+            <type name="GLib.DestroyNotify" c:type="GDestroyNotify"/>
+          </parameter>
+        </parameters>
+      </method>
+    </record>
+    <enumeration name="H264PictureField" c:type="GstH264PictureField">
+      <member name="frame" value="0" c:identifier="GST_H264_PICTURE_FIELD_FRAME">
+      </member>
+      <member name="top_field" value="1" c:identifier="GST_H264_PICTURE_FIELD_TOP_FIELD">
+      </member>
+      <member name="bottom_field" value="2" c:identifier="GST_H264_PICTURE_FIELD_BOTTOM_FIELD">
+      </member>
+    </enumeration>
+    <record name="H264Slice" c:type="GstH264Slice">
+      <field name="header" introspectable="0" writable="1">
+        <type c:type="GstH264SliceHdr"/>
+      </field>
+      <field name="nalu" introspectable="0" writable="1">
+        <type c:type="GstH264NalUnit"/>
+      </field>
+    </record>
+    <function-macro name="H264_DECODER" c:identifier="GST_H264_DECODER" introspectable="0">
+      <parameters>
+        <parameter name="obj">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="H264_DECODER_CAST" c:identifier="GST_H264_DECODER_CAST" introspectable="0">
+      <parameters>
+        <parameter name="obj">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="H264_DECODER_CLASS" c:identifier="GST_H264_DECODER_CLASS" introspectable="0">
+      <parameters>
+        <parameter name="klass">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="H264_DECODER_GET_CLASS" c:identifier="GST_H264_DECODER_GET_CLASS" introspectable="0">
+      <parameters>
+        <parameter name="obj">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <constant name="H264_DPB_MAX_SIZE" value="16" c:type="GST_H264_DPB_MAX_SIZE">
+      <type name="gint" c:type="gint"/>
+    </constant>
+    <function-macro name="H264_PICTURE" c:identifier="GST_H264_PICTURE" introspectable="0">
+      <parameters>
+        <parameter name="obj">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="H264_PICTURE_CAST" c:identifier="GST_H264_PICTURE_CAST" introspectable="0">
+      <parameters>
+        <parameter name="obj">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <class name="H265Decoder" c:symbol-prefix="h265_decoder" c:type="GstH265Decoder" parent="GstVideo.VideoDecoder" abstract="1" glib:type-name="GstH265Decoder" glib:get-type="gst_h265_decoder_get_type" glib:type-struct="H265DecoderClass">
+      <doc xml:space="preserve">The opaque #GstH265Decoder data structure.</doc>
+      <virtual-method name="decode_slice">
+        <return-value transfer-ownership="none">
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="decoder" transfer-ownership="none">
+            <type name="H265Decoder" c:type="GstH265Decoder*"/>
+          </instance-parameter>
+          <parameter name="picture" transfer-ownership="none">
+            <type name="H265Picture" c:type="GstH265Picture*"/>
+          </parameter>
+          <parameter name="slice" transfer-ownership="none">
+            <type name="H265Slice" c:type="GstH265Slice*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="end_picture">
+        <return-value transfer-ownership="none">
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="decoder" transfer-ownership="none">
+            <type name="H265Decoder" c:type="GstH265Decoder*"/>
+          </instance-parameter>
+          <parameter name="picture" transfer-ownership="none">
+            <type name="H265Picture" c:type="GstH265Picture*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="new_picture">
+        <return-value transfer-ownership="none">
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="decoder" transfer-ownership="none">
+            <type name="H265Decoder" c:type="GstH265Decoder*"/>
+          </instance-parameter>
+          <parameter name="picture" transfer-ownership="none">
+            <type name="H265Picture" c:type="GstH265Picture*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="new_sequence" introspectable="0">
+        <return-value transfer-ownership="none">
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="decoder" transfer-ownership="none">
+            <type name="H265Decoder" c:type="GstH265Decoder*"/>
+          </instance-parameter>
+          <parameter name="sps" transfer-ownership="none">
+            <type c:type="const GstH265SPS*"/>
+          </parameter>
+          <parameter name="max_dpb_size" transfer-ownership="none">
+            <type name="gint" c:type="gint"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="output_picture">
+        <return-value transfer-ownership="none">
+          <type name="Gst.FlowReturn" c:type="GstFlowReturn"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="decoder" transfer-ownership="none">
+            <type name="H265Decoder" c:type="GstH265Decoder*"/>
+          </instance-parameter>
+          <parameter name="picture" transfer-ownership="none">
+            <type name="H265Picture" c:type="GstH265Picture*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="start_picture">
+        <return-value transfer-ownership="none">
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="decoder" transfer-ownership="none">
+            <type name="H265Decoder" c:type="GstH265Decoder*"/>
+          </instance-parameter>
+          <parameter name="picture" transfer-ownership="none">
+            <type name="H265Picture" c:type="GstH265Picture*"/>
+          </parameter>
+          <parameter name="slice" transfer-ownership="none">
+            <type name="H265Slice" c:type="GstH265Slice*"/>
+          </parameter>
+          <parameter name="dpb" transfer-ownership="none">
+            <type name="H265Dpb" c:type="GstH265Dpb*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <field name="parent" readable="0" private="1">
+        <type name="GstVideo.VideoDecoder" c:type="GstVideoDecoder"/>
+      </field>
+      <field name="input_state" readable="0" private="1">
+        <type name="GstVideo.VideoCodecState" c:type="GstVideoCodecState*"/>
+      </field>
+      <field name="RefPicSetStCurrBefore" readable="0" private="1">
+        <array zero-terminated="0" fixed-size="16">
+          <type name="H265Picture" c:type="GstH265Picture*"/>
+        </array>
+      </field>
+      <field name="RefPicSetStCurrAfter" readable="0" private="1">
+        <array zero-terminated="0" fixed-size="16">
+          <type name="H265Picture" c:type="GstH265Picture*"/>
+        </array>
+      </field>
+      <field name="RefPicSetStFoll" readable="0" private="1">
+        <array zero-terminated="0" fixed-size="16">
+          <type name="H265Picture" c:type="GstH265Picture*"/>
+        </array>
+      </field>
+      <field name="RefPicSetLtCurr" readable="0" private="1">
+        <array zero-terminated="0" fixed-size="16">
+          <type name="H265Picture" c:type="GstH265Picture*"/>
+        </array>
+      </field>
+      <field name="RefPicSetLtFoll" readable="0" private="1">
+        <array zero-terminated="0" fixed-size="16">
+          <type name="H265Picture" c:type="GstH265Picture*"/>
+        </array>
+      </field>
+      <field name="NumPocStCurrBefore" readable="0" private="1">
+        <type name="guint" c:type="guint"/>
+      </field>
+      <field name="NumPocStCurrAfter" readable="0" private="1">
+        <type name="guint" c:type="guint"/>
+      </field>
+      <field name="NumPocStFoll" readable="0" private="1">
+        <type name="guint" c:type="guint"/>
+      </field>
+      <field name="NumPocLtCurr" readable="0" private="1">
+        <type name="guint" c:type="guint"/>
+      </field>
+      <field name="NumPocLtFoll" readable="0" private="1">
+        <type name="guint" c:type="guint"/>
+      </field>
+      <field name="NumPocTotalCurr" readable="0" private="1">
+        <type name="guint" c:type="guint"/>
+      </field>
+      <field name="priv" readable="0" private="1">
+        <type name="H265DecoderPrivate" c:type="GstH265DecoderPrivate*"/>
+      </field>
+      <field name="padding" readable="0" private="1">
+        <array zero-terminated="0" fixed-size="20">
+          <type name="gpointer" c:type="gpointer"/>
+        </array>
+      </field>
+    </class>
+    <record name="H265DecoderClass" c:type="GstH265DecoderClass" glib:is-gtype-struct-for="H265Decoder">
+      <field name="parent_class">
+        <type name="GstVideo.VideoDecoderClass" c:type="GstVideoDecoderClass"/>
+      </field>
+      <field name="new_sequence" introspectable="0">
+        <callback name="new_sequence" introspectable="0">
+          <return-value transfer-ownership="none">
+            <type name="gboolean" c:type="gboolean"/>
+          </return-value>
+          <parameters>
+            <parameter name="decoder" transfer-ownership="none">
+              <type name="H265Decoder" c:type="GstH265Decoder*"/>
+            </parameter>
+            <parameter name="sps" transfer-ownership="none">
+              <type c:type="const GstH265SPS*"/>
+            </parameter>
+            <parameter name="max_dpb_size" transfer-ownership="none">
+              <type name="gint" c:type="gint"/>
+            </parameter>
+          </parameters>
+        </callback>
+      </field>
+      <field name="new_picture">
+        <callback name="new_picture">
+          <return-value transfer-ownership="none">
+            <type name="gboolean" c:type="gboolean"/>
+          </return-value>
+          <parameters>
+            <parameter name="decoder" transfer-ownership="none">
+              <type name="H265Decoder" c:type="GstH265Decoder*"/>
+            </parameter>
+            <parameter name="picture" transfer-ownership="none">
+              <type name="H265Picture" c:type="GstH265Picture*"/>
+            </parameter>
+          </parameters>
+        </callback>
+      </field>
+      <field name="start_picture">
+        <callback name="start_picture">
+          <return-value transfer-ownership="none">
+            <type name="gboolean" c:type="gboolean"/>
+          </return-value>
+          <parameters>
+            <parameter name="decoder" transfer-ownership="none">
+              <type name="H265Decoder" c:type="GstH265Decoder*"/>
+            </parameter>
+            <parameter name="picture" transfer-ownership="none">
+              <type name="H265Picture" c:type="GstH265Picture*"/>
+            </parameter>
+            <parameter name="slice" transfer-ownership="none">
+              <type name="H265Slice" c:type="GstH265Slice*"/>
+            </parameter>
+            <parameter name="dpb" transfer-ownership="none">
+              <type name="H265Dpb" c:type="GstH265Dpb*"/>
+            </parameter>
+          </parameters>
+        </callback>
+      </field>
+      <field name="decode_slice">
+        <callback name="decode_slice">
+          <return-value transfer-ownership="none">
+            <type name="gboolean" c:type="gboolean"/>
+          </return-value>
+          <parameters>
+            <parameter name="decoder" transfer-ownership="none">
+              <type name="H265Decoder" c:type="GstH265Decoder*"/>
+            </parameter>
+            <parameter name="picture" transfer-ownership="none">
+              <type name="H265Picture" c:type="GstH265Picture*"/>
+            </parameter>
+            <parameter name="slice" transfer-ownership="none">
+              <type name="H265Slice" c:type="GstH265Slice*"/>
+            </parameter>
+          </parameters>
+        </callback>
+      </field>
+      <field name="end_picture">
+        <callback name="end_picture">
+          <return-value transfer-ownership="none">
+            <type name="gboolean" c:type="gboolean"/>
+          </return-value>
+          <parameters>
+            <parameter name="decoder" transfer-ownership="none">
+              <type name="H265Decoder" c:type="GstH265Decoder*"/>
+            </parameter>
+            <parameter name="picture" transfer-ownership="none">
+              <type name="H265Picture" c:type="GstH265Picture*"/>
+            </parameter>
+          </parameters>
+        </callback>
+      </field>
+      <field name="output_picture">
+        <callback name="output_picture">
+          <return-value transfer-ownership="none">
+            <type name="Gst.FlowReturn" c:type="GstFlowReturn"/>
+          </return-value>
+          <parameters>
+            <parameter name="decoder" transfer-ownership="none">
+              <type name="H265Decoder" c:type="GstH265Decoder*"/>
+            </parameter>
+            <parameter name="picture" transfer-ownership="none">
+              <type name="H265Picture" c:type="GstH265Picture*"/>
+            </parameter>
+          </parameters>
+        </callback>
+      </field>
+      <field name="padding" readable="0" private="1">
+        <array zero-terminated="0" fixed-size="20">
+          <type name="gpointer" c:type="gpointer"/>
+        </array>
+      </field>
+    </record>
+    <record name="H265DecoderPrivate" c:type="GstH265DecoderPrivate" disguised="1"/>
+    <record name="H265Dpb" c:type="GstH265Dpb" disguised="1">
+      <method name="add" c:identifier="gst_h265_dpb_add">
+        <doc xml:space="preserve">Store the @picture</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="dpb" transfer-ownership="none">
+            <doc xml:space="preserve">a #GstH265Dpb</doc>
+            <type name="H265Dpb" c:type="GstH265Dpb*"/>
+          </instance-parameter>
+          <parameter name="picture" transfer-ownership="full">
+            <doc xml:space="preserve">a #GstH265Picture</doc>
+            <type name="H265Picture" c:type="GstH265Picture*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="clear" c:identifier="gst_h265_dpb_clear">
+        <doc xml:space="preserve">Clear all stored #GstH265Picture</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="dpb" transfer-ownership="none">
+            <doc xml:space="preserve">a #GstH265Dpb</doc>
+            <type name="H265Dpb" c:type="GstH265Dpb*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="delete_by_poc" c:identifier="gst_h265_dpb_delete_by_poc">
+        <doc xml:space="preserve">Delete a #GstH265Dpb by @poc</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="dpb" transfer-ownership="none">
+            <doc xml:space="preserve">a #GstH265Dpb</doc>
+            <type name="H265Dpb" c:type="GstH265Dpb*"/>
+          </instance-parameter>
+          <parameter name="poc" transfer-ownership="none">
+            <doc xml:space="preserve">a poc of #GstH265Picture to remove</doc>
+            <type name="gint" c:type="gint"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="delete_unused" c:identifier="gst_h265_dpb_delete_unused">
+        <doc xml:space="preserve">Delete already outputted and not referenced all pictures from dpb</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="dpb" transfer-ownership="none">
+            <doc xml:space="preserve">a #GstH265Dpb</doc>
+            <type name="H265Dpb" c:type="GstH265Dpb*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="free" c:identifier="gst_h265_dpb_free">
+        <doc xml:space="preserve">Free the @dpb</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="dpb" transfer-ownership="none">
+            <doc xml:space="preserve">a #GstH265Dpb to free</doc>
+            <type name="H265Dpb" c:type="GstH265Dpb*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_long_ref_by_poc" c:identifier="gst_h265_dpb_get_long_ref_by_poc">
+        <doc xml:space="preserve">Find a long term reference picture which has matching poc</doc>
+        <return-value transfer-ownership="full" nullable="1">
+          <doc xml:space="preserve">a #GstH265Picture</doc>
+          <type name="H265Picture" c:type="GstH265Picture*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="dpb" transfer-ownership="none">
+            <doc xml:space="preserve">a #GstH265Dpb</doc>
+            <type name="H265Dpb" c:type="GstH265Dpb*"/>
+          </instance-parameter>
+          <parameter name="poc" transfer-ownership="none">
+            <doc xml:space="preserve">a picture order count</doc>
+            <type name="gint" c:type="gint"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="get_max_num_pics" c:identifier="gst_h265_dpb_get_max_num_pics">
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve">the number of maximum pictures</doc>
+          <type name="gint" c:type="gint"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="dpb" transfer-ownership="none">
+            <doc xml:space="preserve">a #GstH265Dpb</doc>
+            <type name="H265Dpb" c:type="GstH265Dpb*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_pictures_all" c:identifier="gst_h265_dpb_get_pictures_all">
+        <return-value transfer-ownership="full">
+          <doc xml:space="preserve">a #GArray of
+  #GstH265Picture stored in @dpb</doc>
+          <array name="GLib.Array" c:type="GArray*">
+            <type name="H265Picture"/>
+          </array>
+        </return-value>
+        <parameters>
+          <instance-parameter name="dpb" transfer-ownership="none">
+            <doc xml:space="preserve">a #GstH265Dpb</doc>
+            <type name="H265Dpb" c:type="GstH265Dpb*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_pictures_not_outputted" c:identifier="gst_h265_dpb_get_pictures_not_outputted">
+        <doc xml:space="preserve">Retrieve all not-outputted pictures from @dpb</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="dpb" transfer-ownership="none">
+            <doc xml:space="preserve">a #GstH265Dpb</doc>
+            <type name="H265Dpb" c:type="GstH265Dpb*"/>
+          </instance-parameter>
+          <parameter name="out" direction="out" caller-allocates="0" transfer-ownership="full">
+            <doc xml:space="preserve">a list
+  of #GstH265Dpb</doc>
+            <type name="GLib.List" c:type="GList**">
+              <type name="H265Picture"/>
+            </type>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="get_ref_by_poc" c:identifier="gst_h265_dpb_get_ref_by_poc">
+        <doc xml:space="preserve">Find a short or long term reference picture which has matching poc</doc>
+        <return-value transfer-ownership="full" nullable="1">
+          <doc xml:space="preserve">a #GstH265Picture</doc>
+          <type name="H265Picture" c:type="GstH265Picture*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="dpb" transfer-ownership="none">
+            <doc xml:space="preserve">a #GstH265Dpb</doc>
+            <type name="H265Dpb" c:type="GstH265Dpb*"/>
+          </instance-parameter>
+          <parameter name="poc" transfer-ownership="none">
+            <doc xml:space="preserve">a picture order count</doc>
+            <type name="gint" c:type="gint"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="get_ref_by_poc_lsb" c:identifier="gst_h265_dpb_get_ref_by_poc_lsb">
+        <doc xml:space="preserve">Find a short or long term reference picture which has matching poc_lsb</doc>
+        <return-value transfer-ownership="full" nullable="1">
+          <doc xml:space="preserve">a #GstH265Picture</doc>
+          <type name="H265Picture" c:type="GstH265Picture*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="dpb" transfer-ownership="none">
+            <doc xml:space="preserve">a #GstH265Dpb</doc>
+            <type name="H265Dpb" c:type="GstH265Dpb*"/>
+          </instance-parameter>
+          <parameter name="poc_lsb" transfer-ownership="none">
+            <doc xml:space="preserve">a picture order count lsb</doc>
+            <type name="gint" c:type="gint"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="get_short_ref_by_poc" c:identifier="gst_h265_dpb_get_short_ref_by_poc">
+        <doc xml:space="preserve">Find a short term reference picture which has matching poc</doc>
+        <return-value transfer-ownership="full" nullable="1">
+          <doc xml:space="preserve">a #GstH265Picture</doc>
+          <type name="H265Picture" c:type="GstH265Picture*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="dpb" transfer-ownership="none">
+            <doc xml:space="preserve">a #GstH265Dpb</doc>
+            <type name="H265Dpb" c:type="GstH265Dpb*"/>
+          </instance-parameter>
+          <parameter name="poc" transfer-ownership="none">
+            <doc xml:space="preserve">a picture order count</doc>
+            <type name="gint" c:type="gint"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="get_size" c:identifier="gst_h265_dpb_get_size">
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve">the length of stored dpb array</doc>
+          <type name="gint" c:type="gint"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="dpb" transfer-ownership="none">
+            <doc xml:space="preserve">a #GstH265Dpb</doc>
+            <type name="H265Dpb" c:type="GstH265Dpb*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="is_full" c:identifier="gst_h265_dpb_is_full">
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve">%TRUE if @dpb is full</doc>
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="dpb" transfer-ownership="none">
+            <doc xml:space="preserve">a #GstH265Dpb</doc>
+            <type name="H265Dpb" c:type="GstH265Dpb*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="mark_all_non_ref" c:identifier="gst_h265_dpb_mark_all_non_ref">
+        <doc xml:space="preserve">Mark all pictures are not referenced</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="dpb" transfer-ownership="none">
+            <doc xml:space="preserve">a #GstH265Dpb</doc>
+            <type name="H265Dpb" c:type="GstH265Dpb*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="num_ref_pictures" c:identifier="gst_h265_dpb_num_ref_pictures">
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve">The number of referenced pictures</doc>
+          <type name="gint" c:type="gint"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="dpb" transfer-ownership="none">
+            <doc xml:space="preserve">a #GstH265Dpb</doc>
+            <type name="H265Dpb" c:type="GstH265Dpb*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="set_max_num_pics" c:identifier="gst_h265_dpb_set_max_num_pics">
+        <doc xml:space="preserve">Set the number of maximum allowed pictures to store</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="dpb" transfer-ownership="none">
+            <doc xml:space="preserve">a #GstH265Dpb</doc>
+            <type name="H265Dpb" c:type="GstH265Dpb*"/>
+          </instance-parameter>
+          <parameter name="max_num_pics" transfer-ownership="none">
+            <doc xml:space="preserve">the maximum number of picture</doc>
+            <type name="gint" c:type="gint"/>
+          </parameter>
+        </parameters>
+      </method>
+      <function name="new" c:identifier="gst_h265_dpb_new" introspectable="0">
+        <doc xml:space="preserve">Create new #GstH265Dpb</doc>
+        <return-value>
+          <doc xml:space="preserve">a new #GstH265Dpb</doc>
+          <type name="H265Dpb" c:type="GstH265Dpb*"/>
+        </return-value>
+      </function>
+    </record>
+    <record name="H265Picture" c:type="GstH265Picture" glib:type-name="GstH265Picture" glib:get-type="gst_h265_picture_get_type" c:symbol-prefix="h265_picture">
+      <field name="parent" writable="1">
+        <type name="Gst.MiniObject" c:type="GstMiniObject"/>
+      </field>
+      <field name="type" introspectable="0" writable="1">
+        <type c:type="GstH265SliceType"/>
+      </field>
+      <field name="pts" writable="1">
+        <type name="Gst.ClockTime" c:type="GstClockTime"/>
+      </field>
+      <field name="system_frame_number" writable="1">
+        <type name="guint32" c:type="guint32"/>
+      </field>
+      <field name="pic_order_cnt" writable="1">
+        <type name="gint" c:type="gint"/>
+      </field>
+      <field name="pic_order_cnt_msb" writable="1">
+        <type name="gint" c:type="gint"/>
+      </field>
+      <field name="pic_order_cnt_lsb" writable="1">
+        <type name="gint" c:type="gint"/>
+      </field>
+      <field name="pic_latency_cnt" writable="1">
+        <type name="guint32" c:type="guint32"/>
+      </field>
+      <field name="output_flag" writable="1">
+        <type name="gboolean" c:type="gboolean"/>
+      </field>
+      <field name="NoRaslOutputFlag" writable="1">
+        <type name="gboolean" c:type="gboolean"/>
+      </field>
+      <field name="NoOutputOfPriorPicsFlag" writable="1">
+        <type name="gboolean" c:type="gboolean"/>
+      </field>
+      <field name="RapPicFlag" writable="1">
+        <type name="gboolean" c:type="gboolean"/>
+      </field>
+      <field name="IntraPicFlag" writable="1">
+        <type name="gboolean" c:type="gboolean"/>
+      </field>
+      <field name="ref" writable="1">
+        <type name="gboolean" c:type="gboolean"/>
+      </field>
+      <field name="long_term" writable="1">
+        <type name="gboolean" c:type="gboolean"/>
+      </field>
+      <field name="outputted" writable="1">
+        <type name="gboolean" c:type="gboolean"/>
+      </field>
+      <field name="field" writable="1">
+        <type name="H265PictureField" c:type="GstH265PictureField"/>
+      </field>
+      <field name="user_data" writable="1">
+        <type name="gpointer" c:type="gpointer"/>
+      </field>
+      <field name="notify" writable="1">
+        <type name="GLib.DestroyNotify" c:type="GDestroyNotify"/>
+      </field>
+      <constructor name="new" c:identifier="gst_h265_picture_new">
+        <doc xml:space="preserve">Create new #GstH265Picture</doc>
+        <return-value transfer-ownership="full">
+          <doc xml:space="preserve">a new #GstH265Picture</doc>
+          <type name="H265Picture" c:type="GstH265Picture*"/>
+        </return-value>
+      </constructor>
+      <method name="get_user_data" c:identifier="gst_h265_picture_get_user_data">
+        <doc xml:space="preserve">Gets private data set on the picture via
+gst_h265_picture_set_user_data() previously.</doc>
+        <return-value transfer-ownership="none" nullable="1">
+          <doc xml:space="preserve">The previously set user_data</doc>
+          <type name="gpointer" c:type="gpointer"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="picture" transfer-ownership="none">
+            <doc xml:space="preserve">a #GstH265Picture</doc>
+            <type name="H265Picture" c:type="GstH265Picture*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="set_user_data" c:identifier="gst_h265_picture_set_user_data">
+        <doc xml:space="preserve">Sets @user_data on the picture and the #GDestroyNotify that will be called when
+the picture is freed.
+
+If a @user_data was previously set, then the previous set @notify will be called
+before the @user_data is replaced.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="picture" transfer-ownership="none">
+            <doc xml:space="preserve">a #GstH265Picture</doc>
+            <type name="H265Picture" c:type="GstH265Picture*"/>
+          </instance-parameter>
+          <parameter name="user_data" transfer-ownership="none" nullable="1" allow-none="1">
+            <doc xml:space="preserve">private data</doc>
+            <type name="gpointer" c:type="gpointer"/>
+          </parameter>
+          <parameter name="notify" transfer-ownership="none" scope="async" closure="0">
+            <doc xml:space="preserve">a #GDestroyNotify</doc>
+            <type name="GLib.DestroyNotify" c:type="GDestroyNotify"/>
+          </parameter>
+        </parameters>
+      </method>
+    </record>
+    <enumeration name="H265PictureField" c:type="GstH265PictureField">
+      <member name="field_frame" value="0" c:identifier="GST_H265_PICTURE_FIELD_FRAME">
+      </member>
+      <member name="filed_top_field" value="1" c:identifier="GST_H265_PICTURE_FILED_TOP_FIELD">
+      </member>
+      <member name="field_bottom_field" value="2" c:identifier="GST_H265_PICTURE_FIELD_BOTTOM_FIELD">
+      </member>
+    </enumeration>
+    <record name="H265Slice" c:type="GstH265Slice">
+      <field name="header" introspectable="0" writable="1">
+        <type c:type="GstH265SliceHdr"/>
+      </field>
+      <field name="nalu" introspectable="0" writable="1">
+        <type c:type="GstH265NalUnit"/>
+      </field>
+    </record>
+    <function-macro name="H265_DECODER" c:identifier="GST_H265_DECODER" introspectable="0">
+      <parameters>
+        <parameter name="obj">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="H265_DECODER_CAST" c:identifier="GST_H265_DECODER_CAST" introspectable="0">
+      <parameters>
+        <parameter name="obj">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="H265_DECODER_CLASS" c:identifier="GST_H265_DECODER_CLASS" introspectable="0">
+      <parameters>
+        <parameter name="klass">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="H265_DECODER_GET_CLASS" c:identifier="GST_H265_DECODER_GET_CLASS" introspectable="0">
+      <parameters>
+        <parameter name="obj">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <constant name="H265_DPB_MAX_SIZE" value="16" c:type="GST_H265_DPB_MAX_SIZE">
+      <type name="gint" c:type="gint"/>
+    </constant>
+    <function-macro name="H265_PICTURE" c:identifier="GST_H265_PICTURE" introspectable="0">
+      <parameters>
+        <parameter name="obj">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="H265_PICTURE_CAST" c:identifier="GST_H265_PICTURE_CAST" introspectable="0">
+      <parameters>
+        <parameter name="obj">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="IS_H264_DECODER" c:identifier="GST_IS_H264_DECODER" introspectable="0">
+      <parameters>
+        <parameter name="obj">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="IS_H264_DECODER_CLASS" c:identifier="GST_IS_H264_DECODER_CLASS" introspectable="0">
+      <parameters>
+        <parameter name="klass">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="IS_H264_PICTURE" c:identifier="GST_IS_H264_PICTURE" introspectable="0">
+      <parameters>
+        <parameter name="obj">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="IS_H265_DECODER" c:identifier="GST_IS_H265_DECODER" introspectable="0">
+      <parameters>
+        <parameter name="obj">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="IS_H265_DECODER_CLASS" c:identifier="GST_IS_H265_DECODER_CLASS" introspectable="0">
+      <parameters>
+        <parameter name="klass">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="IS_H265_PICTURE" c:identifier="GST_IS_H265_PICTURE" introspectable="0">
+      <parameters>
+        <parameter name="obj">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="IS_VP8_DECODER" c:identifier="GST_IS_VP8_DECODER" introspectable="0">
+      <parameters>
+        <parameter name="obj">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="IS_VP8_DECODER_CLASS" c:identifier="GST_IS_VP8_DECODER_CLASS" introspectable="0">
+      <parameters>
+        <parameter name="klass">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="IS_VP8_PICTURE" c:identifier="GST_IS_VP8_PICTURE" introspectable="0">
+      <parameters>
+        <parameter name="obj">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="IS_VP9_DECODER" c:identifier="GST_IS_VP9_DECODER" introspectable="0">
+      <parameters>
+        <parameter name="obj">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="IS_VP9_DECODER_CLASS" c:identifier="GST_IS_VP9_DECODER_CLASS" introspectable="0">
+      <parameters>
+        <parameter name="klass">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="IS_VP9_PICTURE" c:identifier="GST_IS_VP9_PICTURE" introspectable="0">
+      <parameters>
+        <parameter name="obj">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="VP8_DECODER" c:identifier="GST_VP8_DECODER" introspectable="0">
+      <parameters>
+        <parameter name="obj">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="VP8_DECODER_CAST" c:identifier="GST_VP8_DECODER_CAST" introspectable="0">
+      <parameters>
+        <parameter name="obj">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="VP8_DECODER_CLASS" c:identifier="GST_VP8_DECODER_CLASS" introspectable="0">
+      <parameters>
+        <parameter name="klass">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="VP8_DECODER_GET_CLASS" c:identifier="GST_VP8_DECODER_GET_CLASS" introspectable="0">
+      <parameters>
+        <parameter name="obj">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="VP8_PICTURE" c:identifier="GST_VP8_PICTURE" introspectable="0">
+      <parameters>
+        <parameter name="obj">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="VP8_PICTURE_CAST" c:identifier="GST_VP8_PICTURE_CAST" introspectable="0">
+      <parameters>
+        <parameter name="obj">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="VP9_DECODER" c:identifier="GST_VP9_DECODER" introspectable="0">
+      <parameters>
+        <parameter name="obj">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="VP9_DECODER_CAST" c:identifier="GST_VP9_DECODER_CAST" introspectable="0">
+      <parameters>
+        <parameter name="obj">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="VP9_DECODER_CLASS" c:identifier="GST_VP9_DECODER_CLASS" introspectable="0">
+      <parameters>
+        <parameter name="klass">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="VP9_DECODER_GET_CLASS" c:identifier="GST_VP9_DECODER_GET_CLASS" introspectable="0">
+      <parameters>
+        <parameter name="obj">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="VP9_PICTURE" c:identifier="GST_VP9_PICTURE" introspectable="0">
+      <parameters>
+        <parameter name="obj">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="VP9_PICTURE_CAST" c:identifier="GST_VP9_PICTURE_CAST" introspectable="0">
+      <parameters>
+        <parameter name="obj">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <class name="Vp8Decoder" c:symbol-prefix="vp8_decoder" c:type="GstVp8Decoder" parent="GstVideo.VideoDecoder" abstract="1" glib:type-name="GstVp8Decoder" glib:get-type="gst_vp8_decoder_get_type" glib:type-struct="Vp8DecoderClass">
+      <doc xml:space="preserve">The opaque #GstVp8Decoder data structure.</doc>
+      <virtual-method name="decode_picture" introspectable="0">
+        <return-value transfer-ownership="none">
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="decoder" transfer-ownership="none">
+            <type name="Vp8Decoder" c:type="GstVp8Decoder*"/>
+          </instance-parameter>
+          <parameter name="picture" transfer-ownership="none">
+            <type name="Vp8Picture" c:type="GstVp8Picture*"/>
+          </parameter>
+          <parameter name="parser" transfer-ownership="none">
+            <type c:type="GstVp8Parser*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="end_picture">
+        <return-value transfer-ownership="none">
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="decoder" transfer-ownership="none">
+            <type name="Vp8Decoder" c:type="GstVp8Decoder*"/>
+          </instance-parameter>
+          <parameter name="picture" transfer-ownership="none">
+            <type name="Vp8Picture" c:type="GstVp8Picture*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="new_picture">
+        <return-value transfer-ownership="none">
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="decoder" transfer-ownership="none">
+            <type name="Vp8Decoder" c:type="GstVp8Decoder*"/>
+          </instance-parameter>
+          <parameter name="frame" transfer-ownership="none">
+            <type name="GstVideo.VideoCodecFrame" c:type="GstVideoCodecFrame*"/>
+          </parameter>
+          <parameter name="picture" transfer-ownership="none">
+            <type name="Vp8Picture" c:type="GstVp8Picture*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="new_sequence" introspectable="0">
+        <return-value transfer-ownership="none">
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="decoder" transfer-ownership="none">
+            <type name="Vp8Decoder" c:type="GstVp8Decoder*"/>
+          </instance-parameter>
+          <parameter name="frame_hdr" transfer-ownership="none">
+            <type c:type="const GstVp8FrameHdr*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="output_picture">
+        <return-value transfer-ownership="none">
+          <type name="Gst.FlowReturn" c:type="GstFlowReturn"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="decoder" transfer-ownership="none">
+            <type name="Vp8Decoder" c:type="GstVp8Decoder*"/>
+          </instance-parameter>
+          <parameter name="frame" transfer-ownership="none">
+            <type name="GstVideo.VideoCodecFrame" c:type="GstVideoCodecFrame*"/>
+          </parameter>
+          <parameter name="picture" transfer-ownership="none">
+            <type name="Vp8Picture" c:type="GstVp8Picture*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="start_picture">
+        <return-value transfer-ownership="none">
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="decoder" transfer-ownership="none">
+            <type name="Vp8Decoder" c:type="GstVp8Decoder*"/>
+          </instance-parameter>
+          <parameter name="picture" transfer-ownership="none">
+            <type name="Vp8Picture" c:type="GstVp8Picture*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <field name="parent" readable="0" private="1">
+        <type name="GstVideo.VideoDecoder" c:type="GstVideoDecoder"/>
+      </field>
+      <field name="input_state" readable="0" private="1">
+        <type name="GstVideo.VideoCodecState" c:type="GstVideoCodecState*"/>
+      </field>
+      <field name="last_picture" readable="0" private="1">
+        <type name="Vp8Picture" c:type="GstVp8Picture*"/>
+      </field>
+      <field name="golden_ref_picture" readable="0" private="1">
+        <type name="Vp8Picture" c:type="GstVp8Picture*"/>
+      </field>
+      <field name="alt_ref_picture" readable="0" private="1">
+        <type name="Vp8Picture" c:type="GstVp8Picture*"/>
+      </field>
+      <field name="priv" readable="0" private="1">
+        <type name="Vp8DecoderPrivate" c:type="GstVp8DecoderPrivate*"/>
+      </field>
+      <field name="padding" readable="0" private="1">
+        <array zero-terminated="0" fixed-size="20">
+          <type name="gpointer" c:type="gpointer"/>
+        </array>
+      </field>
+    </class>
+    <record name="Vp8DecoderClass" c:type="GstVp8DecoderClass" glib:is-gtype-struct-for="Vp8Decoder">
+      <field name="parent_class">
+        <type name="GstVideo.VideoDecoderClass" c:type="GstVideoDecoderClass"/>
+      </field>
+      <field name="new_sequence" introspectable="0">
+        <callback name="new_sequence" introspectable="0">
+          <return-value transfer-ownership="none">
+            <type name="gboolean" c:type="gboolean"/>
+          </return-value>
+          <parameters>
+            <parameter name="decoder" transfer-ownership="none">
+              <type name="Vp8Decoder" c:type="GstVp8Decoder*"/>
+            </parameter>
+            <parameter name="frame_hdr" transfer-ownership="none">
+              <type c:type="const GstVp8FrameHdr*"/>
+            </parameter>
+          </parameters>
+        </callback>
+      </field>
+      <field name="new_picture">
+        <callback name="new_picture">
+          <return-value transfer-ownership="none">
+            <type name="gboolean" c:type="gboolean"/>
+          </return-value>
+          <parameters>
+            <parameter name="decoder" transfer-ownership="none">
+              <type name="Vp8Decoder" c:type="GstVp8Decoder*"/>
+            </parameter>
+            <parameter name="frame" transfer-ownership="none">
+              <type name="GstVideo.VideoCodecFrame" c:type="GstVideoCodecFrame*"/>
+            </parameter>
+            <parameter name="picture" transfer-ownership="none">
+              <type name="Vp8Picture" c:type="GstVp8Picture*"/>
+            </parameter>
+          </parameters>
+        </callback>
+      </field>
+      <field name="start_picture">
+        <callback name="start_picture">
+          <return-value transfer-ownership="none">
+            <type name="gboolean" c:type="gboolean"/>
+          </return-value>
+          <parameters>
+            <parameter name="decoder" transfer-ownership="none">
+              <type name="Vp8Decoder" c:type="GstVp8Decoder*"/>
+            </parameter>
+            <parameter name="picture" transfer-ownership="none">
+              <type name="Vp8Picture" c:type="GstVp8Picture*"/>
+            </parameter>
+          </parameters>
+        </callback>
+      </field>
+      <field name="decode_picture" introspectable="0">
+        <callback name="decode_picture" introspectable="0">
+          <return-value transfer-ownership="none">
+            <type name="gboolean" c:type="gboolean"/>
+          </return-value>
+          <parameters>
+            <parameter name="decoder" transfer-ownership="none">
+              <type name="Vp8Decoder" c:type="GstVp8Decoder*"/>
+            </parameter>
+            <parameter name="picture" transfer-ownership="none">
+              <type name="Vp8Picture" c:type="GstVp8Picture*"/>
+            </parameter>
+            <parameter name="parser" transfer-ownership="none">
+              <type c:type="GstVp8Parser*"/>
+            </parameter>
+          </parameters>
+        </callback>
+      </field>
+      <field name="end_picture">
+        <callback name="end_picture">
+          <return-value transfer-ownership="none">
+            <type name="gboolean" c:type="gboolean"/>
+          </return-value>
+          <parameters>
+            <parameter name="decoder" transfer-ownership="none">
+              <type name="Vp8Decoder" c:type="GstVp8Decoder*"/>
+            </parameter>
+            <parameter name="picture" transfer-ownership="none">
+              <type name="Vp8Picture" c:type="GstVp8Picture*"/>
+            </parameter>
+          </parameters>
+        </callback>
+      </field>
+      <field name="output_picture">
+        <callback name="output_picture">
+          <return-value transfer-ownership="none">
+            <type name="Gst.FlowReturn" c:type="GstFlowReturn"/>
+          </return-value>
+          <parameters>
+            <parameter name="decoder" transfer-ownership="none">
+              <type name="Vp8Decoder" c:type="GstVp8Decoder*"/>
+            </parameter>
+            <parameter name="frame" transfer-ownership="none">
+              <type name="GstVideo.VideoCodecFrame" c:type="GstVideoCodecFrame*"/>
+            </parameter>
+            <parameter name="picture" transfer-ownership="none">
+              <type name="Vp8Picture" c:type="GstVp8Picture*"/>
+            </parameter>
+          </parameters>
+        </callback>
+      </field>
+      <field name="padding" readable="0" private="1">
+        <array zero-terminated="0" fixed-size="20">
+          <type name="gpointer" c:type="gpointer"/>
+        </array>
+      </field>
+    </record>
+    <record name="Vp8DecoderPrivate" c:type="GstVp8DecoderPrivate" disguised="1"/>
+    <record name="Vp8Picture" c:type="GstVp8Picture" glib:type-name="GstVp8Picture" glib:get-type="gst_vp8_picture_get_type" c:symbol-prefix="vp8_picture">
+      <field name="parent" writable="1">
+        <type name="Gst.MiniObject" c:type="GstMiniObject"/>
+      </field>
+      <field name="pts" writable="1">
+        <type name="Gst.ClockTime" c:type="GstClockTime"/>
+      </field>
+      <field name="system_frame_number" writable="1">
+        <type name="guint32" c:type="guint32"/>
+      </field>
+      <field name="frame_hdr" introspectable="0" writable="1">
+        <type c:type="GstVp8FrameHdr"/>
+      </field>
+      <field name="data" writable="1">
+        <type name="guint8" c:type="const guint8*"/>
+      </field>
+      <field name="size" writable="1">
+        <type name="gsize" c:type="gsize"/>
+      </field>
+      <field name="user_data" writable="1">
+        <type name="gpointer" c:type="gpointer"/>
+      </field>
+      <field name="notify" writable="1">
+        <type name="GLib.DestroyNotify" c:type="GDestroyNotify"/>
+      </field>
+      <constructor name="new" c:identifier="gst_vp8_picture_new">
+        <doc xml:space="preserve">Create new #GstVp8Picture</doc>
+        <return-value transfer-ownership="full">
+          <doc xml:space="preserve">a new #GstVp8Picture</doc>
+          <type name="Vp8Picture" c:type="GstVp8Picture*"/>
+        </return-value>
+      </constructor>
+      <method name="get_user_data" c:identifier="gst_vp8_picture_get_user_data">
+        <doc xml:space="preserve">Gets private data set on the picture via
+gst_vp8_picture_set_user_data() previously.</doc>
+        <return-value transfer-ownership="none" nullable="1">
+          <doc xml:space="preserve">The previously set user_data</doc>
+          <type name="gpointer" c:type="gpointer"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="picture" transfer-ownership="none">
+            <doc xml:space="preserve">a #GstVp8Picture</doc>
+            <type name="Vp8Picture" c:type="GstVp8Picture*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="set_user_data" c:identifier="gst_vp8_picture_set_user_data">
+        <doc xml:space="preserve">Sets @user_data on the picture and the #GDestroyNotify that will be called when
+the picture is freed.
+
+If a @user_data was previously set, then the previous set @notify will be called
+before the @user_data is replaced.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="picture" transfer-ownership="none">
+            <doc xml:space="preserve">a #GstVp8Picture</doc>
+            <type name="Vp8Picture" c:type="GstVp8Picture*"/>
+          </instance-parameter>
+          <parameter name="user_data" transfer-ownership="none" nullable="1" allow-none="1">
+            <doc xml:space="preserve">private data</doc>
+            <type name="gpointer" c:type="gpointer"/>
+          </parameter>
+          <parameter name="notify" transfer-ownership="none" scope="async" closure="0">
+            <doc xml:space="preserve">a #GDestroyNotify</doc>
+            <type name="GLib.DestroyNotify" c:type="GDestroyNotify"/>
+          </parameter>
+        </parameters>
+      </method>
+    </record>
+    <class name="Vp9Decoder" c:symbol-prefix="vp9_decoder" c:type="GstVp9Decoder" parent="GstVideo.VideoDecoder" abstract="1" glib:type-name="GstVp9Decoder" glib:get-type="gst_vp9_decoder_get_type" glib:type-struct="Vp9DecoderClass">
+      <doc xml:space="preserve">The opaque #GstVp9Decoder data structure.</doc>
+      <virtual-method name="decode_picture">
+        <return-value transfer-ownership="none">
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="decoder" transfer-ownership="none">
+            <type name="Vp9Decoder" c:type="GstVp9Decoder*"/>
+          </instance-parameter>
+          <parameter name="picture" transfer-ownership="none">
+            <type name="Vp9Picture" c:type="GstVp9Picture*"/>
+          </parameter>
+          <parameter name="dpb" transfer-ownership="none">
+            <type name="Vp9Dpb" c:type="GstVp9Dpb*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="duplicate_picture">
+        <return-value transfer-ownership="full">
+          <type name="Vp9Picture" c:type="GstVp9Picture*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="decoder" transfer-ownership="none">
+            <type name="Vp9Decoder" c:type="GstVp9Decoder*"/>
+          </instance-parameter>
+          <parameter name="picture" transfer-ownership="none">
+            <type name="Vp9Picture" c:type="GstVp9Picture*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="end_picture">
+        <return-value transfer-ownership="none">
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="decoder" transfer-ownership="none">
+            <type name="Vp9Decoder" c:type="GstVp9Decoder*"/>
+          </instance-parameter>
+          <parameter name="picture" transfer-ownership="none">
+            <type name="Vp9Picture" c:type="GstVp9Picture*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="new_picture">
+        <return-value transfer-ownership="none">
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="decoder" transfer-ownership="none">
+            <type name="Vp9Decoder" c:type="GstVp9Decoder*"/>
+          </instance-parameter>
+          <parameter name="frame" transfer-ownership="none">
+            <type name="GstVideo.VideoCodecFrame" c:type="GstVideoCodecFrame*"/>
+          </parameter>
+          <parameter name="picture" transfer-ownership="none">
+            <type name="Vp9Picture" c:type="GstVp9Picture*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="new_sequence" introspectable="0">
+        <return-value transfer-ownership="none">
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="decoder" transfer-ownership="none">
+            <type name="Vp9Decoder" c:type="GstVp9Decoder*"/>
+          </instance-parameter>
+          <parameter name="frame_hdr" transfer-ownership="none">
+            <type c:type="const GstVp9FrameHdr*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="output_picture">
+        <return-value transfer-ownership="none">
+          <type name="Gst.FlowReturn" c:type="GstFlowReturn"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="decoder" transfer-ownership="none">
+            <type name="Vp9Decoder" c:type="GstVp9Decoder*"/>
+          </instance-parameter>
+          <parameter name="frame" transfer-ownership="none">
+            <type name="GstVideo.VideoCodecFrame" c:type="GstVideoCodecFrame*"/>
+          </parameter>
+          <parameter name="picture" transfer-ownership="none">
+            <type name="Vp9Picture" c:type="GstVp9Picture*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="start_picture">
+        <return-value transfer-ownership="none">
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="decoder" transfer-ownership="none">
+            <type name="Vp9Decoder" c:type="GstVp9Decoder*"/>
+          </instance-parameter>
+          <parameter name="picture" transfer-ownership="none">
+            <type name="Vp9Picture" c:type="GstVp9Picture*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <field name="parent" readable="0" private="1">
+        <type name="GstVideo.VideoDecoder" c:type="GstVideoDecoder"/>
+      </field>
+      <field name="input_state" readable="0" private="1">
+        <type name="GstVideo.VideoCodecState" c:type="GstVideoCodecState*"/>
+      </field>
+      <field name="priv" readable="0" private="1">
+        <type name="Vp9DecoderPrivate" c:type="GstVp9DecoderPrivate*"/>
+      </field>
+      <field name="padding" readable="0" private="1">
+        <array zero-terminated="0" fixed-size="20">
+          <type name="gpointer" c:type="gpointer"/>
+        </array>
+      </field>
+    </class>
+    <record name="Vp9DecoderClass" c:type="GstVp9DecoderClass" glib:is-gtype-struct-for="Vp9Decoder">
+      <field name="parent_class">
+        <type name="GstVideo.VideoDecoderClass" c:type="GstVideoDecoderClass"/>
+      </field>
+      <field name="new_sequence" introspectable="0">
+        <callback name="new_sequence" introspectable="0">
+          <return-value transfer-ownership="none">
+            <type name="gboolean" c:type="gboolean"/>
+          </return-value>
+          <parameters>
+            <parameter name="decoder" transfer-ownership="none">
+              <type name="Vp9Decoder" c:type="GstVp9Decoder*"/>
+            </parameter>
+            <parameter name="frame_hdr" transfer-ownership="none">
+              <type c:type="const GstVp9FrameHdr*"/>
+            </parameter>
+          </parameters>
+        </callback>
+      </field>
+      <field name="new_picture">
+        <callback name="new_picture">
+          <return-value transfer-ownership="none">
+            <type name="gboolean" c:type="gboolean"/>
+          </return-value>
+          <parameters>
+            <parameter name="decoder" transfer-ownership="none">
+              <type name="Vp9Decoder" c:type="GstVp9Decoder*"/>
+            </parameter>
+            <parameter name="frame" transfer-ownership="none">
+              <type name="GstVideo.VideoCodecFrame" c:type="GstVideoCodecFrame*"/>
+            </parameter>
+            <parameter name="picture" transfer-ownership="none">
+              <type name="Vp9Picture" c:type="GstVp9Picture*"/>
+            </parameter>
+          </parameters>
+        </callback>
+      </field>
+      <field name="duplicate_picture">
+        <callback name="duplicate_picture">
+          <return-value transfer-ownership="full">
+            <type name="Vp9Picture" c:type="GstVp9Picture*"/>
+          </return-value>
+          <parameters>
+            <parameter name="decoder" transfer-ownership="none">
+              <type name="Vp9Decoder" c:type="GstVp9Decoder*"/>
+            </parameter>
+            <parameter name="picture" transfer-ownership="none">
+              <type name="Vp9Picture" c:type="GstVp9Picture*"/>
+            </parameter>
+          </parameters>
+        </callback>
+      </field>
+      <field name="start_picture">
+        <callback name="start_picture">
+          <return-value transfer-ownership="none">
+            <type name="gboolean" c:type="gboolean"/>
+          </return-value>
+          <parameters>
+            <parameter name="decoder" transfer-ownership="none">
+              <type name="Vp9Decoder" c:type="GstVp9Decoder*"/>
+            </parameter>
+            <parameter name="picture" transfer-ownership="none">
+              <type name="Vp9Picture" c:type="GstVp9Picture*"/>
+            </parameter>
+          </parameters>
+        </callback>
+      </field>
+      <field name="decode_picture">
+        <callback name="decode_picture">
+          <return-value transfer-ownership="none">
+            <type name="gboolean" c:type="gboolean"/>
+          </return-value>
+          <parameters>
+            <parameter name="decoder" transfer-ownership="none">
+              <type name="Vp9Decoder" c:type="GstVp9Decoder*"/>
+            </parameter>
+            <parameter name="picture" transfer-ownership="none">
+              <type name="Vp9Picture" c:type="GstVp9Picture*"/>
+            </parameter>
+            <parameter name="dpb" transfer-ownership="none">
+              <type name="Vp9Dpb" c:type="GstVp9Dpb*"/>
+            </parameter>
+          </parameters>
+        </callback>
+      </field>
+      <field name="end_picture">
+        <callback name="end_picture">
+          <return-value transfer-ownership="none">
+            <type name="gboolean" c:type="gboolean"/>
+          </return-value>
+          <parameters>
+            <parameter name="decoder" transfer-ownership="none">
+              <type name="Vp9Decoder" c:type="GstVp9Decoder*"/>
+            </parameter>
+            <parameter name="picture" transfer-ownership="none">
+              <type name="Vp9Picture" c:type="GstVp9Picture*"/>
+            </parameter>
+          </parameters>
+        </callback>
+      </field>
+      <field name="output_picture">
+        <callback name="output_picture">
+          <return-value transfer-ownership="none">
+            <type name="Gst.FlowReturn" c:type="GstFlowReturn"/>
+          </return-value>
+          <parameters>
+            <parameter name="decoder" transfer-ownership="none">
+              <type name="Vp9Decoder" c:type="GstVp9Decoder*"/>
+            </parameter>
+            <parameter name="frame" transfer-ownership="none">
+              <type name="GstVideo.VideoCodecFrame" c:type="GstVideoCodecFrame*"/>
+            </parameter>
+            <parameter name="picture" transfer-ownership="none">
+              <type name="Vp9Picture" c:type="GstVp9Picture*"/>
+            </parameter>
+          </parameters>
+        </callback>
+      </field>
+      <field name="padding" readable="0" private="1">
+        <array zero-terminated="0" fixed-size="20">
+          <type name="gpointer" c:type="gpointer"/>
+        </array>
+      </field>
+    </record>
+    <record name="Vp9DecoderPrivate" c:type="GstVp9DecoderPrivate" disguised="1"/>
+    <record name="Vp9Dpb" c:type="GstVp9Dpb">
+      <field name="pic_list" writable="1">
+        <array zero-terminated="0" fixed-size="8">
+          <type name="Vp9Picture" c:type="GstVp9Picture*"/>
+        </array>
+      </field>
+      <method name="add" c:identifier="gst_vp9_dpb_add">
+        <doc xml:space="preserve">Store the @picture</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="dpb" transfer-ownership="none">
+            <doc xml:space="preserve">a #GstVp9Dpb</doc>
+            <type name="Vp9Dpb" c:type="GstVp9Dpb*"/>
+          </instance-parameter>
+          <parameter name="picture" transfer-ownership="full">
+            <doc xml:space="preserve">a #GstVp9Picture</doc>
+            <type name="Vp9Picture" c:type="GstVp9Picture*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="clear" c:identifier="gst_vp9_dpb_clear">
+        <doc xml:space="preserve">Clear all stored #GstVp9Picture</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="dpb" transfer-ownership="none">
+            <doc xml:space="preserve">a #GstVp9Dpb</doc>
+            <type name="Vp9Dpb" c:type="GstVp9Dpb*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="free" c:identifier="gst_vp9_dpb_free">
+        <doc xml:space="preserve">Free the @dpb</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="dpb" transfer-ownership="none">
+            <doc xml:space="preserve">a #GstVp9Dpb to free</doc>
+            <type name="Vp9Dpb" c:type="GstVp9Dpb*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <function name="new" c:identifier="gst_vp9_dpb_new" introspectable="0">
+        <doc xml:space="preserve">Create new #GstVp9Dpb</doc>
+        <return-value>
+          <doc xml:space="preserve">a new #GstVp9Dpb</doc>
+          <type name="Vp9Dpb" c:type="GstVp9Dpb*"/>
+        </return-value>
+      </function>
+    </record>
+    <record name="Vp9Picture" c:type="GstVp9Picture" glib:type-name="GstVp9Picture" glib:get-type="gst_vp9_picture_get_type" c:symbol-prefix="vp9_picture">
+      <field name="parent" writable="1">
+        <type name="Gst.MiniObject" c:type="GstMiniObject"/>
+      </field>
+      <field name="pts" writable="1">
+        <type name="Gst.ClockTime" c:type="GstClockTime"/>
+      </field>
+      <field name="system_frame_number" writable="1">
+        <type name="guint32" c:type="guint32"/>
+      </field>
+      <field name="frame_hdr" introspectable="0" writable="1">
+        <type c:type="GstVp9FrameHdr"/>
+      </field>
+      <field name="subsampling_x" writable="1">
+        <type name="gint" c:type="gint"/>
+      </field>
+      <field name="subsampling_y" writable="1">
+        <type name="gint" c:type="gint"/>
+      </field>
+      <field name="bit_depth" writable="1">
+        <type name="guint" c:type="guint"/>
+      </field>
+      <field name="data" writable="1">
+        <type name="guint8" c:type="const guint8*"/>
+      </field>
+      <field name="size" writable="1">
+        <type name="gsize" c:type="gsize"/>
+      </field>
+      <field name="user_data" writable="1">
+        <type name="gpointer" c:type="gpointer"/>
+      </field>
+      <field name="notify" writable="1">
+        <type name="GLib.DestroyNotify" c:type="GDestroyNotify"/>
+      </field>
+      <constructor name="new" c:identifier="gst_vp9_picture_new">
+        <doc xml:space="preserve">Create new #GstVp9Picture</doc>
+        <return-value transfer-ownership="full">
+          <doc xml:space="preserve">a new #GstVp9Picture</doc>
+          <type name="Vp9Picture" c:type="GstVp9Picture*"/>
+        </return-value>
+      </constructor>
+      <method name="get_user_data" c:identifier="gst_vp9_picture_get_user_data">
+        <doc xml:space="preserve">Gets private data set on the picture via
+gst_vp9_picture_set_user_data() previously.</doc>
+        <return-value transfer-ownership="none" nullable="1">
+          <doc xml:space="preserve">The previously set user_data</doc>
+          <type name="gpointer" c:type="gpointer"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="picture" transfer-ownership="none">
+            <doc xml:space="preserve">a #GstVp9Picture</doc>
+            <type name="Vp9Picture" c:type="GstVp9Picture*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="set_user_data" c:identifier="gst_vp9_picture_set_user_data">
+        <doc xml:space="preserve">Sets @user_data on the picture and the #GDestroyNotify that will be called when
+the picture is freed.
+
+If a @user_data was previously set, then the previous set @notify will be called
+before the @user_data is replaced.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="picture" transfer-ownership="none">
+            <doc xml:space="preserve">a #GstVp9Picture</doc>
+            <type name="Vp9Picture" c:type="GstVp9Picture*"/>
+          </instance-parameter>
+          <parameter name="user_data" transfer-ownership="none" nullable="1" allow-none="1">
+            <doc xml:space="preserve">private data</doc>
+            <type name="gpointer" c:type="gpointer"/>
+          </parameter>
+          <parameter name="notify" transfer-ownership="none" scope="async" closure="0">
+            <doc xml:space="preserve">a #GDestroyNotify</doc>
+            <type name="GLib.DestroyNotify" c:type="GDestroyNotify"/>
+          </parameter>
+        </parameters>
+      </method>
+    </record>
+    <function name="h264_dpb_new" c:identifier="gst_h264_dpb_new" moved-to="H264Dpb.new" introspectable="0">
+      <doc xml:space="preserve">Create new #GstH264Dpb</doc>
+      <return-value>
+        <doc xml:space="preserve">a new #GstH264Dpb</doc>
+        <type name="H264Dpb" c:type="GstH264Dpb*"/>
+      </return-value>
+    </function>
+    <function name="h265_dpb_new" c:identifier="gst_h265_dpb_new" moved-to="H265Dpb.new" introspectable="0">
+      <doc xml:space="preserve">Create new #GstH265Dpb</doc>
+      <return-value>
+        <doc xml:space="preserve">a new #GstH265Dpb</doc>
+        <type name="H265Dpb" c:type="GstH265Dpb*"/>
+      </return-value>
+    </function>
+    <function name="vp9_dpb_new" c:identifier="gst_vp9_dpb_new" moved-to="Vp9Dpb.new" introspectable="0">
+      <doc xml:space="preserve">Create new #GstVp9Dpb</doc>
+      <return-value>
+        <doc xml:space="preserve">a new #GstVp9Dpb</doc>
+        <type name="Vp9Dpb" c:type="GstVp9Dpb*"/>
+      </return-value>
+    </function>
+  </namespace>
+</repository>
