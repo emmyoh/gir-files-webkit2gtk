@@ -599,7 +599,7 @@ isn't a #gboolean.</doc>
       </method>
       <method name="get_property_as_double" c:identifier="g_udev_device_get_property_as_double">
         <doc xml:space="preserve">Look up the value for @key on @device and convert it to a double
-precision floating point number using strtod().</doc>
+precision floating point number using g_ascii_strtod().</doc>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve">The value for @key or 0.0 if @key doesn't exist or isn't a
 #gdouble.</doc>
@@ -789,7 +789,7 @@ attribute.</doc>
       </method>
       <method name="get_sysfs_attr_as_double" c:identifier="g_udev_device_get_sysfs_attr_as_double">
         <doc xml:space="preserve">Look up the sysfs attribute with @name on @device and convert it to a double
-precision floating point number using strtod(). The retrieved value is cached
+precision floating point number using g_ascii_strtod(). The retrieved value is cached
 in the device. Repeated calls will return the same value and not open the
 attribute again, unless updated through one of the "uncached" functions.</doc>
         <return-value transfer-ownership="none">
@@ -810,7 +810,7 @@ attribute.</doc>
       </method>
       <method name="get_sysfs_attr_as_double_uncached" c:identifier="g_udev_device_get_sysfs_attr_as_double_uncached">
         <doc xml:space="preserve">Look up the sysfs attribute with @name on @device and convert it to a double
-precision floating point number using strtod(). This function does blocking
+precision floating point number using g_ascii_strtod(). This function does blocking
 I/O, and updates the sysfs attributes cache.</doc>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve">The value of the sysfs attribute or 0.0 if there is no such

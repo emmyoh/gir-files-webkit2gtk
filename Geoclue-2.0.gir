@@ -3319,6 +3319,51 @@ object or %NULL if @error is set.</doc>
           </parameter>
         </parameters>
       </constructor>
+      <constructor name="new_with_thresholds_finish" c:identifier="gclue_simple_new_with_thresholds_finish" throws="1">
+        <doc xml:space="preserve">Finishes an operation started with #gclue_simple_new_with_thresholds().</doc>
+        <return-value transfer-ownership="full">
+          <doc xml:space="preserve">The constructed proxy
+object or %NULL if @error is set.</doc>
+          <type name="Simple" c:type="GClueSimple*"/>
+        </return-value>
+        <parameters>
+          <parameter name="result" transfer-ownership="none">
+            <doc xml:space="preserve">The #GAsyncResult obtained from the #GAsyncReadyCallback passed to
+         #gclue_simple_new_with_thresholds().</doc>
+            <type name="Gio.AsyncResult" c:type="GAsyncResult*"/>
+          </parameter>
+        </parameters>
+      </constructor>
+      <constructor name="new_with_thresholds_sync" c:identifier="gclue_simple_new_with_thresholds_sync" throws="1">
+        <doc xml:space="preserve">The synchronous and blocking version of #gclue_simple_new_with_thresholds().</doc>
+        <return-value transfer-ownership="full">
+          <doc xml:space="preserve">The new #GClueSimple object or
+%NULL if @error is set.</doc>
+          <type name="Simple" c:type="GClueSimple*"/>
+        </return-value>
+        <parameters>
+          <parameter name="desktop_id" transfer-ownership="none">
+            <doc xml:space="preserve">The desktop file id (the basename of the desktop file).</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+          <parameter name="accuracy_level" transfer-ownership="none">
+            <doc xml:space="preserve">The requested accuracy level as #GClueAccuracyLevel.</doc>
+            <type name="AccuracyLevel" c:type="GClueAccuracyLevel"/>
+          </parameter>
+          <parameter name="time_threshold" transfer-ownership="none">
+            <doc xml:space="preserve">Time threshold in seconds, 0 for no limit.</doc>
+            <type name="guint" c:type="guint"/>
+          </parameter>
+          <parameter name="distance_threshold" transfer-ownership="none">
+            <doc xml:space="preserve">Distance threshold in meters, 0 for no limit.</doc>
+            <type name="guint" c:type="guint"/>
+          </parameter>
+          <parameter name="cancellable" transfer-ownership="none" nullable="1" allow-none="1">
+            <doc xml:space="preserve">A #GCancellable or %NULL.</doc>
+            <type name="Gio.Cancellable" c:type="GCancellable*"/>
+          </parameter>
+        </parameters>
+      </constructor>
       <function name="new" c:identifier="gclue_simple_new">
         <doc xml:space="preserve">Asynchronously creates a #GClueSimple instance. Use
 #gclue_simple_new_finish() to get the created #GClueSimple instance.
@@ -3351,8 +3396,49 @@ of this function.</doc>
           </parameter>
         </parameters>
       </function>
+      <function name="new_with_thresholds" c:identifier="gclue_simple_new_with_thresholds">
+        <doc xml:space="preserve">Asynchronously creates a #GClueSimple instance. Use
+#gclue_simple_new_with_thresholds_finish() to get the created #GClueSimple instance.
+
+See #gclue_simple_new_with_thresholds_sync() for the synchronous,
+blocking version of this function.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="desktop_id" transfer-ownership="none">
+            <doc xml:space="preserve">The desktop file id (the basename of the desktop file).</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+          <parameter name="accuracy_level" transfer-ownership="none">
+            <doc xml:space="preserve">The requested accuracy level as #GClueAccuracyLevel.</doc>
+            <type name="AccuracyLevel" c:type="GClueAccuracyLevel"/>
+          </parameter>
+          <parameter name="time_threshold" transfer-ownership="none">
+            <doc xml:space="preserve">Time threshold in seconds, 0 for no limit.</doc>
+            <type name="guint" c:type="guint"/>
+          </parameter>
+          <parameter name="distance_threshold" transfer-ownership="none">
+            <doc xml:space="preserve">Distance threshold in meters, 0 for no limit.</doc>
+            <type name="guint" c:type="guint"/>
+          </parameter>
+          <parameter name="cancellable" transfer-ownership="none" nullable="1" allow-none="1">
+            <doc xml:space="preserve">A #GCancellable or %NULL.</doc>
+            <type name="Gio.Cancellable" c:type="GCancellable*"/>
+          </parameter>
+          <parameter name="callback" transfer-ownership="none" nullable="1" allow-none="1" scope="async" closure="6">
+            <doc xml:space="preserve">A #GAsyncReadyCallback to call when the results are ready.</doc>
+            <type name="Gio.AsyncReadyCallback" c:type="GAsyncReadyCallback"/>
+          </parameter>
+          <parameter name="user_data" transfer-ownership="none" nullable="1" allow-none="1">
+            <doc xml:space="preserve">User data to pass to @callback.</doc>
+            <type name="gpointer" c:type="gpointer"/>
+          </parameter>
+        </parameters>
+      </function>
       <method name="get_client" c:identifier="gclue_simple_get_client" glib:get-property="client">
-        <doc xml:space="preserve">Gets the client proxy.</doc>
+        <doc xml:space="preserve">Gets the client proxy, or %NULL if @simple is not using a client proxy (i-e
+when inside the Flatpak sandbox).</doc>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve">The client object.</doc>
           <type name="ClientProxy" c:type="GClueClient*"/>
@@ -3369,7 +3455,7 @@ of this function.</doc>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve">The last known location
 as #GClueLocation.</doc>
-          <type name="LocationProxy" c:type="GClueLocation*"/>
+          <type name="Location" c:type="GClueLocation*"/>
         </return-value>
         <parameters>
           <instance-parameter name="simple" transfer-ownership="none">
@@ -3383,16 +3469,33 @@ as #GClueLocation.</doc>
         <type name="AccuracyLevel"/>
       </property>
       <property name="client" transfer-ownership="none" getter="get_client">
-        <doc xml:space="preserve">The client proxy.</doc>
+        <doc xml:space="preserve">The client proxy. This is %NULL if @simple is not using a client proxy
+(i-e when inside the Flatpak sandbox).</doc>
         <type name="ClientProxy"/>
       </property>
       <property name="desktop-id" readable="0" writable="1" construct-only="1" transfer-ownership="none">
         <doc xml:space="preserve">The Desktop ID of the application.</doc>
         <type name="utf8" c:type="gchar*"/>
       </property>
+      <property name="distance-threshold" writable="1" construct-only="1" transfer-ownership="none">
+        <doc xml:space="preserve">The current distance threshold in meters. This value is used by the
+service when it gets new location info. If the distance moved is
+below the threshold, it won't emit the LocationUpdated signal.
+
+When set to 0 (default), it always emits the signal.</doc>
+        <type name="guint" c:type="guint"/>
+      </property>
       <property name="location" transfer-ownership="none" getter="get_location">
         <doc xml:space="preserve">The current location.</doc>
         <type name="LocationProxy"/>
+      </property>
+      <property name="time-threshold" writable="1" construct-only="1" transfer-ownership="none">
+        <doc xml:space="preserve">The current time threshold in seconds. This value is used by the
+service when it gets new location info. If the time passed is
+below the threshold, it won't emit the LocationUpdated signal.
+
+When set to 0 (default), it always emits the signal.</doc>
+        <type name="guint" c:type="guint"/>
       </property>
       <field name="parent">
         <type name="GObject.Object" c:type="GObject"/>

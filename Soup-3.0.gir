@@ -1643,8 +1643,6 @@ saved.</doc>
       <member name="validates" value="8" c:identifier="SOUP_CACHE_VALIDATES" glib:nick="validates" glib:name="SOUP_CACHE_VALIDATES">
       </member>
     </bitfield>
-    <record name="ClientMessageIO" c:type="SoupClientMessageIO" disguised="1"/>
-    <record name="Connection" c:type="SoupConnection" disguised="1"/>
     <class name="ContentDecoder" c:symbol-prefix="content_decoder" c:type="SoupContentDecoder" parent="GObject.Object" final="1" glib:type-name="SoupContentDecoder" glib:get-type="soup_content_decoder_get_type" glib:type-struct="ContentDecoderClass">
       <doc xml:space="preserve">Class handling decoding of HTTP messages.</doc>
       <implements name="SessionFeature"/>
@@ -3614,7 +3612,7 @@ application compile time, rather than from the library linked
 against at application run time.</doc>
       <type name="gint" c:type="gint"/>
     </constant>
-    <constant name="MICRO_VERSION" value="4" c:type="SOUP_MICRO_VERSION">
+    <constant name="MICRO_VERSION" value="6" c:type="SOUP_MICRO_VERSION">
       <doc xml:space="preserve">Like soup_get_micro_version(), but from the headers used at
 application compile time, rather than from the library linked
 against at application run time.</doc>
@@ -6180,8 +6178,6 @@ priority.</doc>
   attended.</doc>
       </member>
     </enumeration>
-    <record name="MessageQueue" c:type="SoupMessageQueue" disguised="1"/>
-    <record name="MessageQueueItem" c:type="SoupMessageQueueItem" disguised="1"/>
     <record name="Multipart" c:type="SoupMultipart" glib:type-name="SoupMultipart" glib:get-type="soup_multipart_get_type" c:symbol-prefix="multipart">
       <doc xml:space="preserve">Represents a multipart HTTP message body, parsed according to the
 syntax of RFC 2046. Of particular interest to HTTP are
@@ -9194,7 +9190,6 @@ message lifecycle within a session.</doc>
     <record name="SessionFeatureInterface" c:type="SoupSessionFeatureInterface" disguised="1" glib:is-gtype-struct-for="SessionFeature">
       <doc xml:space="preserve">The interface implemented by #SoupSessionFeature&lt;!-- --&gt;s.</doc>
     </record>
-    <record name="Socket" c:type="SoupSocket" disguised="1"/>
     <enumeration name="Status" glib:type-name="SoupStatus" glib:get-type="soup_status_get_type" c:type="SoupStatus">
       <doc xml:space="preserve">These represent the known HTTP status code values, plus various
 network and internal errors.
