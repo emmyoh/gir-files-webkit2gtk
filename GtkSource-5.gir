@@ -3731,25 +3731,6 @@ The value for @y is relative to the renderers widget coordinates.</doc>
           </instance-parameter>
         </parameters>
       </method>
-      <method name="get_yrange" c:identifier="gtk_source_gutter_lines_get_yrange">
-        <return-value transfer-ownership="none">
-          <type name="none" c:type="void"/>
-        </return-value>
-        <parameters>
-          <instance-parameter name="lines" transfer-ownership="none">
-            <type name="GutterLines" c:type="GtkSourceGutterLines*"/>
-          </instance-parameter>
-          <parameter name="line" transfer-ownership="none">
-            <type name="guint" c:type="guint"/>
-          </parameter>
-          <parameter name="line_y" transfer-ownership="none">
-            <type name="guint" c:type="guint*"/>
-          </parameter>
-          <parameter name="line_height" transfer-ownership="none">
-            <type name="guint" c:type="guint*"/>
-          </parameter>
-        </parameters>
-      </method>
       <method name="has_class" c:identifier="gtk_source_gutter_lines_has_class">
         <doc xml:space="preserve">Checks to see if [method@GutterLines.add_class] was called with
 the @name for @line.
@@ -8652,6 +8633,21 @@ the values from other chunks such as capitalization.</doc>
           <parameter name="language_id" transfer-ownership="none" nullable="1" allow-none="1">
             <doc xml:space="preserve">the source language</doc>
             <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+        </parameters>
+      </constructor>
+      <constructor name="new_parsed" c:identifier="gtk_source_snippet_new_parsed" version="5.6" throws="1">
+        <doc xml:space="preserve">Parses the snippet formatted @text into a series of chunks and adds them
+to a new #GtkSourceSnippet.</doc>
+        <return-value transfer-ownership="full">
+          <doc xml:space="preserve">the newly parsed #GtkSourceSnippet, or %NULL upon
+  failure and @error is set.</doc>
+          <type name="Snippet" c:type="GtkSourceSnippet*"/>
+        </return-value>
+        <parameters>
+          <parameter name="text" transfer-ownership="none">
+            <doc xml:space="preserve">the formatted snippet text to parse</doc>
+            <type name="utf8" c:type="const char*"/>
           </parameter>
         </parameters>
       </constructor>
